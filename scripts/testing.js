@@ -7,7 +7,7 @@ function FixLink() {
         var attrs = el.attributes;
         for (var j=0; j<attrs.length; j++) {
           if (attrs[j].name.includes("href")) {
-            attrs[j].value = "https://www.google.com/";
+            attrs[j].value = "https://argonaut-rowing-club.myshopify.com/collections/membership/products/2019-adult-membership";
           }
         }
       }
