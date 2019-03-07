@@ -2,7 +2,7 @@ function FixLink() {
   var all = document.getElementsByTagName("a");
   for (var i=0; i<all.length; i++) {
     var el = all[i];
-    if (el.innerHTML.includes("Pay Online Now")) {
+    if (el.innerHTML.includes("Pay Online Now") || el.innerHTML.includes("Payez maintenant")) {
       if (el.hasAttributes()) {
         var attrs = el.attributes;
         for (var j=0; j<attrs.length; j++) {
