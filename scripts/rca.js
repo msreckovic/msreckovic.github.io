@@ -22,7 +22,7 @@ function Everything() {
       "<h2>" + text + "</h2>";
   } else if (window.location.href.includes("Complete")) {
     var text = "Click here to open the Argo store and complete the payment";
-    var url = "https://argonaut-rowing-club.myshopify.com/collections/membership/"\
+    var url = "https://argonaut-rowing-club.myshopify.com/collections/membership/" +
                "products/2019-adult-membership";
     var el = document.getElementById("HeadLoginName");
     if (el) {
