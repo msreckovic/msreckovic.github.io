@@ -44,7 +44,7 @@ function GetOwing(entries, full)
 
 function GetOwingHelper(entries, full, person)
 {
-  if (person != "") {
+  if (person && person != "") {
     return GetOwingHelperPerson(entries, person);
   }
   return GetOwingHelperAll(entries);
