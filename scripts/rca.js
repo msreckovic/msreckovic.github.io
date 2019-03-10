@@ -1,3 +1,6 @@
+// Needs to be called with <script id="rca" data-year="????" src="..."></script> to work
+// Default year is 2019
+
 function FixLink(url) {
   var all = document.getElementsByTagName("a");
   for (var i=0; i<all.length; i++) {
@@ -16,7 +19,7 @@ function FixLink(url) {
 }
 
 function Everything() {
-  year = "2019";
+  var year = "2019";
   var script_tag = document.getElementById('rca')
   if (script_tag) {
     var argyear = script_tag.getAttribute("data-year");
