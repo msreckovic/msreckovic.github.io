@@ -27,7 +27,7 @@ function Everything() {
     var el = document.getElementById("HeadLoginName");
     if (el) {
       url = "https://argonaut-rowing-club.myshopify.com/cart/16140123537510:1?note=" +
-        el.innerHTML + "-for-2019-membership";
+        el.innerHTML + "-for-Membership-2019-Adult-Membership";
     }
 
     document.getElementById("arcextra").innerHTML =
