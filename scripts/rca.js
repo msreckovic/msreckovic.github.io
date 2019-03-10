@@ -16,6 +16,15 @@ function FixLink(url) {
 }
 
 function Everything() {
+  year = "2019";
+  var script_tag = document.getElementById('rca')
+  if (script_tag) {
+    var argyear = script_tag.getAttribute("data-year");
+    if (argyear) {
+      year = argyear;
+    }
+  }
+
   if (window.location.href.includes("Agree")) {
     var text = "Click the Accept button at bottom left, and follow the payment instructions.";
     document.getElementById("arcextra").innerHTML =
@@ -23,11 +32,11 @@ function Everything() {
   } else if (window.location.href.includes("Complete")) {
     var text = "Click here to open the Argo store and complete the payment";
     var url = "https://argonaut-rowing-club.myshopify.com/collections/membership/" +
-               "products/2019-adult-membership";
+               "products/" + year + "-adult-membership";
     var el = document.getElementById("HeadLoginName");
     if (el) {
       url = "https://argonaut-rowing-club.myshopify.com/cart/16140123537510:1?note=" +
-        el.innerHTML + "-for-Membership-2019-Adult-Membership";
+        el.innerHTML + "-for-Membership-" + year + "-Adult-Membership";
     }
 
     document.getElementById("arcextra").innerHTML =
