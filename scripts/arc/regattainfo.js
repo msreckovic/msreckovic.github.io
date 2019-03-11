@@ -25,6 +25,16 @@ function GV(entry,shrt)
 
 function CallbackListRegattasHow(jsonIn, active)
 {
+  var whatyear = AutomatedLinksYear;
+  var script_tag = document.getElementById('regattainfo')
+  if (script_tag) {
+    var argyear = script_tag.getAttribute("data-year");
+    if (argyear) {
+      console.log("Setting regattainfo.js.whatyear from data-year to " + argyear)
+      whatyear = argyear;
+    }
+  }
+
   var now = Date.now();
   
   var total = "";
@@ -54,9 +64,9 @@ function CallbackListRegattasHow(jsonIn, active)
     var ind = GV(entry,"index");
     if (ln) {
       detail += "<a target=\"_blank\" href=\"" + ln + "\">click for details</a>";
-    } else if (AutomatedLinksYear && ind) {
+    } else if (whatyear && ind) {
       var sn = GV(entry,"shortname");
-      ln = "http://www.argonautrowingclub.com/" + AutomatedLinksYear + "-regattas/?regatta=" + sn;
+      ln = "http://www.argonautrowingclub.com/" + whatyear + "-regattas/?regatta=" + sn;
       detail += "<a target=\"_blank\" href=\"" + ln + "\">click for details</a>";
     } else if (active) {
       detail += "<a href=\"mailto:captain@argonautrowingclub.com\">click to inquire</a>";
