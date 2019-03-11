@@ -1,14 +1,4 @@
 var GoogleSheetSquare = "";
-
-var script_tag = document.getElementById('regattaseason')
-if (script_tag) {
-  var argsheet = script_tag.getAttribute("data-sheet");
-  if (argsheet) {
-    console.log("Setting regattaseason.js.GoogleSheetSquare from data-sheet to " + argsheet)
-    GoogleSheetSquare = argsheet;
-  }
-}
-
 var QueryString = window.location.search.slice(1);
 var QueryParameters = {};
 QueryString.split("&").forEach(function(e) {
@@ -46,8 +36,19 @@ function ExamineRegattas(e) {
   }
 
   if (sheetIndex > 0) {
+    var googleSheet = GoogleSheetSquare;
+
+    var script_tag = document.getElementById('regattaseason')
+    if (script_tag) {
+      var argsheet = script_tag.getAttribute("data-sheet");
+      if (argsheet) {
+        console.log("Setting regattaseason.js.GoogleSheetSquare from data-sheet to " + argsheet)
+        googleSheet = argsheet;
+      }
+    }
+
     var a = document.createElement("script");
-    a.type = "text/javascript", a.src = "https://spreadsheets.google.com/feeds/list/" + GoogleSheetSquare + "/" + sheetIndex + "/public/values?alt=json-in-script", document.getElementsByTagName("script")[0].parentNode.appendChild(a)
+    a.type = "text/javascript", a.src = "https://spreadsheets.google.com/feeds/list/" + googleSheet + "/" + sheetIndex + "/public/values?alt=json-in-script", document.getElementsByTagName("script")[0].parentNode.appendChild(a)
   }
 }
 
