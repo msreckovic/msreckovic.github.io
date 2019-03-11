@@ -1,20 +1,24 @@
 var GoogleSheetSquare = "";
-var QueryString = window.location.search.slice(1);
-var QueryParameters = {};
-QueryString.split("&").forEach(function(e) {
-  var t = e.split("=");
-  QueryParameters[t[0]] = decodeURIComponent(t[1])
-});
-console.log("Parameters " + QueryString);
 
-var Regatta = QueryParameters.regatta.replace("_", " ").replace("%20", " ");
-console.log("Regatta " + Regatta), document.getElementById("regatta-title").innerHTML = Regatta;
+function GetQueryParameters(what) {
+  var queryString = window.location.search.slice(1);
+  var queryParameters = {};
+  queryString.split("&").forEach(function(e) {
+    var t = e.split("=");
+    queryParameters[t[0]] = decodeURIComponent(t[1])
+  });
+  console.log("Parameters " + queryString);
+  var res = queryParameters[what];
+  if (res) return res.replace("_", " ").replace("%20", " ");
+  return undefined;
+}
+
+var Regatta = GetQueryParameters("regatta");
+console.log("Regatta " + Regatta);
 
 function GetValue(e, t, a) {
     return e && t in e ? e[t].$t : a
 }
-StandardRegattaConfiguration(Regatta);
-var gdata = new Object;
 
 function ExamineRegattas(e) {
   var sheetIndex = 0;
@@ -52,4 +56,10 @@ function ExamineRegattas(e) {
   }
 }
 
-gdata.io = new Object, gdata.io.handleScriptLoaded = function(e) { JsonCallback(e) };
+if ("" != Regatta && void 0 != Regatta) {
+  document.getElementById("regatta-title").innerHTML = Regatta;
+
+  StandardRegattaConfiguration(Regatta);
+  var gdata = new Object;
+  gdata.io = new Object, gdata.io.handleScriptLoaded = function(e) { JsonCallback(e) };
+}
