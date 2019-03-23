@@ -42,14 +42,37 @@ function GetValue(where, what, instead)
   return instead;
 }
 
-function JsonCallback(jsonIn)
+function DivSummary(map, entries)
 {
-  var entries = jsonIn.feed.entry;
-  var totals = entries[1];
-  var differences = entries[2];
+  var summary = "";
+  summary += "<h4>Last updated " + entries[3].gsx$body.$t + "</h4>";
+  summary += "<table>\n";
+  summary += "  <thead>\n";
+  summary += "    <tr>\n";
+  summary += "      <th>Who</th>\n";
+  summary += "      <th>Spent</th>\n";
+  summary += "      <th>Paid</th>\n";
+  summary += "      <th>Verdict</th>\n";
+  summary += "    </tr>\n";
+  summary += "  </thead>\n";
 
-  var map = ParseJSON(differences.gsx$body.$t);
+  summary += "  <tbody>\n";
+  for (j in map) {
+    summary += "   <tr>";
+    summary += ForPeople(map[j].who,
+                         entries[1][map[j].cut].$t,
+                         entries[1][map[j].paid].$t);
+    summary += ForAmount(entries[2][map[j].paid].$t);
+    summary += "   </tr>\n";
+  }
 
+  summary += "  </tbody>\n";
+  summary += "</table>\n";
+  return summary;
+}
+
+function DivDetails(map, entries)
+{
   var details = "<table>\n";
   details += "  <thead>\n";
   details += "    <tr>\n";
@@ -122,33 +145,15 @@ function JsonCallback(jsonIn)
 
   details += "  </tbody>\n";
   details += "</table>\n";
+  return details;
+}
 
-  var summary = "";
-  summary += "<h4>Last updated " + entries[3].gsx$body.$t + "</h4>";
-  summary += "<table>\n";
-  summary += "  <thead>\n";
-  summary += "    <tr>\n";
-  summary += "      <th>Who</th>\n";
-  summary += "      <th>Spent</th>\n";
-  summary += "      <th>Paid</th>\n";
-  summary += "      <th>Verdict</th>\n";
-  summary += "    </tr>\n";
-  summary += "  </thead>\n";
+function JsonCallback(jsonIn)
+{
+  var entries = jsonIn.feed.entry;
+  var map = ParseJSON(entries[2].gsx$body.$t);
 
-  summary += "  <tbody>\n";
-  for (j in map) {
-    summary += "   <tr>";
-    summary += ForPeople(map[j].who,
-                         entries[1][map[j].cut].$t,
-                         entries[1][map[j].paid].$t);
-    summary += ForAmount(entries[2][map[j].paid].$t);
-    summary += "   </tr>\n";
-  }
-
-  summary += "  </tbody>\n";
-  summary += "</table>\n";
-
-  document.getElementById("summary").innerHTML = summary;
-  document.getElementById("details").innerHTML = details;
-  document.getElementById("appsetup").innerHTML = totals.gsx$body.$t;
+  document.getElementById("summary").innerHTML = DivSummary(map, entries);
+  document.getElementById("details").innerHTML = DivDetails(map, entries);
+  document.getElementById("appsetup").innerHTML = entries[1].gsx$body.$t;
 }
