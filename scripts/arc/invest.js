@@ -57,7 +57,7 @@ function ShowSeriesA(cb)
 
   var total = "";
   total += "Note that the amounts and dates are for illustration purposes only.";
-  total += "<h4>Initial Bond Series A Investment of " + ShowCurrency(investment) + " made on April 15, 2019</h4>";
+  total += "<h4>" + ShowCurrency(investment) + " Bond Series A purchased on on 15-Apr-2019</h4>";
   total += "<table>";
   total += "  <tr>";
   total += "    <th>Date</th>"; 
@@ -87,7 +87,7 @@ function ShowSeriesB(cb)
 
   var total = "";
   total += "Note that the amounts and dates are for illustration purposes only.";
-  total += "<h4>Initial Bond Series B Investment of " + ShowCurrency(investment) + " made on April 15, 2019</h4>";
+  total += "<h4>" + ShowCurrency(investment) + " Bond Series B purchased on on 15-Apr-2019</h4>";
   total += "<table>";
   total += "  <tr>";
   total += "    <th>Date</th>"; 
