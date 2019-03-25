@@ -5,7 +5,6 @@ function ShowCurrency(amount)
 
 function PayoutsSeriesA(investment)
 {
-  var interest = 0.06;
   var principal = investment;
   var interest = [0.042857, 0.029918, 0.030247, 0.029835, 0.0030330, 0.029835, 0.030330,
                   0.017308, 0.009396, 0.025755, 0.013068, 0.006247, 0.018164, 0.008654,
@@ -30,6 +29,22 @@ function PayoutsSeriesA(investment)
      {"date": "30-Jun-2025", "action": "Interest Payout", "amount": principal * interest[14]},
      {"date": "31-Dec-2025", "action": "Interest Payout", "amount": principal * interest[15]},
      {"date": "15-Apr-2026", "action": "Final Interest + Principal Payout", "amount": principal * 0.25 + principal * interest[16]}];
+  return result;
+}
+
+function PayoutsSeriesB(investment)
+{
+  var principal = investment;
+  var interest = [0.02857, 0.01995, 0.02016, 0.01989, 0.02022, 0.01154];
+
+  var result =
+    [{"date": "15-Apr-2019", "action": "Bond Series B Purchase", "amount": principal},
+     {"date": "31-Dec-2019", "action": "Interest Payout", "amount": principal * interest[0]},
+     {"date": "30-Jun-2020", "action": "Interest Payout", "amount": principal * interest[1]},
+     {"date": "31-Dec-2020", "action": "Interest Payout", "amount": principal * interest[2]},
+     {"date": "30-Jun-2021", "action": "Interest Payout", "amount": principal * interest[3]},
+     {"date": "31-Dec-2021", "action": "Interest Payout", "amount": principal * interest[4]},
+     {"date": "15-Apr-2022", "action": "Final Interest + Principal Payout", "amount": principal * interest[5]}];
   return result;
 }
 
@@ -61,4 +76,34 @@ function ShowSeriesA(cb)
   total += "</table>";
   console.log(total);
   document.getElementById("detailsA").innerHTML = total;
+}
+
+function ShowSeriesB(cb)
+{
+  var investment = cb.value * 1000;
+  console.log("Chart for the investment $" + investment)
+
+  var payouts = PayoutsSeriesB(investment);
+
+  var total = "";
+  total += "Note that the amounts and dates are for illustration purposes only.";
+  total += "<h4>Initial Bond Series B Investment of " + ShowCurrency(investment) + " made on April 15, 2019</h4>";
+  total += "<table>";
+  total += "  <tr>";
+  total += "    <th>Date</th>"; 
+  total += "    <th>Action</th>"; 
+  total += "    <th>Amount</th>"; 
+  total += "  </tr>";
+
+  for (var i=0; i<payouts.length; i++) {
+    total += "  <tr>";
+    total += "    <td>" + payouts[i].date + "</td>"; 
+    total += "    <td>" + payouts[i].action + "</td>";
+    total += "    <td>" + ShowCurrency(payouts[i].amount) + "</td>"; 
+    total += "  </tr>";
+  }
+
+  total += "</table>";
+  console.log(total);
+  document.getElementById("detailsB").innerHTML = total;
 }
