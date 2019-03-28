@@ -17,7 +17,7 @@ function FixLink() {
 
 var ss=window.location.href.includes("Agree");
 if(ss){
-  document.getElementById("arcextra").innerHTML = "<b>Membership Application and Membership Agreement</b><br>" +
+  document.getElementById("arcextra").innerHTML = "<h3>Membership Application and Membership Agreement</h3><br>" +
 "To the President and Directors of the Argonaut Rowing Club:<br>" +
 "<ul>" +
 "<li>I hereby confirm that I have read and understood and that I agree to abide by this Membership Agreement, the Club Code of Conduct, all Rules, the By-laws and Policies of the Argonaut Rowing Club including, but not limited to, the ARC Harassment Policy, the Safety Policy of the ARC, the Regulations of the Canadian Coast Guard and the Regulations of Transport Canada. To review all club rules, by-laws and policies, please click here.</li>" +
@@ -30,7 +30,10 @@ if(ss){
 "<li>I agree and acknowledge that rowing is a competitive sport and that if I choose to compete for a space in one of the competitive crews, I will do so with the understanding and full acceptance that the Argonaut Rowing Club does not guarantee that I will succeed in being selected for a competitive program or by the coach of my preferred crew.</li>" +
 "<li>I agree that the ARC is not responsible for any personal injury sustained by myself or any other person, or for the loss or damage to any property which I have brought to the premises including but not limited to privately owned boats, racks or oars, personal items or other equipment, whether caused by theft, during transportation or by any other cause, including negligence of the ARC or any of its members, coaches, servants, agents or contractors.</li>" +
 "</ul>" +
-"By clicking Accept below, I hereby apply for membership in Argonaut Rowing Club under terms that expire on March 31, 2020. In doing so, I agree to the above terms and conditions." +
+"By clicking Accept below, I hereby apply for membership in Argonaut Rowing Club under terms that expire on March 31, 2020. In doing so, I agree to the above terms and conditions.<br><br>" +
+"<h3>Argonaut Rowing Club Photo Release</h3>" +
+"I grant to the Argonaut Rowing Club (ARC), its representatives and employees the right to take photographs of me and my property in connection with ARC, Regattas and the Western Beaches. I authorize the Argonaut Rowing Club, its assigns and transferees to copyright, use and publish the same in print and/or electronically.<br>" +
+"I agree that the Argonaut Rowing Club may use such photographs of me with or without my name and for any lawful purpose, including for example such purposes as publicity, illustration, advertising, and Web content.<br>" +
 "<h2>Click the Accept button at bottom left, and follow the payment instructions.</h2>";
 }
 
