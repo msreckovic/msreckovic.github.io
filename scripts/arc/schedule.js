@@ -64,7 +64,7 @@ if (!Array.from) {
       
       // 16. Let k be 0.
       var k = 0;
-      // 17. Repeat, while k < len… (also steps a - h)
+      // 17. Repeat, while k < lenâ€¦ (also steps a - h)
       var kValue;
       while (k < len) {
         kValue = items[k];
@@ -186,11 +186,8 @@ function CreateHeader(across, where, regattas, yahoo)
   
   total += "<td width=\"25%\" class=\"email\">";
   //  total += "<h4 class=\"redClassARC\"><a href=\"http://www.argonautrowingclub.com/safety/\">Partial cold water rules in effect!</a></h4>";
-  total += EmailLink("captain@argonautrowingclub.com",
-                     "",
-                     "Boat%20Allocation%20Request",
-                     "<h4 class=\"normalClassARC\">Click to request a boat allocation</h4>",
-                     yahoo);
+  total += "<a target=\"_blank\" href=\"https://docs.google.com/forms/d/18W965DUknOwmtCvoovMO04OWxn3gBpYjeplL9_5ANz8\">Click to request a boat allocation</a>";
+    
   total += "<h4 class=\"normalClassARC\"><a href=\"status.html\">Please only use the allocated equipment.</a></h4>";
   total += "</td>";
   if (!across) {
