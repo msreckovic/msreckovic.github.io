@@ -186,7 +186,7 @@ function CreateHeader(across, where, regattas, yahoo)
   
   total += "<td width=\"25%\" class=\"email\">";
   //  total += "<h4 class=\"redClassARC\"><a href=\"http://www.argonautrowingclub.com/safety/\">Partial cold water rules in effect!</a></h4>";
-  total += "<a target=\"_blank\" href=\"https://docs.google.com/forms/d/18W965DUknOwmtCvoovMO04OWxn3gBpYjeplL9_5ANz8\">Click to request a boat allocation</a>";
+  total += "<a target=\"_blank\" href=\"http://www.argonautrowingclub.com/pre-approved-boat-allocations/\">Click to request a boat allocation</a>";
     
   total += "<h4 class=\"normalClassARC\"><a href=\"status.html\">Please only use the allocated equipment.</a></h4>";
   total += "</td>";
