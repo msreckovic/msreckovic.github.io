@@ -124,7 +124,7 @@ function Everything(entries, getLinks, memberLink)
   var norca = Categorized(entries, false, 1, "Members missing the RCA registration", getLinks, memberLink);
   document.getElementById("norca").innerHTML = norca;
   
-  var timestamp = entries[0][map.timestamp].$t;
+  var timestamp = "Updated on " + entries[0][map.timestamp].$t;
   console.log("THE timestamp is " + timestamp);
   document.getElementById("timestamp").innerHTML = timestamp;
 }
