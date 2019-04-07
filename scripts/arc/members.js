@@ -110,7 +110,7 @@ function Categorized(entries, onlygood, category, header, getlinks, memberlink)
   }
   
   if (!onlygood) {
-    note = "See <a target=\"_blank\" href=\"http://www.argonautrowingclub.com/new-member-followup/\">the registration follow-up page</a> for details how to fix this problem.";
+    note = "For insurance reasons, the club boats access is restricted to members registered with Rowing Canada. If you are on this list, you cannot use club boats until you register. <a target=\"_blank\" href=\"https://membership.rowingcanada.org/JoinProgram?id=220\">Click here and login to Rowing Canada to properly register.</a>";
   }
   total = "<hr><h2>" + header + " <span style=\"color:#ccaaaa;\">(" + counting + ")</span></h2>" + note + total;
   return total;
