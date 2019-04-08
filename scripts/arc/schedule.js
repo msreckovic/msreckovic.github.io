@@ -209,7 +209,7 @@ function CreateHeader(across, where, regattas, yahoo)
   
   total += "</td><td width\"40%\">";
   
-  total += "<input type=\"checkbox\" id=\"checkREC\" checked onchange=\"pressingREC(this)\">Rec./Dev.</input><br>";
+  total += "<input type=\"checkbox\" id=\"checkCLUB\" checked onchange=\"pressingCLUB(this)\">Club</input><br>";
   total += "<input type=\"checkbox\" id=\"checkMW\" checked onchange=\"pressingMW(this)\">Masters Women</input><br>";
   total += "<input type=\"checkbox\" id=\"checkMM\" checked onchange=\"pressingMM(this)\">Masters Men</input>";
   
@@ -342,7 +342,7 @@ function ResetTable()
 
 var FilterVariable =
     {
-      "REC" : true,
+      "CLUB" : true,
       "LTR" : true,
       "J" : true,
       "MW" : true,
@@ -363,7 +363,7 @@ function pressingCaptain(cb)
   CaptainsFill();
 }
 
-function pressingREC(cb) { FilterVariable["REC"] = cb.checked; AutoFill(); };
+function pressingCLUB(cb) { FilterVariable["CLUB"] = cb.checked; AutoFill(); };
 function pressingLTR(cb) { FilterVariable["LTR"] = cb.checked; AutoFill(); };
 function pressingJ(cb) { FilterVariable["J"] = cb.checked; AutoFill(); };
 function pressingMW(cb) { FilterVariable["MW"] = cb.checked; AutoFill(); };
@@ -402,15 +402,17 @@ function FilterShow(data, checkCaptains)
   }
   
   if (data.fProgram.toUpperCase().search("REC") >= 0) {
-    return boatType && FilterVariable["REC"];
+    return boatType && FilterVariable["CLUB"];
   } else if (data.fProgram.toUpperCase().search("DEV") >= 0) {
-    return boatType && FilterVariable["REC"];
+    return boatType && FilterVariable["CLUB"];
+  } else if (data.fProgram.toUpperCase().search("CLUB") >= 0) {
+    return boatType && FilterVariable["CLUB"];
   } else if (data.fProgram.toUpperCase().search("CAMP ARGO") >= 0) {
-    return boatType && FilterVariable["REC"];
+    return boatType && FilterVariable["CLUB"];
   } else if (data.fProgram.toUpperCase().search("JUNIOR") >= 0) {
     return boatType && FilterVariable["J"];
   } else if (data.fProgram.toUpperCase().search("NOVICE") >= 0) {
-    return boatType && FilterVariable["REC"];
+    return boatType && FilterVariable["CLUB"];
   } else if ((data.fProgram.toUpperCase().search("LTR") >= 0) ||
              (data.fProgram.toUpperCase().search("LEARN") >= 0)) {
     return boatType && FilterVariable["LTR"];
