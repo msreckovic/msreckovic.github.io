@@ -178,16 +178,13 @@ function CreateHeader(across, where, regattas, yahoo)
   var total = "<table width=\"100%\"><tr>";
   
   if (across) {
-    total += "<td width=\"30%\"><a title=\"Argonaut Rowing Club\" href=\"http://www.argonautrowingclub.com\"><h2 id=\"logo\">Argonaut Rowing Club</h2></a></td>";
     total += "<td>";
     total += FillRegattas(regattas);
     total += "</td>";
   }
   
   total += "<td width=\"25%\" class=\"email\">";
-  total += "<a target=\"_blank\" href=\"http://www.argonautrowingclub.com/pre-approved-boat-allocations/\">Click to request a boat allocation</a>";
-    
-  total += "<h4 class=\"normalClassARC\">Please only use equipment allocated to you</h4>";
+  total += "<a target=\"_blank\" href=\"http://www.argonautrowingclub.com/pre-approved-boat-allocations/\">Click here to request a boat allocation</a>";
   total += "</td>";
   if (!across) {
     total += "</tr><tr>";
@@ -197,27 +194,27 @@ function CreateHeader(across, where, regattas, yahoo)
     total += "</tr><tr>";
   }
   
-  total += "<td width=\"25%\" class=\"email\">";
+  total += "<td width=\"40%\" class=\"email\">";
   total += "<table width=\"100%\" id=\"legend\"><tr>";
   
-  total += "<td width\"40%\">";
+  total += "<td width\"25%\">";
   
   total += "<input type=\"checkbox\" id=\"checkLTR\" checked onchange=\"pressingLTR(this)\">Learn to row</input><br>";
-  total += "<input type=\"checkbox\" id=\"checkSM\" checked onchange=\"pressingSM(this)\">Seniors</input><br>";
-  total += "<input type=\"checkbox\" id=\"checkJ\" checked onchange=\"pressingJ(this)\">Juniors</input>";
-  
-  total += "</td><td width\"40%\">";
-  
-  total += "<input type=\"checkbox\" id=\"checkCLUB\" checked onchange=\"pressingCLUB(this)\">Club</input><br>";
-  total += "<input type=\"checkbox\" id=\"checkMW\" checked onchange=\"pressingMW(this)\">Masters Women</input><br>";
-  total += "<input type=\"checkbox\" id=\"checkMM\" checked onchange=\"pressingMM(this)\">Masters Men</input>";
-  
-  total += "</td><td width\"20%\">";
+  total += "<input type=\"checkbox\" id=\"checkSM\" checked onchange=\"pressingSM(this)\">Seniors</input>";
+  total += "</td><td width\"25%\">";
+
+  total += "<input type=\"checkbox\" id=\"checkJ\" checked onchange=\"pressingJ(this)\">Juniors</input><br>";
+  total += "<input type=\"checkbox\" id=\"checkCLUB\" checked onchange=\"pressingCLUB(this)\">Club + Masters</input>";
+  total += "</td><td width\"25%\">";
+
   total += "<input type=\"checkbox\" id=\"check8\" checked onchange=\"pressing8(this)\">8+</input><br>";
-  total += "<input type=\"checkbox\" id=\"check4\" checked onchange=\"pressing4(this)\">4x, 4-, 4+</input><br>";
+  total += "<input type=\"checkbox\" id=\"check4\" checked onchange=\"pressing4(this)\">4x, 4-, 4+</input>";
+  total += "</td><td width\"25%\">";
+
   total += "<input type=\"checkbox\" id=\"check2\" checked onchange=\"pressing2(this)\">2x, 2-</input><br>";
-  total += "<input type=\"checkbox\" id=\"check1\" checked onchange=\"pressing1(this)\">1x</input><br>";
+  total += "<input type=\"checkbox\" id=\"check1\" checked onchange=\"pressing1(this)\">1x</input>";
   total += "</td>";
+
   total += "</tr></table>";
   // total += "<span class=\"redClassARC\">Conflicts (if any) in red.</span>";
   total += "</td>";
@@ -344,9 +341,7 @@ var FilterVariable =
       "CLUB" : true,
       "LTR" : true,
       "J" : true,
-      "MW" : true,
       "SM" : true,
-      "MM" : true,
       "8" : true,
       "4" : true,
       "2" : true,
@@ -365,9 +360,7 @@ function pressingCaptain(cb)
 function pressingCLUB(cb) { FilterVariable["CLUB"] = cb.checked; AutoFill(); };
 function pressingLTR(cb) { FilterVariable["LTR"] = cb.checked; AutoFill(); };
 function pressingJ(cb) { FilterVariable["J"] = cb.checked; AutoFill(); };
-function pressingMW(cb) { FilterVariable["MW"] = cb.checked; AutoFill(); };
 function pressingSM(cb) { FilterVariable["SM"] = cb.checked; AutoFill(); };
-function pressingMM(cb) { FilterVariable["MM"] = cb.checked; AutoFill(); };
 
 function pressing8(cb) { FilterVariable["8"] = cb.checked; AutoFill(); };
 function pressing4(cb) { FilterVariable["4"] = cb.checked; AutoFill(); };
@@ -417,10 +410,10 @@ function FilterShow(data, checkCaptains)
     return boatType && FilterVariable["LTR"];
   } else if ((data.fProgram.toUpperCase().search("MW") >= 0) ||
              (data.fProgram.toUpperCase().search("MASTERS W") >= 0)) {
-    return boatType && FilterVariable["MW"];
+    return boatType && FilterVariable["CLUB"];
   } else if ((data.fProgram.toUpperCase().search("MM") >= 0) ||
              (data.fProgram.toUpperCase().search("MASTERS M") >= 0)) {
-    return boatType && FilterVariable["MM"];
+    return boatType && FilterVariable["CLUB"];
   } else if ((data.fProgram.toUpperCase().search("SW") >= 0) ||
              (data.fProgram.toUpperCase().search("SM") >= 0) ||
              (data.fProgram.toUpperCase().search("WOMEN") >= 0) ||
