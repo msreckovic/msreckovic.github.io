@@ -187,7 +187,7 @@ function CreateHeader(across, where, regattas, yahoo)
   total += "<td width=\"25%\" class=\"email\">";
   total += "<a target=\"_blank\" href=\"http://www.argonautrowingclub.com/pre-approved-boat-allocations/\">Click to request a boat allocation</a>";
     
-  total += "<h4>Please only use equipment allocated to you</h4>";
+  total += "<h4 class=\"normalClassARC\">Please only use equipment allocated to you</h4>";
   total += "</td>";
   if (!across) {
     total += "</tr><tr>";
