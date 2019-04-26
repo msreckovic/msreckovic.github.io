@@ -409,18 +409,14 @@ function FilterShow(data, checkCaptains)
              (data.fProgram.toUpperCase().search("LEARN") >= 0)) {
     return boatType && FilterVariable["LTR"];
   } else if ((data.fProgram.toUpperCase().search("MW") >= 0) ||
-             (data.fProgram.toUpperCase().search("MASTERS W") >= 0)) {
-    return boatType && FilterVariable["CLUB"];
-  } else if ((data.fProgram.toUpperCase().search("MM") >= 0) ||
-             (data.fProgram.toUpperCase().search("MASTERS M") >= 0)) {
+             (data.fProgram.toUpperCase().search("MM") >= 0) ||
+             (data.fProgram.toUpperCase().search("MASTERS") >= 0)) {
     return boatType && FilterVariable["CLUB"];
   } else if ((data.fProgram.toUpperCase().search("SW") >= 0) ||
              (data.fProgram.toUpperCase().search("SM") >= 0) ||
              (data.fProgram.toUpperCase().search("WOMEN") >= 0) ||
              (data.fProgram.toUpperCase().search("MEN") >= 0) ||
-             (data.fProgram.toUpperCase().search("SENIOR W") >= 0) ||
-             (data.fProgram.toUpperCase().search("SENIORS") >= 0) ||
-             (data.fProgram.toUpperCase().search("SENIOR M") >= 0)) {
+             (data.fProgram.toUpperCase().search("SENIOR") >= 0)) {
     return boatType && FilterVariable["SM"];
   }
   return false;
