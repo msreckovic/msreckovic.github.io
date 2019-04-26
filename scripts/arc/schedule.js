@@ -566,6 +566,8 @@ function ScheduleFillFrom(data, stats, showcaptains)
       el = document.getElementById(id+"99");
       if (!el) {
         console.log("Also failed to find " + id + "99");
+        console.log("SKIP " + program + " at " + data[i].fDay + " " + data[i].fTime + " " + data[i].fName);
+        continue;
       } else {
         //    console.log("Found " + id + "99");
       }
