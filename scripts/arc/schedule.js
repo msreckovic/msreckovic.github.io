@@ -548,6 +548,8 @@ function ScheduleFillFrom(data, stats, showcaptains)
   for (var i=0; i<data.length; i+=1) {
     
     var program = data[i].fProgram;
+    var recurrence = data[i].fRecurrence;
+
     if (!FilterShow(data[i], checkCaptains)) {
       filtered += 1;
       console.log("SKIP " + program + " at " + data[i].fDay + " " + data[i].fTime + " " + data[i].fName);
@@ -593,7 +595,7 @@ function ScheduleFillFrom(data, stats, showcaptains)
       console.log("Skipping " + who);
     }
     
-    var item = type + " " + name + " - " + program;
+    var item = type + " " + name + recurrence + " - " + program;
     if (showcaptains) {
       if (who && who.length > 1 && who[0] && who[1]) {
         item += " <span>(" + who[0] + ")</span>";
@@ -608,7 +610,7 @@ function ScheduleFillFrom(data, stats, showcaptains)
     
     var tag;
     if (el.innerHTML.search(name) < 0) {
-      if (program.toUpperCase().search("ONCE") > 0) {
+      if (recurrence.toUpperCase().search("ONCE") > 0) {
         tag = "<li class=\"blue\">";
       } else if (name.toUpperCase().search("DAMAGED") > 0) {
         tag = "<li class=\"yellow\">";
