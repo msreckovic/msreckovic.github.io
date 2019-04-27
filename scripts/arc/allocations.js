@@ -13,6 +13,7 @@ var jsonSchedule =
          "fWho" : "John Smith <jsmith@email.com>",
          "fType" : "type",
          "fName" : "name",
+         "fRecurrence" : "",
        },
      ]};
 
@@ -50,6 +51,7 @@ function Allocate(entry)
     "fWho" : email,
     "fType" : entry.gsx$type.$t,
     "fName" : entry.gsx$boat.$t,
+    "fRecurrence" : entry.gsx$recurrence.$t,
   };
   return total;
 }
