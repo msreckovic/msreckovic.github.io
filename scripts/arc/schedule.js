@@ -513,6 +513,10 @@ function ScheduleFillFrom(data, stats, showcaptains)
     var el = document.getElementById(id + count);
     if (!el) {
       console.log("Failed to find " + id + count);
+      // TODO: Nasty hack for LTR
+      if (data[i].fTime == "9:30-11:30am") {
+        id = data[i].fDay + " 10-12pm";
+      }
       el = document.getElementById(id+"99");
       if (!el) {
         console.log("Also failed to find " + id + "99");
