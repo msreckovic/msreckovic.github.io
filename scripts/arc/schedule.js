@@ -479,66 +479,6 @@ function CaptainsFillFrom(data, stats, captains, yahoo)
   FillCaptains(captains, yahoo);
 }
 
-function WhatAvailable(boats, id)
-{
-  var result = "";
-  var keys = Object.keys(boats);
-  keys.sort();
-  for (var i=keys.length-1; i>=0; i--) {
-    var one = keys[i];
-    var boat = boats[one];
-    if (id in boat) continue;
-    result += "<li>" + one + "</li>";
-  }
-  return result;
-}
-
-function AvailableFillFrom(data)
-{
-  var SomeBoatsOut = {};
-  var BoatUsed = {};
-  
-  for (var i=0; i<data.length; i+=1) {
-    var id = data[i].fDay + " " + data[i].fTime;
-    var type = data[i].fType;
-    if (ValFromType(type) < 2) continue;
-    
-    SomeBoatsOut[id] = true;
-    
-    var name = data[i].fName.toUpperCase();
-    var tag = type + " " + name;
-    if (!(tag in BoatUsed)) {
-      BoatUsed[tag] = {};
-    }
-    BoatUsed[tag][id] = true;
-  }
-  
-  for (j = 0; j < AllTheData.fTimesDays.length; j+=1) {
-    if (j == 4) continue;
-    for (i = 0; i < AllTheData.fWeekdays.length; i+=1) {
-      var id = AllTheData.fWeekdays[i] + " " + AllTheData.fTimesDays[j];
-      var content = "<li class=\"blue\">All boats available</li>";
-      if ((id in SomeBoatsOut) && SomeBoatsOut[id]) {
-        content = WhatAvailable(BoatUsed,id);
-      }
-      var el = document.getElementById(id+"99");
-      el.innerHTML = content;
-    }
-  }
-  
-  for (j = 0; j < AllTheData.fTimesEnds.length; j+=1) {
-    for (i = 0; i < AllTheData.fWeekends.length; i+=1) {
-      var id = AllTheData.fWeekends[i] + " " + AllTheData.fTimesEnds[j];
-      var content = "<li class=\"blue\">All boats available</li>";
-      if ((id in SomeBoatsOut) && SomeBoatsOut[id]) {
-        content = WhatAvailable(BoatUsed,id);
-      }
-      var el = document.getElementById(id+"99");
-      el.innerHTML += "<li>" + content + "</li>";
-    }
-  }
-}
-
 function ElementClearOf(innerHTML, name, recurrence)
 {
   if (innerHTML.search(name) < 0) {
