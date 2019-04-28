@@ -539,6 +539,18 @@ function AvailableFillFrom(data)
   }
 }
 
+function ElementClearOf(innerHTML, name, recurrence)
+{
+  if (innerHTML.search(name) < 0) {
+    return true;
+  }
+  if (innerHTML.search(name + recurrence) < 0) {
+    return true;
+  }
+  return false;
+}
+
+
 function ScheduleFillFrom(data, stats, showcaptains)
 {
   var filtered = 0;
@@ -609,7 +621,7 @@ function ScheduleFillFrom(data, stats, showcaptains)
     }
     
     var tag;
-    if (el.innerHTML.search(name) < 0) {
+    if (ElementClearOf(el.innerHTML, name, recurrence)) {
       if (recurrence.toUpperCase().search("ONCE") > 0) {
         tag = "<li class=\"blue\">";
       } else if (name.toUpperCase().search("DAMAGED") > 0) {
