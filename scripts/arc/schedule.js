@@ -502,7 +502,7 @@ function ScheduleFillFrom(data, stats, showcaptains)
     var program = data[i].fProgram;
     var recurrence = data[i].fRecurrence;
 
-    if (!FilterShow(data[i], checkCaptains)) {
+    if (!FilterShowAll(data[i], checkCaptains)) {
       filtered += 1;
       console.log("SKIP " + program + " at " + data[i].fDay + " " + data[i].fTime + " " + data[i].fName);
       continue;
@@ -565,11 +565,13 @@ function ScheduleFillFrom(data, stats, showcaptains)
     }
     
     var tag;
-    if (ElementClearOf(el.innerHTML, name, recurrence)) {
+    if (name.toUpperCase().search("DAMAGED") > 0) {
+      tag = "<li class=\"yellow\">";
+    } else if (recurrence.toUpperCase().search("DAMAGED") > 0) {
+      tag = "<li class=\"yellow\">";
+    } else if (ElementClearOf(el.innerHTML, name, recurrence)) {
       if (recurrence.toUpperCase().search("ONCE") > 0) {
         tag = "<li class=\"blue\">";
-      } else if (name.toUpperCase().search("DAMAGED") > 0) {
-        tag = "<li class=\"yellow\">";
       } else if (name.toUpperCase().search("REGATTA") > 0) {
         tag = "<li class=\"yellow\">";
       } else {
