@@ -18,16 +18,28 @@
 // name, email, phone, contact
 // coxie, scull, bow, port, starboard
 
+var AMPM = ["AM", "PM"];
+var DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+var TAGS = ["gsx$mondays", "gsx$tuesdays", "gsx$wednesdays", "gsx$thursdays", "gsx$fridays", "gsx$saturdays", "gsx$sundays"];
+
 var CONTACTMETHOD = ["E-Mail", "Text", "Phone"];
 var COX = ["Yes", "No"]
 var SCULL = ["Yes, including bowing", "Yes, but no bowing", "No"];
 var SWEEP = ["Yes, port only", "Yes, starboard only", "Yes, port or starboard", "No"];
-var WEEKDAYAM = ["5:30-7:30am", "7:30-9:30am"];
-var WEEKDAYPM = ["6:30-8:30pm"];
-var WEEKENDAM = ["6-8am", "8-10am", "10am-noon"];
-var WEEKENDPM = ["Noon-2pm"];
 
-var DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+var WEEKDAY = {};
+WEEKDAY["AM"] = ["5:30-7:30am", "7:30-9:30am"];
+WEEKDAY["PM"] = ["6:30-8:30pm"];
+var WEEKEND = {};
+WEEKEND["AM"] = ["6-8am", "8-10am", "10am-noon"];
+WEEKEND["PM"] = ["Noon-2pm"];
+
+function consolelog(what)
+{
+  if (false) {
+    console.log(what);
+  }
+}
 
 function GetValue(where, what, instead)
 {
@@ -95,6 +107,7 @@ function SetSweep(hash, entry)
 function SetDay(hash, entry, day, tag)
 {
   var values = GetValues(entry, tag);
+  consolelog("VALUES FOR " + tag + " ARE " + values);
   if (values.length > 0) {
     for (var i = 0; i < values.length; i++) {
       values[i] = values[i].trim();
@@ -107,6 +120,8 @@ function Collect(entries)
 {
   var collected = {};
   for (var i = 0; i < entries.length; i++) {
+    consolelog("ENTRY " + JSON.stringify(entries[i]));
+
     var name = GetValue(entries[i], "gsx$name", "");
     if (name == "") {
       continue;
@@ -120,28 +135,23 @@ function Collect(entries)
     SetScull(collected[name], entries[i]);
     SetSweep(collected[name], entries[i]);
 
-    SetDay(collected[name], entries[i], "Monday", "gsx$mondays");
-    SetDay(collected[name], entries[i], "Tuesday", "gsx$tuesdays");
-    SetDay(collected[name], entries[i], "Wednesday", "gsx$wednesdays");
-    SetDay(collected[name], entries[i], "Thursday", "gsx$thursdays");
-    SetDay(collected[name], entries[i], "Friday", "gsx$fridays");
-    SetDay(collected[name], entries[i], "Saturday", "gsx$saturdays");
-    SetDay(collected[name], entries[i], "Sunday", "gsx$sundays");
+    for (var d = 0 ; d < DAYS.length; d++) {
+      SetDay(collected[name], entries[i], DAYS[d], TAGS[d]);
+    }
   }
   return collected;
 }
 
-function CollectMatchWeekday(collected, day, filter, items)
+function CollectMatch(collected, day, filter, items)
 {
-  // TODO
-  console.log("PROCESS Weekday " + day);
   for (name in collected) {
-    console.log("Look at " + name + " for " + JSON.stringify(collected[name]));
-    console.log("Filtered " + filter(collected[name]));
+    consolelog("On " + day + " look at " + name + " for " + JSON.stringify(collected[name]));
     if (filter(collected[name])) {
+      consolelog("FILTER LETS US IN");
       if (! (day in collected[name])) continue;
 
       var daytimes = collected[name][day];
+      consolelog("DAYTIMES " + daytimes);
       for (var i = 0; i < daytimes.length; i++) {
         if (! (day in items)) {
           items[day] = {};
@@ -161,23 +171,14 @@ function CollectMatchWeekday(collected, day, filter, items)
       }
     }
   }
-}
-
-function CollectMatchWeekend(collected, day, filter, items)
-{
-  // TODO
-  for (name in collected) {
-  }
+  consolelog("AT THIS POINT " + JSON.stringify(items));
 }
 
 function CollectCox(collected)
 {
   var cox = {};
-  for (var i = 0; i < 5; i++) {
-    CollectMatchWeekday(collected, DAYS[i], function(el) { return el["cox"]; }, cox);
-  }
-  for (var i = 5; i < 7; i++) {
-    CollectMatchWeekend(collected, DAYS[i], function(el) { return el["cox"]; }, cox);
+  for (var i = 0; i < 7; i++) {
+    CollectMatch(collected, DAYS[i], function(el) { return el["cox"]; }, cox);
   }
   return cox;
 }
@@ -185,23 +186,26 @@ function CollectCox(collected)
 function CollectScull(collected)
 {
   var scull = {};
-  for (var i = 0; i < 5; i++) {
-    CollectMatchWeekday(collected, DAYS[i], function(el) { return el["scull"]; }, scull);
-  }
-  for (var i = 5; i < 7; i++) {
-    CollectMatchWeekend(collected, DAYS[i], function(el) { return el["scull"]; }, scull);
+  CollectMatch(collected, "Friday", function(el) { return el["scull"]; }, scull);
+  for (var i = 0; i < 7; i++) {
+    CollectMatch(collected, DAYS[i], function(el) { return el["scull"]; }, scull);
   }
   return scull;
 }
 
 function CollectSweep(collected)
 {
-  return {};
+  var sweep = {};
+  for (var i = 0; i < 7; i++) {
+    CollectMatch(collected, DAYS[i], function(el) { return el["starboard"] || el["port"]; }, sweep);
+  }
+  return sweep;
 }
 
 function FillDivPlace(what)
 {
-  return '<td><div id=' + what + '>No spares</div></td>';
+  consolelog("DIV DIV DIV NAMES " + what);
+  return '<td><div id=' + what + '>No spares. ' + LinkLink("https://docs.google.com/forms/d/e/1FAIpQLSc652x3Fil9G-A5EDL8WUUQLTz1JOcmlOJiFLkXt0HaaQ_GXg/viewform", "Click to sign up!") + '</div></td>';
 }
 
 function FillBlankRow(howmany, colspan)
@@ -213,34 +217,32 @@ function FillBlankRow(howmany, colspan)
   return total;
 }
 
-function FillDay(day)
+function FillDayPart(day, part)
 {
+  consolelog("FILLING FILLING " + day + " " + part);
+
   var total = ""
   total += '<tr>';
-  total += '<th colspan="3" width="50%">' + day + ' AM</th>';
-  total += '<th colspan="3" width="50%">' + day + ' PM</th>';
+  total += '<th colspan="3" width="50%">' + day + ' ' + part + '</th>';
   total += '</tr>';
 
   total += '<tr>';
-  total += '<th width="16%">Cox</th>';
-  total += '<th width="17%">Scull</th>';
-  total += '<th width="17%">Sweep</th>';
-  total += '<th width="16%">Cox</th>';
-  total += '<th width="17%">Scull</th>';
-  total += '<th width="17%">Sweep</th>';
+  total += '<th width="32%">Cox</th>';
+  total += '<th width="34%">Scull</th>';
+  total += '<th width="34%">Sweep</th>';
   total += '</tr>';
 
   total += '<tr>';
-  total += FillDivPlace(day + '-am-cox');
-  total += FillDivPlace(day + '-am-scull');
-  total += FillDivPlace(day + '-am-sweep');
-
-  total += FillDivPlace(day + '-pm-cox');
-  total += FillDivPlace(day + '-pm-scull');
-  total += FillDivPlace(day + '-pm-sweep');
+  total += FillDivPlace(day + '-' + part + '-cox');
+  total += FillDivPlace(day + '-' + part + '-scull');
+  total += FillDivPlace(day + '-' + part + '-sweep');
   total += '</tr>';
 
   return total;
+}
+function FillDay(day)
+{
+  return FillDayPart(day, 'AM') + FillDayPart(day, 'PM');
 }
 
 function FillPage(id)
@@ -250,16 +252,21 @@ function FillPage(id)
   total += '<table border="1" width="100%">';
   for (var d = 0; d < 5; d++) {
     total += FillDay(DAYS[d]);
-    total += FillBlankRow(2, 6);
+    total += FillBlankRow(1, 3);
   }
-  total += FillBlankRow(2, 6);
+  total += FillBlankRow(1, 3);
 
   total += FillDay(DAYS[5]);
-  total += FillBlankRow(2, 6);
+  total += FillBlankRow(1, 3);
   total += FillDay(DAYS[6]);
   total += '</table>';
 
   SetHTML(id, total);
+}
+
+function LinkLink(url, text)
+{
+  return '<a href="' + url + '">' + text + '</a>';
 }
 
 function EmailLink(person, to, subject)
@@ -279,7 +286,7 @@ function PhoneLink(person, to)
 
 function ContactLink(person, hash)
 {
-  console.log("CONTACT for " + person + " IS " + hash["contact"]);
+  consolelog("CONTACT for " + person + " IS " + hash["contact"]);
   var total = "";
   if (hash["contact"] == "E-Mail") {
     var to = hash["email"];
@@ -295,12 +302,12 @@ function ContactLink(person, hash)
 
 function FillList(day, group, times)
 {
-  console.log("CALLING FILL LIST " + day + " TIMES " + times);
-  console.log("GROUP IS " + group);
+  consolelog("CALLING FILL LIST " + day + " TIMES " + times);
+  consolelog("GROUP IS " + JSON.stringify(group));
 
   var items = [];
   if (! (day in group)) {
-    console.log("QUICK RETURN");
+    consolelog("QUICK RETURN");
     return items;
   }
 
@@ -309,10 +316,10 @@ function FillList(day, group, times)
   // [name] = {"contact", "email", "phone"}
   for (var i = 0; i < times.length; i++) {
     if (times[i] in subgroup) {
-      console.log("EXAMINE FOR " + times[i]);
+      consolelog("EXAMINE FOR " + times[i]);
       for (var k in subgroup[times[i]]) {
         var one = subgroup[times[i]][k];
-        console.log("PROBING FOR " + one["name"] + " WHERE " + JSON.stringify(one));
+        consolelog("PROBING FOR " + one["name"] + " WHERE " + JSON.stringify(one));
         items.push(ContactLink(one["name"], one));
       }
     }
@@ -322,9 +329,9 @@ function FillList(day, group, times)
 
 function FillDivs(id, day, group, times)
 {
-  console.log("CALLING FILL DIVS " + day + " TIMES " + times);
+  consolelog("CALLING FILL DIVS " + id + " FOR " + day + " TIMES " + times);
   var list = FillList(day, group, times);
-  console.log("GOT THE LIST BACK " + list);
+  consolelog("GOT THE LIST BACK " + list);
   if (list.length > 0) {
     var total = "<ul>";
     for (var i = 0; i < list.length; i++) {
@@ -338,32 +345,33 @@ function FillDivs(id, day, group, times)
 function SparesCallback(jsonIn)
 {
   var collected = Collect(jsonIn.feed.entry);
-  console.log("COLLECTED");
-  console.log(collected);
+  consolelog("COLLECTED");
+  consolelog(collected);
 
   var cox = CollectCox(collected);
-  console.log("COX");
-  console.log(cox);
+  consolelog("COX");
+  consolelog(JSON.stringify(cox));
   var scull = CollectScull(collected);
+  consolelog("SCULL");
+  consolelog(JSON.stringify(scull));
   var sweep = CollectSweep(collected);
+  consolelog("SWEEP");
+  consolelog(JSON.stringify(sweep));
 
   FillPage("spares");
 
-  for (var i = 0; i < 5; i++) {
-    FillDivs(DAYS[i] + '-am-cox', DAYS[i], cox, WEEKDAYAM);
-    FillDivs(DAYS[i] + '-am-scull', DAYS[i], scull, WEEKDAYAM);
-    FillDivs(DAYS[i] + '-am-sweep', DAYS[i], sweep, WEEKDAYAM);
-    FillDivs(DAYS[i] + '-pm-cox', DAYS[i], cox, WEEKDAYPM);
-    FillDivs(DAYS[i] + '-pm-scull', DAYS[i], scull, WEEKDAYPM);
-    FillDivs(DAYS[i] + '-pm-sweep', DAYS[i], sweep, WEEKDAYPM);
-  }
+  for (var ampm = 0; ampm < AMPM.length; ampm++) {
 
-  for (var i = 5; i < 7; i++) {
-    FillDivs(DAYS[i] + '-am-cox', DAYS[i], cox, WEEKENDAM);
-    FillDivs(DAYS[i] + '-am-scull', DAYS[i], scull, WEEKENDAM);
-    FillDivs(DAYS[i] + '-am-sweep', DAYS[i], sweep, WEEKENDAM);
-    FillDivs(DAYS[i] + '-pm-cox', DAYS[i], cox, WEEKENDPM);
-    FillDivs(DAYS[i] + '-pm-scull', DAYS[i], scull, WEEKENDPM);
-    FillDivs(DAYS[i] + '-pm-sweep', DAYS[i], sweep, WEEKENDPM);
+    for (var i = 0; i < 5; i++) {
+      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-cox', DAYS[i], cox, WEEKDAY[AMPM[ampm]]);
+      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-scull', DAYS[i], scull, WEEKDAY[AMPM[ampm]]);
+      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-sweep', DAYS[i], sweep, WEEKDAY[AMPM[ampm]]);
+    }
+
+    for (var i = 5; i < 7; i++) {
+      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-cox', DAYS[i], cox, WEEKEND[AMPM[ampm]]);
+      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-scull', DAYS[i], scull, WEEKEND[AMPM[ampm]]);
+      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-sweep', DAYS[i], sweep, WEEKEND[AMPM[ampm]]);
+    }
   }
 }  
