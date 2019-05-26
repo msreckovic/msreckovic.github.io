@@ -320,12 +320,12 @@ function FillList(day, group, times)
   consolelog("CALLING FILL LIST " + day + " TIMES " + times);
   consolelog("GROUP IS " + JSON.stringify(group));
 
-  var items = [];
   if (! (day in group)) {
     consolelog("QUICK RETURN");
-    return items;
+    return [];
   }
 
+  var items = new Set([]);
   var subgroup = group[day];
 
   // [name] = {"contact", "email", "phone"}
@@ -340,11 +340,15 @@ function FillList(day, group, times)
         if ("note" in one) {
           val += ' <span><small>(' + one["note"] + ')</small></span>';
         }
-        items.push(val);
+        consolelog("ITEMS IS " + items);
+        consolelog("WANT TO ADD " + val);
+
+        items.add(val);
+        consolelog("ITEMS IS NOW " + items);
       }
     }
   }
-  return items;
+  return Array.from(items);
 }
 
 function FillDivs(id, day, group, times)
