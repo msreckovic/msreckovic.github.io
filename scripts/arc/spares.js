@@ -142,7 +142,7 @@ function Collect(entries)
   return collected;
 }
 
-function CollectMatch(collected, day, filter, items)
+function CollectMatch(items, collected, day, filter, funcnote)
 {
   for (name in collected) {
     consolelog("On " + day + " look at " + name + " for " + JSON.stringify(collected[name]));
@@ -167,6 +167,11 @@ function CollectMatch(collected, day, filter, items)
         one["contact"] = collected[name]["contact"];
         one["email"] = collected[name]["email"];
         one["phone"] = collected[name]["phone"];
+
+        var note = funcnote(collected[name]);
+        if (note != "") {
+          one["note"] = note;
+        }
         items[day][t].push(one);
       }
     }
@@ -178,7 +183,9 @@ function CollectCox(collected)
 {
   var cox = {};
   for (var i = 0; i < 7; i++) {
-    CollectMatch(collected, DAYS[i], function(el) { return el["cox"]; }, cox);
+    CollectMatch(cox, collected, DAYS[i],
+                 function(el) { return el["cox"]; },
+                 function(el) { return false; });
   }
   return cox;
 }
@@ -186,9 +193,15 @@ function CollectCox(collected)
 function CollectScull(collected)
 {
   var scull = {};
-  CollectMatch(collected, "Friday", function(el) { return el["scull"]; }, scull);
   for (var i = 0; i < 7; i++) {
-    CollectMatch(collected, DAYS[i], function(el) { return el["scull"]; }, scull);
+    CollectMatch(scull, collected, DAYS[i],
+                 function(el) { return el["scull"]; },
+                 function(el) {
+                   if (el["bow"]) {
+                     return "ok to bow";
+                   }
+                   return "";
+                 });
   }
   return scull;
 }
@@ -197,14 +210,22 @@ function CollectSweep(collected)
 {
   var sweep = {};
   for (var i = 0; i < 7; i++) {
-    CollectMatch(collected, DAYS[i], function(el) { return el["starboard"] || el["port"]; }, sweep);
+    CollectMatch(sweep, collected, DAYS[i],
+                 function(el) { return el["starboard"] || el["port"]; },
+                 function(el) {
+                   if (!el["port"]) {
+                     return "starboard only";
+                   } else if (!el["starboard"]) {
+                     return "port only";
+                   }
+                   return "";
+                 });
   }
   return sweep;
 }
 
 function FillDivPlace(what)
 {
-  consolelog("DIV DIV DIV NAMES " + what);
   return '<td><div id=' + what + '>No spares. ' + LinkLink("https://docs.google.com/forms/d/e/1FAIpQLSc652x3Fil9G-A5EDL8WUUQLTz1JOcmlOJiFLkXt0HaaQ_GXg/viewform", "Click to sign up!") + '</div></td>';
 }
 
@@ -249,18 +270,11 @@ function FillPage(id)
 {
   var total = '';
 
-  total += '<table border="1" width="100%">';
-  for (var d = 0; d < 5; d++) {
+  for (var d = 0; d < 7; d++) {
+    total += '<table width="100%">';
     total += FillDay(DAYS[d]);
-    total += FillBlankRow(1, 3);
+    total += '</table>';
   }
-  total += FillBlankRow(1, 3);
-
-  total += FillDay(DAYS[5]);
-  total += FillBlankRow(1, 3);
-  total += FillDay(DAYS[6]);
-  total += '</table>';
-
   SetHTML(id, total);
 }
 
@@ -281,7 +295,7 @@ function SmsLink(person, to)
 
 function PhoneLink(person, to)
 {
-  return person + ': ' + to;
+  return person + ': Call ' + to;
 }
 
 function ContactLink(person, hash)
@@ -320,7 +334,12 @@ function FillList(day, group, times)
       for (var k in subgroup[times[i]]) {
         var one = subgroup[times[i]][k];
         consolelog("PROBING FOR " + one["name"] + " WHERE " + JSON.stringify(one));
-        items.push(ContactLink(one["name"], one));
+
+        var val = ContactLink(one["name"], one);
+        if ("note" in one) {
+          val += ' <span><small>(' + one["note"] + ')</small></span>';
+        }
+        items.push(val);
       }
     }
   }
