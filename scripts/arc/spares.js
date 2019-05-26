@@ -244,7 +244,7 @@ function FillDayPart(day, part)
 
   var total = ""
   total += '<tr>';
-  total += '<td colspan="3" width="50%">' + day + ' ' + part + '</td>';
+  total += '<td colspan="3" width="50%"><strong>' + day + ' ' + part + '</strong></td>';
   total += '</tr>';
 
   total += '<tr>';
