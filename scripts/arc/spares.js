@@ -131,14 +131,39 @@ function Collect(entries)
   return collected;
 }
 
-function CollectMatchWeekday(collected, day, filter)
+function CollectMatchWeekday(collected, day, filter, items)
 {
   // TODO
+  console.log("PROCESS Weekday " + day);
   for (name in collected) {
+    console.log("Look at " + name + " for " + JSON.stringify(collected[name]));
+    console.log("Filtered " + filter(collected[name]));
+    if (filter(collected[name])) {
+      if (! (day in collected[name])) continue;
+
+      var daytimes = collected[name][day];
+      for (var i = 0; i < daytimes.length; i++) {
+        if (! (day in items)) {
+          items[day] = {};
+        }
+
+        var t = daytimes[i];
+        if (! (t in items[day])) {
+          items[day][t] = [];
+        }
+
+        var one = {};
+        one["name"] = name;
+        one["contact"] = collected[name]["contact"];
+        one["email"] = collected[name]["email"];
+        one["phone"] = collected[name]["phone"];
+        items[day][t].push(one);
+      }
+    }
   }
 }
 
-function CollectMatchWeekend(collected, day, filter)
+function CollectMatchWeekend(collected, day, filter, items)
 {
   // TODO
   for (name in collected) {
@@ -149,10 +174,10 @@ function CollectCox(collected)
 {
   var cox = {};
   for (var i = 0; i < 5; i++) {
-    cox[DAYS[i]] = CollectMatchWeekday(collected, DAYS[i], function(el) { return el["cox"]; });
+    CollectMatchWeekday(collected, DAYS[i], function(el) { return el["cox"]; }, cox);
   }
   for (var i = 5; i < 7; i++) {
-    cox[DAYS[i]] = CollectMatchWeekend(collected, DAYS[i], function(el) { return el["cox"]; });
+    CollectMatchWeekend(collected, DAYS[i], function(el) { return el["cox"]; }, cox);
   }
   return cox;
 }
@@ -161,10 +186,10 @@ function CollectScull(collected)
 {
   var scull = {};
   for (var i = 0; i < 5; i++) {
-    scull[DAYS[i]] = CollectMatchWeekday(collected, DAYS[i], function(el) { return el["scull"]; });
+    CollectMatchWeekday(collected, DAYS[i], function(el) { return el["scull"]; }, scull);
   }
   for (var i = 5; i < 7; i++) {
-    scull[DAYS[i]] = CollectMatchWeekend(collected, DAYS[i], function(el) { return el["scull"]; });
+    CollectMatchWeekend(collected, DAYS[i], function(el) { return el["scull"]; }, scull);
   }
   return scull;
 }
@@ -239,27 +264,28 @@ function FillPage(id)
 
 function EmailLink(person, to, subject)
 {
-  return 'E-Mail ' + person + ': <a href="' + 'mailto:' + to  + '?' + 'subject=' + subject + '">' + to + '</a>';
+  return person + ': <a href="' + 'mailto:' + to  + '?' + 'subject=' + subject + '">' + to + '</a>';
 }
 
 function SmsLink(person, to)
 {
-  return 'Message ' + person + ': <a href="sms:' + to + '">' + to + '</a>';
+  return person + ': <a href="sms:' + to + '">' + to + '</a>';
 }
 
 function PhoneLink(person, to)
 {
-  return 'Phone ' + person + ': ' + to;
+  return person + ': ' + to;
 }
 
 function ContactLink(person, hash)
 {
+  console.log("CONTACT for " + person + " IS " + hash["contact"]);
   var total = "";
-  if (contact == "E-Mail") {
+  if (hash["contact"] == "E-Mail") {
     var to = hash["email"];
     var subject = "Argonaut Rowing Club: Can you spare?";
     total += EmailLink(person, to, subject);
-  } else if (contact == "Text") {
+  } else if (hash["contact"] == "Text") {
     total += SmsLink(person, hash["phone"]);
   } else {
     total += PhoneLink(person, hash["phone"]);
@@ -269,13 +295,36 @@ function ContactLink(person, hash)
 
 function FillList(day, group, times)
 {
-  // Name, mailto or phone number
-  return ["Milan", "Goran"];
+  console.log("CALLING FILL LIST " + day + " TIMES " + times);
+  console.log("GROUP IS " + group);
+
+  var items = [];
+  if (! (day in group)) {
+    console.log("QUICK RETURN");
+    return items;
+  }
+
+  var subgroup = group[day];
+
+  // [name] = {"contact", "email", "phone"}
+  for (var i = 0; i < times.length; i++) {
+    if (times[i] in subgroup) {
+      console.log("EXAMINE FOR " + times[i]);
+      for (var k in subgroup[times[i]]) {
+        var one = subgroup[times[i]][k];
+        console.log("PROBING FOR " + one["name"] + " WHERE " + JSON.stringify(one));
+        items.push(ContactLink(one["name"], one));
+      }
+    }
+  }
+  return items;
 }
 
 function FillDivs(id, day, group, times)
 {
+  console.log("CALLING FILL DIVS " + day + " TIMES " + times);
   var list = FillList(day, group, times);
+  console.log("GOT THE LIST BACK " + list);
   if (list.length > 0) {
     var total = "<ul>";
     for (var i = 0; i < list.length; i++) {
@@ -293,6 +342,8 @@ function SparesCallback(jsonIn)
   console.log(collected);
 
   var cox = CollectCox(collected);
+  console.log("COX");
+  console.log(cox);
   var scull = CollectScull(collected);
   var sweep = CollectSweep(collected);
 
