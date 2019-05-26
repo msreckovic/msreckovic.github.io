@@ -244,13 +244,13 @@ function FillDayPart(day, part)
 
   var total = ""
   total += '<tr>';
-  total += '<th colspan="3" width="50%">' + day + ' ' + part + '</th>';
+  total += '<td colspan="3" width="50%">' + day + ' ' + part + '</td>';
   total += '</tr>';
 
   total += '<tr>';
-  total += '<th width="32%">Cox</th>';
-  total += '<th width="34%">Scull</th>';
-  total += '<th width="34%">Sweep</th>';
+  total += '<td width="32%">Cox</td>';
+  total += '<td width="34%">Scull</td>';
+  total += '<td width="34%">Sweep</td>';
   total += '</tr>';
 
   total += '<tr>';
@@ -274,6 +274,7 @@ function FillPage(id)
     total += '<table width="100%">';
     total += FillDay(DAYS[d]);
     total += '</table>';
+    total += '<br>';
   }
   SetHTML(id, total);
 }
