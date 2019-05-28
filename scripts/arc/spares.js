@@ -247,16 +247,20 @@ function FillDayPart(day, part)
   total += '<td colspan="3" width="50%"><strong>' + day + ' ' + part + '</strong></td>';
   total += '</tr>';
 
+  var cox = day + '-' + part + '-cox';
+  var scull = day + '-' + part + '-scull';
+  var sweep = day + '-' + part + '-sweep';
+
   total += '<tr>';
-  total += '<td width="32%">Cox</td>';
-  total += '<td width="34%">Scull</td>';
-  total += '<td width="34%">Sweep</td>';
+  total += '<td width="32%" id="' + cox + '-header' + '">Cox</td>';
+  total += '<td width="34%" id="' + scull + '-header' + '">Scull</td>';
+  total += '<td width="34%" id="' + sweep + '-header' + '">Sweep</td>';
   total += '</tr>';
 
   total += '<tr>';
-  total += FillDivPlace(day + '-' + part + '-cox');
-  total += FillDivPlace(day + '-' + part + '-scull');
-  total += FillDivPlace(day + '-' + part + '-sweep');
+  total += FillDivPlace(cox);
+  total += FillDivPlace(scull);
+  total += FillDivPlace(sweep);
   total += '</tr>';
 
   return total;
@@ -322,10 +326,11 @@ function FillList(day, group, times)
 
   if (! (day in group)) {
     consolelog("QUICK RETURN");
-    return [];
+    return [[], []];
   }
 
   var items = new Set([]);
+  var emails = new Set([]);
   var subgroup = group[day];
 
   // [name] = {"contact", "email", "phone"}
@@ -344,18 +349,23 @@ function FillList(day, group, times)
         consolelog("WANT TO ADD " + val);
 
         items.add(val);
+        if(one["contact"] == "E-Mail") {
+          emails.add(one["email"]);
+        }
         consolelog("ITEMS IS NOW " + items);
       }
     }
   }
-  return Array.from(items);
+  return [Array.from(items), Array.from(emails)];
 }
 
 function FillDivs(id, day, group, times)
 {
   consolelog("CALLING FILL DIVS " + id + " FOR " + day + " TIMES " + times);
-  var list = FillList(day, group, times);
-  consolelog("GOT THE LIST BACK " + list);
+  var listandemails = FillList(day, group, times);
+  consolelog("GOT THE LIST AND EMAILS BACK " + listandemails);
+
+  var list = listandemails[0];
   if (list.length > 0) {
     var total = "<ul>";
     for (var i = 0; i < list.length; i++) {
@@ -364,6 +374,15 @@ function FillDivs(id, day, group, times)
     total += "</ul>";
     SetHTML(id, total);
   }
+  return listandemails[1];
+}
+
+function FillEmails(id, what, emails)
+{
+  if (emails.length < 1) return;
+  var all = emails.join(',');
+  var subject = "Argonaut Rowing Club: Can you spare?";
+  SetHTML(id, '<a href="' + 'mailto:' + all  + '?' + 'subject=' + subject + '">' + what + '</a>');
 }
 
 function SparesCallback(jsonIn)
@@ -383,19 +402,30 @@ function SparesCallback(jsonIn)
   consolelog(JSON.stringify(sweep));
 
   FillPage("spares");
+  var emails;
 
   for (var ampm = 0; ampm < AMPM.length; ampm++) {
 
     for (var i = 0; i < 5; i++) {
-      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-cox', DAYS[i], cox, WEEKDAY[AMPM[ampm]]);
-      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-scull', DAYS[i], scull, WEEKDAY[AMPM[ampm]]);
-      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-sweep', DAYS[i], sweep, WEEKDAY[AMPM[ampm]]);
+      emails = FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-cox', DAYS[i], cox, WEEKDAY[AMPM[ampm]]);
+      FillEmails(DAYS[i] + '-' + AMPM[ampm] + '-cox-header', "Cox", emails);
+
+      emails = FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-scull', DAYS[i], scull, WEEKDAY[AMPM[ampm]]);
+      FillEmails(DAYS[i] + '-' + AMPM[ampm] + '-scull-header', "Scull", emails);
+
+      emails = FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-sweep', DAYS[i], sweep, WEEKDAY[AMPM[ampm]]);
+      FillEmails(DAYS[i] + '-' + AMPM[ampm] + '-sweep-header', "Sweep", emails);
     }
 
     for (var i = 5; i < 7; i++) {
-      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-cox', DAYS[i], cox, WEEKEND[AMPM[ampm]]);
-      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-scull', DAYS[i], scull, WEEKEND[AMPM[ampm]]);
-      FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-sweep', DAYS[i], sweep, WEEKEND[AMPM[ampm]]);
+      emails = FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-cox', DAYS[i], cox, WEEKEND[AMPM[ampm]]);
+      FillEmails(DAYS[i] + '-' + AMPM[ampm] + '-cox-header', "Cox", emails);
+
+      emails = FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-scull', DAYS[i], scull, WEEKEND[AMPM[ampm]]);
+      FillEmails(DAYS[i] + '-' + AMPM[ampm] + '-scull-header', "Scull", emails);
+
+      emails = FillDivs(DAYS[i] + '-' + AMPM[ampm] + '-sweep', DAYS[i], sweep, WEEKEND[AMPM[ampm]]);
+      FillEmails(DAYS[i] + '-' + AMPM[ampm] + '-sweep-header', "Sweep", emails);
     }
   }
 }  
