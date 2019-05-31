@@ -89,7 +89,7 @@ function ProcessJson(jsonIn)
                                entries[1][map[5]].$t);
     }
     for (var i=0; i<entries.length; i+=1) {
-      schedule.push( Allocate(entries[i]));
+      schedule.push(Allocate(entries[i]));
     }
     
     summary.fSchedule = schedule;
