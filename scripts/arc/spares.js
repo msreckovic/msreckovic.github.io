@@ -24,7 +24,7 @@ var TAGS = ["gsx$mondays", "gsx$tuesdays", "gsx$wednesdays", "gsx$thursdays", "g
 
 var CONTACTMETHOD = ["E-Mail", "Text", "Phone"];
 var COX = ["Yes", "No"]
-var SCULL = ["Yes, including bowing", "Yes, but no bowing", "No"];
+var SCULL = ["Yes, including bowing", "Yes, but not bowing", "No"];
 var SWEEP = ["Yes, port only", "Yes, starboard only", "Yes, port or starboard", "No"];
 
 var WEEKDAY = {};
@@ -77,7 +77,7 @@ function SetScull(hash, entry)
   if ("Yes, including bowing" == value) {
     hash["scull"] = true;
     hash["bow"] = true;
-  } else if ("Yes, but no bowing" == value) {
+  } else if ("Yes, but not bowing" == value) {
     hash["scull"] = true;
     hash["bow"] = false;
   } else {
@@ -172,6 +172,7 @@ function CollectMatch(items, collected, day, filter, funcnote)
         if (note != "") {
           one["note"] = note;
         }
+        consolelog("ADDING " + JSON.stringify(one));
         items[day][t].push(one);
       }
     }
