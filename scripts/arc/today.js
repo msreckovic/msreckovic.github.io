@@ -47,7 +47,7 @@ function CreateTable(where, data)
     total += "<th>" + AllTheData.fWeekends[i] + "</th></tr>";
       
     for (j = 0; j < AllTheData.fTimesEnds.length; j+=1) {
-//      if (!HasTime(AllTheData.fTimesEnds[i], data)) continue;
+      if (!HasTime(AllTheData.fTimesEnds[j], data)) continue;
 
       total += "<tr><th>" + AllTheData.fTimesEnds[j] + "</th>";
       var id = AllTheData.fWeekends[i] + " " + AllTheData.fTimesEnds[j];
@@ -112,8 +112,15 @@ function ScheduleFillFrom(data, stats)
       // TODO: Nasty hack for LTR
       if (data[i].fTime == "9:30-11:30am") {
         id = data[i].fDay + " 10-12pm";
+        el = document.getElementById(id + count);
       }
     }
+
+    if (!el) {
+      console.log("DEFINITELY SKIPPING " + id + count);
+      continue;
+    }
+
     var name = data[i].fName.toUpperCase();
     var who = data[i].fWho;
     var item = type + " " + name + recurrence + " - " + program;
