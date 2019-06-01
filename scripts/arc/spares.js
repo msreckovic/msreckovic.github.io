@@ -22,10 +22,18 @@ var AMPM = ["AM", "PM"];
 var DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 var TAGS = ["gsx$mondays", "gsx$tuesdays", "gsx$wednesdays", "gsx$thursdays", "gsx$fridays", "gsx$saturdays", "gsx$sundays"];
 
+// These three are used below without CONTACTMETHOD variable
 var CONTACTMETHOD = ["E-Mail", "Text", "Phone"];
+
+// Yes and No are used below without COX variable
 var COX = ["Yes", "No"]
-var SCULL = ["Yes, including bowing", "Yes, but not bowing", "No"];
-var SWEEP = ["Yes, port only", "Yes, starboard only", "Yes, port or starboard", "No"];
+var SCULL = {"Yes, including bowing" : {"scull" : true, "bow" : true},
+             "Yes, but not bowing" : {"scull" : true, "bow" : false},
+             "No" : {"scull" : false, "bow" : false}};
+var SWEEP = {"Yes, port only" : {"port" : true, "starboard" : false},
+             "Yes, starboard only" : {"port" : false, "starboard" : true},
+             "Yes, port or starboard" : {"port" : true, "starboard" : true},
+             "No" : {"port" : false, "starbord" : false}};
 
 var WEEKDAY = {};
 WEEKDAY["AM"] = ["5:30-7:30am", "7:30-9:30am"];
@@ -74,34 +82,17 @@ function SetCox(hash, entry)
 function SetScull(hash, entry)
 {
   var value = GetValue(entry, "gsx$scull", "No");
-  if ("Yes, including bowing" == value) {
-    hash["scull"] = true;
-    hash["bow"] = true;
-  } else if ("Yes, but not bowing" == value) {
-    hash["scull"] = true;
-    hash["bow"] = false;
-  } else {
-    hash["scull"] = false;
-    hash["bow"] = false;
-  }
+
+  hash["scull"] = SCULL[value]["scull"];
+  hash["bow"] = SCULL[value]["bow"];
 }
 
 function SetSweep(hash, entry)
 {
   var value = GetValue(entry, "gsx$sweep", "No");
-  if ("Yes, port or starboard" == value) {
-    hash["port"] = true;
-    hash["starboard"] = true;
-  } else if ("Yes, port only" == value) {
-    hash["port"] = true;
-    hash["starboard"] = false;
-  } else if ("Yes, starboard only" == value) {
-    hash["port"] = false;
-    hash["starboard"] = true;
-  } else {
-    hash["port"] = false;
-    hash["starboard"] = false;
-  }
+
+  hash["port"] = SWEEP[value]["port"];
+  hash["starboard"] = SWEEP[value]["starboard"];
 }
 
 function SetDay(hash, entry, day, tag)
@@ -396,7 +387,7 @@ function SparesCallback(jsonIn)
   consolelog("COX");
   consolelog(JSON.stringify(cox));
   var scull = CollectScull(collected);
-  consolelog("SCULL");
+  consolelog("JSON.stringify(SCULL)");
   consolelog(JSON.stringify(scull));
   var sweep = CollectSweep(collected);
   consolelog("SWEEP");
