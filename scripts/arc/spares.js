@@ -285,7 +285,7 @@ function FillPage(id)
 
 function LinkLink(url, text)
 {
-  return '<a href="' + url + '">' + text + '</a>';
+  return '<a target="_blank" href="' + url + '">' + text + '</a>';
 }
 
 function EmailLink(person, to, subject)
