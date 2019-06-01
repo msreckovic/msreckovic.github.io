@@ -295,7 +295,7 @@ function EmailLink(person, to, subject)
 
 function SmsLink(person, to)
 {
-  return person + 'Text : <a href="sms:' + to + '">' + to + '</a>';
+  return person + ': Text <a href="sms:' + to + '">' + to + '</a>';
 }
 
 function PhoneLink(person, to)
