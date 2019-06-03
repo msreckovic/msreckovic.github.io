@@ -348,7 +348,7 @@ function FillList(day, group, times)
       }
     }
   }
-  return [Array.from(items), Array.from(emails)];
+  return [Array.from(items).sort(), Array.from(emails)];
 }
 
 function FillDivs(id, day, group, times)
