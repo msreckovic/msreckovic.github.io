@@ -137,10 +137,8 @@ function InfoSingleEntries(entry)
   total += "<ol>";
   total += GV(entry, "entries");
   total += "<li>Everybody in the crew needs to be in <a style=\"color:red;\" target=\"_blank\" href=\"http://www.argonautrowingclub.com/member-roster/\">the club roster list</a> or the software won't let us enter them.  This means at least three or four days earlier for the RCA registration and fees payment.</li>";
-  total += "<li>Submit the names of everybody in the crew.</li>";
-  total += "<li>Submit the event name and number, and preferred boat.</li>";
-  total += "<li>Send an e-mail to <a href=\"mailto:captain@argonautrowingclub.com\">captain@argonautrowingclub.com</a>, CC-ing everybody in the crew and your program coach/coordinator.</li>";
-  total += "<li>You can send multiple entries in the same e-mail.</li>";
+  total += '<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSccnTZU3WQ9kTt-9VQwg75VCw_nGWsw9U-wVShsU_thSHzHDQ/viewform">Use this form to submit entries.</a></li>';
+  total += "<li>Send an e-mail to <a href=\"mailto:captain@argonautrowingclub.com\">captain@argonautrowingclub.com</a>, with any questions or problems.</li>";
   total += "</ol>";
   return total;
 }
