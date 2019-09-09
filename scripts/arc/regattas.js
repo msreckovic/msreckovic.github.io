@@ -271,7 +271,7 @@ function ExtractAthletes(entries, count)
 }
 
 // https://squareup.com/receipt/preview/vfQrQI0V4hy2AkKKASJrKtMF
-function AddAthlete(who, data)
+function AddAthlete(who, data, regattaName)
 {
   var total = "<tr>";
   total += "    <td data-label=Name class=\"athletes\">" + who + "</td>\n";
@@ -281,7 +281,7 @@ function AddAthlete(who, data)
   if (parseFloat(data[1].substring(1).replace(/,/g,'')) > parseFloat(data[2].substring(1).replace(/,/g,''))) {
 
     var whoAdjusted = who.replace(/ /g, '%20');
-    var linkToPay = "https://argonaut-rowing-club.myshopify.com/cart/12624166387814:" + amountUp + "?note=" + whoAdjusted + "-for-Regattas-";
+    var linkToPay = "https://argonaut-rowing-club.myshopify.com/cart/12624166387814:" + amountUp + "?note=" + whoAdjusted + "-for-Regattas-" + regattaName;
 
     total += "    <td class=\"alert\" data-label=Fees>";
     total += "<a target=\"_blank\" href=\"" + linkToPay + "\">";
@@ -305,7 +305,7 @@ function AddAthlete(who, data)
   return total;
 }
 
-function AllAthletes(extracted)
+function AllAthletes(extracted, regattaName)
 {
   var athletes = "If you have fees outstanding, please pay by clicking on the amount in the \"Fees\" column.  If you have paid, you can get the receipt by clicking on the amount in the \"Paid\" column."
   athletes += "<table>\n";
@@ -323,7 +323,7 @@ function AllAthletes(extracted)
   keys.sort();
   for (var i=0; i<keys.length; i+=1) {
     one = keys[i];
-    athletes += AddAthlete(one, extracted[one]);
+    athletes += AddAthlete(one, extracted[one], regattaName);
   }
   
   return athletes;
@@ -345,7 +345,8 @@ function JsonCallback(jsonIn)
   }
   el = document.getElementById("athletes");
   if (el) {
-    el.innerHTML = AllAthletes(extracted[0]);
+    el.innerHTML = AllAthletes(extracted[0],
+                               encodeURIComponent(GetValue(jsonIn.feed.entry[0], "gsx$regatta", "")));
   }
   el = document.getElementById("boats");
   if (el) {
