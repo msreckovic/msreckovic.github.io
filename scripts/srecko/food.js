@@ -12,10 +12,11 @@ function ParseJSON(value)
 
 function ForPeople(who, spent, paid)
 {
-  var summary = "";
-  summary += "    <td data-label=Who>" + who + "</td>\n";
-  summary += "    <td data-label=Spent>" + spent + "</td>\n";
-  summary += "    <td data-label=Paid>" + paid + "</td>\n";
+  var summary = `
+    <td data-label=Who>${ who }</td>
+    <td data-label=Spent>${ spent }</td>
+    <td data-label=Paid>${ paid }</td>
+  `;
   return summary;
 }
 
@@ -44,17 +45,18 @@ function GetValue(where, what, instead)
 
 function DivSummary(map, entries)
 {
-  var summary = "";
-  summary += "<h4>Last updated " + entries[3].gsx$body.$t + "</h4>";
-  summary += "<table>\n";
-  summary += "  <thead>\n";
-  summary += "    <tr>\n";
-  summary += "      <th>Who</th>\n";
-  summary += "      <th>Spent</th>\n";
-  summary += "      <th>Paid</th>\n";
-  summary += "      <th>Verdict</th>\n";
-  summary += "    </tr>\n";
-  summary += "  </thead>\n";
+  var summary = `
+<h4>Last updated ${ entries[3].gsx$body.$t }</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Who</th>
+      <th>Spent</th>
+      <th>Paid</th>
+      <th>Verdict</th>
+    </tr>
+  </thead>
+  `;
 
   summary += "  <tbody>\n";
   for (j in map) {
@@ -73,13 +75,14 @@ function DivSummary(map, entries)
 
 function DivDetails(map, entries)
 {
-  var details = "<table>\n";
-  details += "  <thead>\n";
-  details += "    <tr>\n";
-  details += "      <th>When</th>\n";
-  details += "      <th>What</th>\n";
-  details += "      <th>Amount</th>\n";
-  details += "      <th>Paid-By</th>\n";
+  var details = `<table>
+  <thead>
+    <tr>
+      <th>When</th>
+      <th>What</th>
+      <th>Amount</th>
+      <th>Paid-By</th>
+  `;
   for (var j in map) {
     details += "      <th>" + map[j].label + "</th>\n";
   }
@@ -125,20 +128,20 @@ function DivDetails(map, entries)
 
     if (doit) {
       details += "    <tr>";
-      details += "    <td data-label=When>" + when  + "</td>\n";
-      details += "    <td data-label=What>" + what  + "</td>\n";
-      details += "    <td data-label=Amount>" + cur + amount.toFixed(2) + "</td>\n";
-      details += "    <td data-label=Paid-By>" + who  + "</td>\n";
+      details += `    <td data-label=When>${ when }</td>`;
+      details += `    <td data-label=What>${ what }</td>`;
+      details += `    <td data-label=Amount>${ cur + amount.toFixed(2) }</td>`;
+      details += `    <td data-label=Paid-By>${ who }</td>`;
       for (j=0; j<people.length; j+=1) {
         if (people[j] == 1) {
-          details += "    <td data-label=" + labels[j] + ">" + cuts[j] + "</td>\n";
+          details += `    <td data-label=${ labels[j] }>${ cuts[j] }</td>`;
         } else if (people[j] && people[j] != 0) {
-          details += "    <td data-label=" + labels[j] + ">" + cuts[j] + " (" + people[j] + ")</td>\n";
+          details += `    <td data-label=${ labels[j] }>${ cuts[j] } (${ people[j] })</td>`;
         } else {
-          details += "    <td data-label=" + labels[j] + ">" + cuts[j] + "</td>\n";
+          details += `    <td data-label=${ labels[j] }>${ cuts[j] }</td>`;
         }
       }
-      details += "    <td data-label=Per-Person>" + perperson  + "</td>\n";
+      details += `    <td data-label=Per-Person>${ perperson }</td>`;
       details += "    </tr>";
     }
   }

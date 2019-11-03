@@ -23,7 +23,7 @@ function RacunEverything(racuni)
     for (var racun in racuni) {
       var found = racuni[racun];
       if (found[2]) {
-        total += "    <a href=\"?racun=" + racun + "\">" + found[0] + "</a>";
+        total += `    <a href="?racun=${ racun }">${ found[0] }</a>`;
       }
     }
     total += "  </span>";
@@ -33,11 +33,11 @@ function RacunEverything(racuni)
 
 function RacunStandard(title, racun_index, details)
 {
-  console.log("Racun with " + title + ", " + racun_index + ", " + details);
+  console.log(`Racun with ${ title }, ${ racun_index }, ${ details }`);
 
   var showtitle = title;
   if (details != "") {
-    showtitle = showtitle + " (" + details + ")";
+    showtitle = `${ showtitle } (${ details })`;
   }
 
   var el;
@@ -48,21 +48,21 @@ function RacunStandard(title, racun_index, details)
 
   var div = document.getElementById("standard-racun");
   if (div) {
-    var total = "" +
-"  <h1>" + showtitle + "</h1>" +
-"  <h2>Summary</h2>" +
-"  <div id=\"summary\"></div>" +
-"  <hr>" +
-"  <h2>Details</h2>" +
-"  <div id=\"details\"></div>" +
-"  <hr>" +
-"  <div class=\"itistiny\">" +
-"  <a target=\"_blank\" href=\"https://srecko.ca/racun/download.html\"><h5>app download</h5></a>" +
-"  <div id=\"appsetup\"></div>" +
-"  <br><br>";
+    var total = `
+  <h1> ${ showtitle } </h1>
+  <h2>Summary</h2>
+  <div id="summary"></div>
+  <hr>
+  <h2>Details</h2>
+  <div id="details"></div>
+  <hr>
+  <div class="itistiny">
+  <a target="_blank" href="https://srecko.ca/racun/download.html"><h5>app download</h5></a>
+  <div id="appsetup"></div>
+  <br><br>`
     div.innerHTML = total;
 
-    var src = "https://spreadsheets.google.com/feeds/list/1oWmF6mKi126JJFoBIG2_XH7zV8I7LxzeP5MfyMhrT_4/" + racun_index + "/public/values?alt=json-in-script&callback=JsonCallback";
+    var src = `https://spreadsheets.google.com/feeds/list/1oWmF6mKi126JJFoBIG2_XH7zV8I7LxzeP5MfyMhrT_4/${ racun_index }/public/values?alt=json-in-script&callback=JsonCallback`;
     var script = document.createElement("script");
     script.type = "text/javascript";
     script.src = src;
@@ -83,7 +83,7 @@ function CollectDetails(jsonIn)
     var tabIndex = GetValue(entries[i], "gsx$tabindex", "");
     var reminder = GetValue(entries[i], "gsx$reminder", "");
 
-    console.log("For " + tabName + " set " + name + ", " + details + ", " + tabIndex + ", " + reminder);
+    console.log(`${ tabName } = ${ name }, ${ details }, ${ tabIndex }, ${ reminder }`);
     racuni[tabName] = [name, details, tabIndex, reminder];
   }
   
@@ -93,7 +93,7 @@ function CollectDetails(jsonIn)
 function ProcessRacun(racuni)
 {
   var racun = GetQueryParameters("racun");
-  console.log("Racun " + racun);
+  console.log(`Racun ${ racun }`);
 
   RacunEverything(racuni);
   if (racun == undefined) {
