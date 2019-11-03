@@ -15,8 +15,31 @@ function GetQueryParameters(what) {
   return undefined;
 }
 
-function RacunStandard(title, racun_index)
+function RacunEverything(racuni)
 {
+  var el = document.getElementById("summary-racun");
+  if (el) {
+    var total = "<span>";
+    for (var racun in racuni) {
+      var found = racuni[racun];
+      if (found[2]) {
+        total += "    <a href=\"?racun=" + racun + "\">" + found[0] + "</a>";
+      }
+    }
+    total += "  </span>";
+    el.innerHTML = total;
+  }
+}
+
+function RacunStandard(title, racun_index, details)
+{
+  console.log("Racun with " + title + ", " + racun_index + ", " + details);
+
+  var showtitle = title;
+  if (details != "") {
+    showtitle = showtitle + " (" + details + ")";
+  }
+
   var el;
   el = document.getElementById("title");
   if (el) {
@@ -26,6 +49,7 @@ function RacunStandard(title, racun_index)
   var div = document.getElementById("standard-racun");
   if (div) {
     var total = "" +
+"  <h1>" + showtitle + "</h1>" +
 "  <h2>Summary</h2>" +
 "  <div id=\"summary\"></div>" +
 "  <hr>" +
@@ -59,24 +83,11 @@ function CollectDetails(jsonIn)
     var tabIndex = GetValue(entries[i], "gsx$tabindex", "");
     var reminder = GetValue(entries[i], "gsx$reminder", "");
 
+    console.log("For " + tabName + " set " + name + ", " + details + ", " + tabIndex + ", " + reminder);
     racuni[tabName] = [name, details, tabIndex, reminder];
   }
   
   ProcessRacun(racuni);
-}
-
-function RacunEverything()
-{
-  var div = document.getElementById("standard-racun");
-  if (div) {
-    var total = "" +
-"  <span>" +
-"    <a href=\"euro2017.html\">Euro 2017</a>" +
-"    <a href=\"maui2018.html\">Maui 2018</a>" +
-"    <a href=\"maui2019/\">Maui 2019</a>" +
-"  </span>";
-    div.innerHTML = total;
-  }
 }
 
 function ProcessRacun(racuni)
@@ -84,9 +95,10 @@ function ProcessRacun(racuni)
   var racun = GetQueryParameters("racun");
   console.log("Racun " + racun);
 
+  RacunEverything(racuni);
   if (racun == undefined) {
-    RacunEverything(racuni);
   } else {
-    RacunStandard(racuni[racun][0], racuni[racun][2]);
+    var found = racuni[racun];
+    RacunStandard(found[0], found[2], found[1]);
   }
 }
