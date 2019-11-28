@@ -1,6 +1,8 @@
 // Needs to be called with <script id="rca" data-year="2020" data-type="adult" src="..."></script> to work
 // Default year is 2020
 // Needs the store items like 2020-adult-membership, 2021-junior-membership, 2022-coxie-membership, etc.
+// For example:
+// <span id="arcextra"></span><script id="rca" data-year="2020" data-type="adult" src="https://scripts.srecko.dev/arc/rca.js"></script>
 
 
 function FixLink(url) {
@@ -24,7 +26,7 @@ function AgreeText(nextyear)
 {
   var text = `
   <h3>Membership Application and Membership Agreement</h3><br>
-  To the President and Directors of the Argonaut Rowing Club:<br>
+  <h4>To the President and Directors of the Argonaut Rowing Club:</h4><br>
   <ul>
     <li>I hereby confirm that I have read and understood and that I
 agree to abide by this Membership Agreement, the Club Code of Conduct,
@@ -94,9 +96,9 @@ and publish the same in print and/or electronically.<br>
     I agree that the Argonaut Rowing Club may use such photographs of
 me with or without my name and for any lawful purpose, including for
 example such purposes as publicity, illustration, advertising, and Web
-content.<br> 
+content.<br><br><br>
 
-    <h2>Click the Accept button at bottom left, and follow the payment instructions.</h2> 
+    <h2>Please click the Accept button at bottom left, and follow the payment instructions.</h2> 
   `
   return text;
 }
