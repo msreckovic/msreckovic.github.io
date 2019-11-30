@@ -1,5 +1,6 @@
 // Needs to be called with <script id="rca" data-year="2020" data-type="adult" src="..."></script> to work
 // Default year is 2020
+// type is: adult, train, para, junior, coxie
 // Needs the store items like 2020-adult-membership, 2021-junior-membership, 2022-coxie-membership, etc.
 // For example:
 // <span id="arcextra"></span><script id="rca" data-year="2020" data-type="adult" src="https://msreckovic.github.io/scripts/arc/rca.js"></script>
@@ -22,13 +23,45 @@ function FixLink(url) {
   }
 }
 
-function ShortText(nextyear)
+function ShortText(membership_type)
 {
-  var text = `
+  var text;
+  if (membership_type == "adult") {
+    text = `
 <b>Club</b> - Club (recreational) crews typically row 2 or 3 times per week in sculling or sweep boats. Club rowing program is led by volunteer coordinators, who help athletes find rowing opportunities to increase fitness level and rowing proficiency. The crews participate in Summer and Fall regattas.<br>
 <b>Masters</b> - This program is for rowers over 21 years of age.  Typically, these crews are interested in competitive regattas and train more than 3 times a week. The objective is to get compatible crews in terms of technical competency, physical ability and age.<br>
 <b>Seniors</b> - This program is for athletes who are at least 19 years old and interested specifically in competitive rowing opportunities. The program includes a wide range of athletes, from those in their first year of competitive rowing to those pushing for provincial and national team opportunities. The program involves an intensive training schedule.
 `;
+  } else if (membership_type == "junior") {
+    text = `
+<b>Junior Program (Boys and Girls)</b> - The Junior Competitive program is open to all junior rowers with rowing experience. Non-experienced athletes are directed to enter the sport through either our Learn-To-Row program and Camp Argo or the Junior Development program. This is a program where Junior athletes learn how to compete. The training is dedicated to the sports of rowing and continuous squad and boat selection occurs. Athletes develop their sports psychology and mental hardness in order to arrive at their best for competition.<br>
+<b>High School Program</b> - The Argonaut Rowing Club provides expertise coaching and equipment to allow many of the local high schools students to learn to row and to compete. Each year the students compete at Canadian Secondary School Rowing Association Championships. This regatta allows athletes to compete against schools from all across Canada. The High School Rowing Program is a great way to get involved in the sport, build your endurance and meet many new friends.
+`;
+  } else if (membership_type == "para") {
+    text = `
+This program is suited to those Para Athletes who wish to learn/improve/develop their stroke. You will have access to suitable rowing equipment and be supervised by coaches and volunteers.
+`;
+  } else if (membership_type == "train") {
+    text = `
+This is the first full year Club program, for those who have completed our learn to row program.
+`;
+  }
+  return text;
+}
+
+function HeaderText(membership_type, year)
+{
+  var text = "<h2>ARC " + year + " ";
+  if (membership_type == "adult") {
+    text += "Club, Masters, Seniors Program Membership";
+  } else if (membership_type == "junior") {
+    text = "Junior Program Membership";
+  } else if (membership_type == "para") {
+    text = "Para Program Membership";
+  } else if (membership_type == "train") {
+    text = "Learn to Train Membership Program Membership";
+  }
+  text += "</h2>";
   return text;
 }
 
@@ -131,7 +164,7 @@ function Everything() {
   }
 
   if (window.location.href.includes("Agree")) {
-    document.getElementById("arcextra").innerHTML = AgreeText(nextyear);
+    document.getElementById("arcextra").innerHTML = HeaderText(membership_type, year) + "<br><br>" + AgreeText(nextyear);
   } else if (window.location.href.includes("Complete")) {
     var text = "Click here to open the Argo store and complete the payment";
     var url = "https://argonaut-rowing-club.myshopify.com/collections/membership/" +
@@ -147,7 +180,7 @@ function Everything() {
 
     FixLink(url);
   } else {
-    document.getElementById("arcextra").innerHTML = ShortText(nextyear);
+    document.getElementById("arcextra").innerHTML = ShortText(membership_type);
   }
 }
 
