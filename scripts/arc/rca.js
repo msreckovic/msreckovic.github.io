@@ -167,7 +167,7 @@ function Everything() {
     document.getElementById("arcextra").innerHTML = HeaderText(membership_type, year) + "<br><br>" + AgreeText(nextyear);
   } else if (window.location.href.includes("Complete")) {
     var text = "Click here to open the Argo store and complete the payment";
-    var url = "https://argonaut-rowing-club.myshopify.com/products/" + year + "-" + membership_type + "-membership";
+    var url = "https://argonaut-rowing-club.myshopify.com/products/" + membership_type + "-membership";
     var el = document.getElementById("HeadLoginName");
     if (el) {
       //url = "https://argonaut-rowing-club.myshopify.com/cart/16140123537510:1?note=" +
