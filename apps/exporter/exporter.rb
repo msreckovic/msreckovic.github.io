@@ -26,6 +26,7 @@ class PrintOrders
     "Parent(s) or Guardian(s)",
     "Additional Information (alergies, other medical info, etc.)",
 
+    "Age",
 
     "Camper's Name",
     "Camper's Age",
@@ -34,7 +35,7 @@ class PrintOrders
 
     "Access Card Number", "Locker Number", "Boat Name", "Rack Number",
     "I'm interested in helping with...",
-    "What prompted you to consider learn to row?  How did you hear about this program?",
+    "What prompted you to consider learn to row? How did you hear about this program?",
 
     "This member is 19 or older",
     "AgreeMembership",
@@ -52,12 +53,14 @@ class PrintOrders
     "Contact Phone" => "Contact Phone(s)",
     "I'm interesting in helping with..." => "I'm interested in helping with...",
     "Member's Name" => "Name",
+    "Camper's Age" => "Age",
   }
 
   ITEMS_MEMBERSHIP = ["2020 Adult Membership",
                       "2020 Junior (High School) Membership",
                       "2020 Alumni/Social Membership",
                       "2020 Learn To Train",
+                      "2020 Learn To Row",
                       "2020 Para Membership",
                       "2020 National Team Members Membership",
                       "2020 Senior Masters >65 years old",
@@ -133,7 +136,8 @@ class PrintOrders
       }
 
       order.line_items.each do |item|
-        next unless filters.nil? || filters.include?(item.title)
+#        next unless filters.nil? || filters.include?(item.title)
+        next unless filters.nil? || filters.any? { |ff| item.title.include?(ff) }
 
         title = item.title
         variant = item.variant_title
@@ -146,7 +150,7 @@ class PrintOrders
 
         props = convert_properties(item.properties)
 
-        extra = additional_properties(item, variant, props)
+        extra = additional_properties(title.downcase, variant, props)
 
         combined = payer.merge(one)
         combined = combined.merge(props)
@@ -160,16 +164,16 @@ class PrintOrders
 
   private
 
-  def additional_properties(item, variant, props)
+  def additional_properties(title, variant, props)
     first_name, last_name = split_name(props["Name"]) if props["Name"]
     first_name, last_name = split_name(props["Camper's Name"]) if props["Camper's Name"]
     extra = { "First Name" => first_name, "Last Name" => last_name }
 
-    if item.downcase.include?("junior")
+    if title.include?("junior")
       extra["Affiliation (select Club if unsure)"] = "Junior" 
-    elsif item.downcase.include?("learn") && item.downcase.include?("train")
+    elsif title.include?("learn") && title.include?("train")
       extra["Affiliation (select Club if unsure)"] = "LTT"
-    elsif item.downcase.include?("learn") && item.downcase.include?("row")
+    elsif title.include?("learn") && title.include?("row")
       extra["Affiliation (select Club if unsure)"] = "LTR"
     end
 
