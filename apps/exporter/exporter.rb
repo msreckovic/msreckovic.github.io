@@ -13,47 +13,45 @@ ShopifyAPI::Base.api_version = '2019-10'
 class PrintOrders
   HEADER = [
     "Order", "When",
-    "Name", "First Name", "Last Name", "Contact E-Mail(s)", "Contact Phone(s)",
+    "Name", "First Name", "Last Name", "ContactEMail", "ContactPhone",
 
-    "Affiliation (select Club if unsure)",
+    "Affiliation", "Item", "Variation", "Amount",
 
-    "Item", "Variation", "Amount",
+    "AdditionalInformation",
 
-    "Payer Name" ,"Payer E-Mail" ,"Order Note",
-
-    "Emergency Contact(s)", "Emergency Phone(s)", "Emergency E-Mail(s)",
-
-    "Parent(s) or Guardian(s)",
-    "Additional Information (alergies, other medical info, etc.)",
-
+    "PayerName" ,"PayerEMail" ,"Order Note",
+    "ParentGuardian",
+    "EmergencyName", "EmergencyPhone", "EmergencyEMail",
     "Age",
 
-    "Camper's Name",
-    "Camper's Age",
-    "Which 2020 Camp Argo Week did you register for?",
-    "Swimming Ability", "Rowing Experience",
+    "WhichCampWeek",
+    "SwimmingAbility", "RowingExperience",
 
-    "Access Card Number", "Locker Number", "Boat Name", "Rack Number",
-    "I'm interested in helping with...",
-    "What prompted you to consider learn to row? How did you hear about this program?",
+    "AccessCardNumber", "LockerNumber", "BoatName", "RackNumber",
+    "VolunteerFor",
+    "ConsiderHeard",
 
-    "This member is 19 or older",
+    "AdultMember",
     "AgreeMembership",
     "AgreeConcussion",
     "AgreePhoto",
     "AgreeOffsite",
-    "Registered with Rowing Canada",
+    "RowingCanada",
     "AlreadyClubMember",
   ]
 
   LEGACY_PROPERTIES = {
-    "Access Card" => "Access Card Number",
-    "Active E-Mail" => "Contact E-Mail(s)",
-    "Contact E-Mail" => "Contact E-Mail(s)",
-    "Contact Phone" => "Contact Phone(s)",
-    "I'm interesting in helping with..." => "I'm interested in helping with...",
-    "Member's Name" => "Name",
+    "Access Card" => "AccessCardNumber",
+    "Access Card Number" => "AccessCardNumber",
+    "This member is 19 or older" => "AdultMember",
     "Camper's Age" => "Age",
+    "Active E-Mail" => "ContactEMail",
+    "Contact E-Mail" => "ContactEMail",
+    "Contact Phone" => "ContactPhone",
+    "Member's Name" => "Name",
+    "Registered with Rowing Canada" => "RowingCanada",
+    "I'm interesting in helping with..." => "VolunteerFor",
+    "I'm interested in helping with..." => "VolunteerFor",
   }
 
   ITEMS_MEMBERSHIP = ["2020 Adult Membership",
@@ -130,8 +128,8 @@ class PrintOrders
       payer = {
         'Order' => order.name,
         'When' => Date.parse(order.created_at).to_s,
-        'Payer Name' => pname,
-        'Payer E-Mail' => pemail,
+        'PayerName' => pname,
+        'PayerEMail' => pemail,
         'Order Note' => pnote,
       }
 
