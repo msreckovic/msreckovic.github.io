@@ -54,20 +54,20 @@ class PrintOrders
     "I'm interested in helping with..." => "VolunteerFor",
   }
 
-  ITEMS_MEMBERSHIP = ["2020 Adult Membership",
-                      "2020 Junior (High School) Membership",
-                      "2020 Alumni/Social Membership",
+  ITEMS_MEMBERSHIP = ["2020 Adult",
+                      "2020 Junior",
+                      "2020 Alumni/Social",
                       "2020 Learn To Train",
                       "2020 Learn To Row",
-                      "2020 Para Membership",
-                      "2020 National Team Members Membership",
-                      "2020 Senior Masters >65 years old",
-                      "2020 University Membership",
-                      "2020 Winter (non-rowing) Membership",
-                      "2020 Boat Storage",
+                      "2020 Para",
+                      "2020 National Team",
+                      "2020 Senior",
+                      "2020 University",
+                      "2020 Winter",
+                      "2020 Boat",
                       "2020 Lockers",
 
-                      "2019 Winter (non-rowing) Membership",
+                      "2019 Winter",
                      ]
 
   def self.process(filename, since, filters)
@@ -204,5 +204,5 @@ class PrintOrders
   end
 end
 
-PrintOrders.process("/Users/Milan/shopify_store_export.csv", '2019-10-01', PrintOrders::ITEMS_MEMBERSHIP)
+PrintOrders.process("/Users/Milan/shopify_store_export.csv", '2019-12-01', PrintOrders::ITEMS_MEMBERSHIP)
 
