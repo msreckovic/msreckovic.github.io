@@ -282,6 +282,7 @@ function PreRegistration(jsonIn)
 {
   CatAndQues = CategoriesAndQuestions(jsonIn.feed.entry);
   FormatEverything(0);
+  FormatEverything(100);
 }
 
 function FillHeaderAndDescription(entries)
