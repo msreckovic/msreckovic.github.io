@@ -18,13 +18,13 @@
 
 
 // "gsx$category"
-// "gsx$earlyseasonroninlink"
+// "gsx$earlyseasonlink"
 // "gsx$earlyseasonprice"
-// "gsx$fullseasonroninlink"
+// "gsx$fullseasonlink"
 // "gsx$fullseasonprice"
-// "gsx$lateseasonroninlink"
+// "gsx$lateseasonlink"
 // "gsx$lateseasonprice"
-// "gsx$fullseasonpaymentplanroninlink"
+// "gsx$fullseasonpaymentplanlink"
 // "gsx$description"
 
 // This is the global that takes care of things
@@ -79,23 +79,23 @@ function CategoriesAndQuestions(entries)
       continue;
     }
     var vdesc = entries[i].gsx$description.$t;
-    var vesr = CheckRonin(entries[i].gsx$earlyseasonroninlink.$t);
+    var vesr = CheckRonin(entries[i].gsx$earlyseasonlink.$t);
     if (pickingCategories) {
       var vesp = entries[i].gsx$earlyseasonprice.$t;
-      var vfsr = CheckRonin(entries[i].gsx$fullseasonroninlink.$t);
+      var vfsr = CheckRonin(entries[i].gsx$fullseasonlink.$t);
       var vfsp = entries[i].gsx$fullseasonprice.$t;
-      var vfpr = CheckRonin(entries[i].gsx$fullseasonpaymentplanroninlink.$t);
+      var vfpr = CheckRonin(entries[i].gsx$fullseasonpaymentplanlink.$t);
       var vfpp = entries[i].gsx$fullseasonpaymentplanprice.$t;
-      var vlsr = CheckRonin(entries[i].gsx$lateseasonroninlink.$t);
+      var vlsr = CheckRonin(entries[i].gsx$lateseasonlink.$t);
       var vlsp = entries[i].gsx$lateseasonprice.$t;
       categories.push([vcat, vesr, vesp, vfsr, vfsp, vfpr, vfpp, vlsr, vlsp, vdesc]);
     } else if (pickingExtras) {
       var vesp = entries[i].gsx$earlyseasonprice.$t;
-      var vfsr = CheckRonin(entries[i].gsx$fullseasonroninlink.$t);
+      var vfsr = CheckRonin(entries[i].gsx$fullseasonlink.$t);
       var vfsp = entries[i].gsx$fullseasonprice.$t;
-      var vfpr = CheckRonin(entries[i].gsx$fullseasonpaymentplanroninlink.$t);
+      var vfpr = CheckRonin(entries[i].gsx$fullseasonpaymentplanlink.$t);
       var vfpp = entries[i].gsx$fullseasonpaymentplanprice.$t;
-      var vlsr = CheckRonin(entries[i].gsx$lateseasonroninlink.$t);
+      var vlsr = CheckRonin(entries[i].gsx$lateseasonlink.$t);
       var vlsp = entries[i].gsx$lateseasonprice.$t;
       extras.push([vcat, vesr, vesp, vfsr, vfsp, vfpr, vfpp, vlsr, vlsp, vdesc]);
     } else {
