@@ -6,9 +6,11 @@ SHOP_NAME = ENV["SHOPIFY_SHOP_NAME"]
 API_KEY = ENV["SHOPIFY_API_KEY"]
 PASSWORD = ENV["SHOPIFY_PASSWORD"]
 
+ORDERS_START_DATE = '2019-12-01'
+
 shop_url = "https://#{API_KEY}:#{PASSWORD}@#{SHOP_NAME}.myshopify.com"
 ShopifyAPI::Base.site = shop_url
-ShopifyAPI::Base.api_version = '2019-10'
+ShopifyAPI::Base.api_version = '2020-01'
 
 class PrintOrders
   HEADER = [
@@ -48,25 +50,14 @@ class PrintOrders
     "Active E-Mail" => "ContactEMail",
     "Contact E-Mail" => "ContactEMail",
     "Contact Phone" => "ContactPhone",
+    "EmergencyContact" => "EmergencyName",
     "Member's Name" => "Name",
     "Registered with Rowing Canada" => "RowingCanada",
     "I'm interesting in helping with..." => "VolunteerFor",
     "I'm interested in helping with..." => "VolunteerFor",
   }
 
-  ITEMS_MEMBERSHIP = ["2020 Adult",
-                      "2020 Junior",
-                      "2020 Alumni/Social",
-                      "2020 Learn To Train",
-                      "2020 Learn To Row",
-                      "2020 Para",
-                      "2020 National Team",
-                      "2020 Senior",
-                      "2020 University",
-                      "2020 Winter",
-                      "2020 Boat",
-                      "2020 Lockers",
-
+  ITEMS_MEMBERSHIP = ["2020 ",
                       "2019 Winter",
                      ]
 
@@ -204,5 +195,5 @@ class PrintOrders
   end
 end
 
-PrintOrders.process("/Users/Milan/shopify_store_export.csv", '2019-12-01', PrintOrders::ITEMS_MEMBERSHIP)
+PrintOrders.process("/Users/Milan/shopify_store_export.csv", ORDERS_START_DATE, PrintOrders::ITEMS_MEMBERSHIP)
 
