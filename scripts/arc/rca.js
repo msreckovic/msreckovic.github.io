@@ -30,7 +30,10 @@ function ShortText(membership_type)
     text = `
 <b>Club</b> - Club (recreational) crews typically row 2 or 3 times per week in sculling or sweep boats. Club rowing program is led by volunteer coordinators, who help athletes find rowing opportunities to increase fitness level and rowing proficiency. The crews participate in Summer and Fall regattas.<br>
 <b>Masters</b> - This program is for rowers over 21 years of age.  Typically, these crews are interested in competitive regattas and train more than 3 times a week. The objective is to get compatible crews in terms of technical competency, physical ability and age.<br>
-<b>Seniors</b> - This program is for athletes who are at least 19 years old and interested specifically in competitive rowing opportunities. The program includes a wide range of athletes, from those in their first year of competitive rowing to those pushing for provincial and national team opportunities. The program involves an intensive training schedule.
+`;
+  } else if (membership_type == "university") {
+    text = `
+<b>University/U23</b> - This program is for athletes who are at least 19 years old and interested mostly in competitive rowing opportunities. The program includes a wide range of athletes, from those in their first year of competitive rowing to those pushing for provincial and national team opportunities. The program involves an intensive training schedule.
 `;
   } else if (membership_type == "junior") {
     text = `
