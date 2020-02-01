@@ -52,21 +52,27 @@ This is the first full year Club program, for those who have completed our learn
   return text;
 }
 
-function HeaderText(membership_type, year)
+function HeaderText(membership_type, year, is_bold)
 {
-  var text = "<h2>ARC " + year + " ";
+  var text = "";
+  if (is_bold) {
+    text = "<h2>ARC ";
+  }
+  text += year + " ";
   if (membership_type == "adult") {
     text += "Club and Masters Programs Membership";
   } else if (membership_type == "university") {
-    text = "University/U23 Program Membership";
+    text += "University/U23 Program Membership";
   } else if (membership_type == "junior") {
-    text = "Junior (High School) Program Membership";
+    text += "Junior (High School) Program Membership";
   } else if (membership_type == "para") {
-    text = "Para Program Membership";
+    text += "Para Program Membership";
   } else if (membership_type == "train") {
-    text = "Learn to Train Membership Program Membership";
+    text += "Learn to Train Membership Program Membership";
   }
-  text += "</h2>";
+  if (is_bold) {
+   text += "</h2>";
+  }
   return text;
 }
 
@@ -174,7 +180,7 @@ function Everything() {
   }
 
   if (window.location.href.includes("Agree")) {
-    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year) + "<br><br>" + ShortText(membership_type, year);
+    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year, false) + "<br><br>" + ShortText(membership_type, year);
   } else if (window.location.href.includes("Complete")) {
     var text = "Click here to open the Argo store and complete the payment";
     var url = "https://argonaut-rowing-club.myshopify.com/products/" + membership_type + "-membership";
@@ -189,7 +195,7 @@ function Everything() {
 
     FixLink(url);
   } else {
-    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year);
+    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year, true);
   }
 }
 
