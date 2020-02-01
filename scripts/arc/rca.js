@@ -56,7 +56,9 @@ function HeaderText(membership_type, year)
 {
   var text = "<h2>ARC " + year + " ";
   if (membership_type == "adult") {
-    text += "Club, Masters, Seniors Program Membership";
+    text += "Club and Masters Programs Membership";
+  } else if (membership_type == "university") {
+    text = "University/U23 Program Membership";
   } else if (membership_type == "junior") {
     text = "Junior Program Membership";
   } else if (membership_type == "para") {
