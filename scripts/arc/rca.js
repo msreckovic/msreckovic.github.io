@@ -1,9 +1,9 @@
 // Needs to be called with <script id="rca" data-year="2020" data-type="adult" src="..."></script> to work
 // Default year is 2020
 // type is: adult, train, para, junior, coxie
-// Needs the store items like 2020-adult-membership, 2021-junior-membership, 2022-coxie-membership, etc.
+// Needs the store items like adult-membership, junior-membership, coxie-membership, etc.
 // For example:
-// <span id="arcextra"></span><script id="rca" data-year="2020" data-type="adult" src="https://msreckovic.github.io/scripts/arc/rca.js"></script>
+// <span id="arcextra"></span><script id="rca" data-id="arcextra" data-year="2020" data-type="adult" src="https://msreckovic.github.io/scripts/arc/rca.js"></script>
 
 
 function FixLink(url) {
@@ -150,6 +150,7 @@ function Everything() {
   var year = "2020";
   var nextyear = "2021";
   var membership_type = "adult";
+  var id_tag = "arcextra";
   var script_tag = document.getElementById('rca')
   if (script_tag) {
     var argyear = script_tag.getAttribute("data-year");
@@ -161,10 +162,14 @@ function Everything() {
     if (argtype) {
       membership_type = argtype;
     }
+    var argid = script_tag.getAttribute("data-id");
+    if (argid) {
+      id_tag = argid;
+    }
   }
 
   if (window.location.href.includes("Agree")) {
-    document.getElementById("arcextra").innerHTML = HeaderText(membership_type, year) + "<br><br>" + AgreeText(nextyear);
+    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year) + "<br><br>" + AgreeText(nextyear);
   } else if (window.location.href.includes("Complete")) {
     var text = "Click here to open the Argo store and complete the payment";
     var url = "https://argonaut-rowing-club.myshopify.com/products/" + membership_type + "-membership";
@@ -174,12 +179,12 @@ function Everything() {
       //  el.innerHTML + "-for-Membership-" + year + "-" + membership_type + "-membership";
     }
 
-    document.getElementById("arcextra").innerHTML =
+    document.getElementById(id_tag).innerHTML =
       "<a href=\"" + url + "\"><h2>" + text + "</h2></a>";
 
     FixLink(url);
   } else {
-    document.getElementById("arcextra").innerHTML = ShortText(membership_type);
+    document.getElementById(id_tag).innerHTML = ShortText(membership_type);
   }
 }
 
