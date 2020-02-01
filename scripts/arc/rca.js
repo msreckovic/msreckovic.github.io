@@ -180,7 +180,7 @@ function Everything() {
   }
 
   if (window.location.href.includes("Agree")) {
-    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year, false) + "<br><br>" + ShortText(membership_type, year);
+    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year, true) + "<br><br>" + ShortText(membership_type, year);
   } else if (window.location.href.includes("Complete")) {
     var text = "Click here to open the Argo store and complete the payment";
     var url = "https://argonaut-rowing-club.myshopify.com/products/" + membership_type + "-membership";
@@ -195,7 +195,7 @@ function Everything() {
 
     FixLink(url);
   } else {
-    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year, true);
+    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year, false);
   }
 }
 
