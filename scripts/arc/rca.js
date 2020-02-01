@@ -23,7 +23,7 @@ function FixLink(url) {
   }
 }
 
-function ShortText(membership_type)
+function ShortText(membership_type, year)
 {
   var text;
   if (membership_type == "adult") {
@@ -60,7 +60,7 @@ function HeaderText(membership_type, year)
   } else if (membership_type == "university") {
     text = "University/U23 Program Membership";
   } else if (membership_type == "junior") {
-    text = "Junior Program Membership";
+    text = "Junior (High School) Program Membership";
   } else if (membership_type == "para") {
     text = "Para Program Membership";
   } else if (membership_type == "train") {
@@ -70,7 +70,7 @@ function HeaderText(membership_type, year)
   return text;
 }
 
-function AgreeText(nextyear)
+function AgreeText(membership_type, nextyear)
 {
   var text = `
   <h3>Membership Application and Membership Agreement</h3><br>
@@ -174,7 +174,7 @@ function Everything() {
   }
 
   if (window.location.href.includes("Agree")) {
-    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year) + "<br><br>" + AgreeText(nextyear);
+    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year) + "<br><br>" + ShortText(membership_type, year);
   } else if (window.location.href.includes("Complete")) {
     var text = "Click here to open the Argo store and complete the payment";
     var url = "https://argonaut-rowing-club.myshopify.com/products/" + membership_type + "-membership";
@@ -189,7 +189,7 @@ function Everything() {
 
     FixLink(url);
   } else {
-    document.getElementById(id_tag).innerHTML = ShortText(membership_type);
+    document.getElementById(id_tag).innerHTML = HeaderText(membership_type, year);
   }
 }
 
