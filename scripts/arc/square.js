@@ -46,13 +46,11 @@ function ForId(id, link)
 
 function ForReceipt(id, link)
 {
-//    if (link.search("http") == 0) {
-//  if (link.search("SENT") == 0) {
-//      return "Deposit";
-//  }
-//  return link;
-//    }
-  return MakeLink("https://squareup.com/receipt/preview/" + id, "Receipt");
+  if (id.search("http") == 0) {
+    return MakeLink(id, "Receipt");
+  } else {
+    return MakeLink("https://squareup.com/receipt/preview/" + id, "Receipt");
+  }
 }
 
 function ForSingleOne(entry)
