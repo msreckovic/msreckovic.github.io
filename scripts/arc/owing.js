@@ -136,32 +136,6 @@ function GetOwingHelperPerson(entries, person)
   return tickets;
 }
 
-function MemberStatusValue(jsonIn, who)
-{
-  if (who == "") {
-    return "";
-  }
-  var entries = jsonIn.feed.entry;
-  for (i=1; i<entries.length; i++) {
-    var person = GetValue(entries[i], "gsx$firstname", "") +
-        GetValue(entries[i], "gsx$lastname", "");
-    if (person == who) {
-      var status = entries[i]["gsx$status"].$t;
-      var rca = entries[i]["gsx$rca"].$t;
-      if (status.search("ok:1") >= 0) {
-        return "Fully registered as competitive, RCA #" + rca + ".";
-      } else if (status.search("bad:1") >= 0) {
-        return "Missing RowingCanada registration. Cannot compete.";
-      } else if (status.search("error:2") >= 0) {
-        return "Please contact the captain.";
-      } else if (status.search("warning:1") >= 0) {
-        return "Incomplete RowingCanada registration.";
-      }
-    }
-  }
-  return "Member not found.";
-}
-
 function GetPerson(qpar)
 {
   var r = qpar.replace(/_/g, " ").replace(/%20/g, " ");
