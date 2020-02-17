@@ -171,7 +171,7 @@ function MembersPersonal(elementId, entries, whoisthis)
 
     var status = entries[i][map.status].$t;
     if (status.search("ok:1") >= 0) {
-      explanation += "<li>Your are fully registered, your Rowing Canada number is #" + rca + ".</li>";
+      explanation += "<li>You are fully registered, your Rowing Canada number is #" + rca + ".</li>";
     } else if (status.search("bad:1") >= 0) {
       explanation += "<li>You are missing Rowing Canada registration, are not insured and cannot compete.</li>";
     } else if (status.search("error:2") >= 0) {
