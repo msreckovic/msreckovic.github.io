@@ -166,12 +166,15 @@ function MembersPersonal(elementId, entries, whoisthis)
 
     // console.log("Matched entry " + JSON.stringify(entries[i]));
 
-    var explanation = "<h3>Member Information</h3>Please find the registration information for " + person + " below. Report any incorrect or incomplete information to the captain. ";
+    var explanation = "<h3>" + person + " (Member Information)</h3>";
+    explanation += "The registration details for " + person + " are below. ";
+    explanation += "Please report any incorrect or incomplete information to the captain. ";
     explanation += "<ul>";
 
     var status = entries[i][map.status].$t;
     if (status.search("ok:1") >= 0) {
-      explanation += "<li>You are fully registered, your Rowing Canada number is #" + rca + ".</li>";
+      explanation += "<li>You are fully insured and registered for competition. ";
+      explanation += "Your Rowing Canada number is #" + rca + ".</li>";
     } else if (status.search("bad:1") >= 0) {
       explanation += "<li>You are missing Rowing Canada registration, are not insured and cannot compete.</li>";
     } else if (status.search("error:2") >= 0) {
@@ -184,21 +187,21 @@ function MembersPersonal(elementId, entries, whoisthis)
     if (email) {
       explanation += "<li>You have registered " + email + " as an active e-mail.</li>";
     } else {
-      explanation += "<li>You have not registered a valid e-mail with the club.</li>";
+      explanation += "<li>Please registered a valid e-mail with the club.</li>";
     }
 
     var locker = entries[i][map.locker].$t;
     if (locker) {
-      explanation += "<li>You are using the locker " + locker + ".</li>";
+      explanation += "<li>You are assigned locker " + locker + ".</li>";
     } else {
-      explanation += "<li>You are not using a locker.</li>";
+      explanation += "<li>You can use daily lockers.</li>";
     }
 
     var boatrack = entries[i][map.boatrack].$t;
     if (boatrack) {
-      explanation += "<li>You are using private boat rack " + boatrack + ".</li>";
+      explanation += "<li>Your private boat rack is " + boatrack + ".</li>";
     } else {
-      explanation += "<li>You are not using a private boat rack.</li>";
+      explanation += "<li>You do not have a private boat rack.</li>";
     }
 
     var accesscard = entries[i][map.accesscard].$t;
