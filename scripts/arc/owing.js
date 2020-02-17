@@ -177,3 +177,14 @@ function MemberStatusValue(jsonIn, who)
   }
   return "Member not found.";
 }
+
+function GetPerson(qpar)
+{
+  var r = qpar.replace(/_/g, " ").replace(/%20/g, " ");
+  var s = r.split(' ');
+  var id = "";
+  if (s.length > 1 && !isNaN(s[s.length-1])) {
+    id = s.splice(-1, 1)[0];
+  }
+  return [s.join(' '), id];
+}
