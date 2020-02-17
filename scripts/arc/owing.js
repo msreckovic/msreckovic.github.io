@@ -39,18 +39,23 @@ function GetValue(where, what, instead)
 
 function GetOwing(entries, full)
 {
-  return GetOwingHelper(entries, full, "");
+  return GetOwingHelperHeader("", entries, full, "");
 }
 
 function GetOwingHelper(entries, full, person)
 {
-  if (person && person != "") {
-    return GetOwingHelperPerson(entries, person);
-  }
-  return GetOwingHelperAll(entries);
+  return GetOwingHelperHeader("", entries, full, person);
 }
 
-function GetOwingHelperAll(entries)
+function GetOwingHelperHeader(header, entries, full, person)
+{
+  if (person && person != "") {
+    return GetOwingHelperPerson(header, entries, person);
+  }
+  return GetOwingHelperAll(header, entries);
+}
+
+function GetOwingHelperAll(header, entries)
 {
   var people = [];
   var i, owing, who, amount, paid, arrears;
@@ -86,7 +91,7 @@ function GetOwingHelperAll(entries)
   return tickets;
 }
 
-function GetOwingHelperPerson(entries, person)
+function GetOwingHelperPerson(header, entries, person)
 {
   var people;
   var details;
@@ -108,9 +113,13 @@ function GetOwingHelperPerson(entries, person)
     // console.log("GOT " + JSON.stringify(details));
     break;
   }
-  
+
   var tickets = "";
-  tickets += "<h3>" + linked + "</h3>";
+  if (!linked) {
+    return tickets;
+  }
+
+  tickets += "<h3>" + linked + " (" + header + " Regattas)</h3>";
   
   if (people == "") {
     return tickets;
