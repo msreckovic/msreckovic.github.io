@@ -116,7 +116,7 @@ function Categorized(entries, onlygood, category, header, getlinks, memberlink)
   return total;
 }
 
-function Everything(entries, getLinks, memberLink)
+function MembersEverything(entries, getLinks, memberLink)
 {
   var yess = Categorized(entries, true, "yes", "Registered Members", getLinks, memberLink);
   document.getElementById("racing").innerHTML = yess;
@@ -129,17 +129,9 @@ function Everything(entries, getLinks, memberLink)
   document.getElementById("timestamp").innerHTML = timestamp;
 }
 
-function JsonCallbackD(jsonIn)
+function MembersPersonal(elementId, entries, person, rcaid)
 {
-  Everything(jsonIn.feed.entry, false, true);
-}
-
-function JsonCallbackL(jsonIn)
-{
-  Everything(jsonIn.feed.entry, true, false);
-}
-
-function JsonCallback(jsonIn)
-{
-  Everything(jsonIn.feed.entry, false, false);
+  if (! (person && rcaid)) {
+    return;
+  }
 }
