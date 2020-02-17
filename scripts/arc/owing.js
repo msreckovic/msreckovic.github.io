@@ -136,22 +136,6 @@ function GetOwingHelperPerson(entries, person)
   return tickets;
 }
 
-function JsonCallback(jsonIn)
-{
-  el = document.getElementById("owing");
-  if (el) {
-    el.innerHTML = GetOwing(jsonIn.feed.entry, false);
-  }
-}
-
-function JsonCallbackFull(jsonIn)
-{
-  el = document.getElementById("owing");
-  if (el) {
-    el.innerHTML = GetOwing(jsonIn.feed.entry, true);
-  }
-}
-
 function MemberStatusValue(jsonIn, who)
 {
   if (who == "") {
