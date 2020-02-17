@@ -1,9 +1,15 @@
 var map = {
   "first" : "gsx$firstname",
   "last" : "gsx$lastname",
-  "status" : "gsx$status",
   "email" : "gsx$e-mail",
-  "timestamp" : "gsx$timestamp"
+  "timestamp" : "gsx$timestamp",
+  "affiliation" : "gsx$affiliation",
+  "rca" : "gsx$rca",
+  "rc" : "gsx$rc",
+  "locker" : "gsx$locker",
+  "boatrack" : "gsx$boatrack",
+  "accesscard" : "gsx$accesscard",
+  "status" : "gsx$status"
 };
 
 function Capitalize(name)
@@ -129,9 +135,83 @@ function MembersEverything(entries, getLinks, memberLink)
   document.getElementById("timestamp").innerHTML = timestamp;
 }
 
-function MembersPersonal(elementId, entries, person, rcaid)
+function MembersPersonal(elementId, entries, whoisthis)
 {
+  console.log("MembersPersonal with " + whoisthis);
+  if (!whoisthis) return;
+  var person = whoisthis[0];
+  var rcaid = whoisthis[1];
+
+  console.log("Calling MembersPersonal for " + person + " and " + rcaid);
+
   if (! (person && rcaid)) {
     return;
+  }
+
+  console.log("Looking for MembersPersonal for " + person + " and " + rcaid);
+  var who = person.toLowerCase();
+  for (i=1; i<entries.length; i++) {
+    var person = GetValue(entries[i], "gsx$firstname", "") + " " +
+        GetValue(entries[i], "gsx$lastname", "");
+    if (person.toLowerCase() != who) {
+      continue;
+    }
+
+    console.log("Found MembersPersonal for " + person + " and " + rcaid);
+    var rca = entries[i]["gsx$rca"].$t;
+    if (rca != rcaid) {
+      console.log("Not matching RCA id for " + person + " with " + rca + " vs. " + rcaid);
+//      return;
+    }
+
+    // console.log("Matched entry " + JSON.stringify(entries[i]));
+
+    var explanation = "<h3>Member Information</h3>Please find the registration information for " + person + " below. Report any incorrect or incomplete information to the captain. ";
+    explanation += "<ul>";
+
+    var status = entries[i][map.status].$t;
+    if (status.search("ok:1") >= 0) {
+      explanation += "<li>Your are fully registered, your Rowing Canada number is #" + rca + ".</li>";
+    } else if (status.search("bad:1") >= 0) {
+      explanation += "<li>You are missing Rowing Canada registration, are not insured and cannot compete.</li>";
+    } else if (status.search("error:2") >= 0) {
+      explanation += "<li>There is an error in your registration.</li>";
+    } else if (status.search("warning:1") >= 0) {
+      explanation += "<li>Your Rowing Canada registration is incomplete.</li>";
+    }
+
+    var email = entries[i][map.email].$t;
+    if (email) {
+      explanation += "<li>You have registered " + email + " as an active e-mail.</li>";
+    } else {
+      explanation += "<li>You have not registered a valid e-mail with the club.</li>";
+    }
+
+    var locker = entries[i][map.locker].$t;
+    if (locker) {
+      explanation += "<li>You are using the locker " + locker + ".</li>";
+    } else {
+      explanation += "<li>You are not using a locker.</li>";
+    }
+
+    var boatrack = entries[i][map.boatrack].$t;
+    if (boatrack) {
+      explanation += "<li>You are using private boat rack " + boatrack + ".</li>";
+    } else {
+      explanation += "<li>You are not using a private boat rack.</li>";
+    }
+
+    var accesscard = entries[i][map.accesscard].$t;
+    if (accesscard) {
+      explanation += "<li>Your access card is " + accesscard + ".</li>";
+    } else {
+      explanation += "<li>You do not have an access card.</li>";
+    }
+    explanation += "</ul>";
+    explanation += "<h3>Regatta Fees</h3>";
+
+    // console.log("The explanation for " + person + " is " + explanation);
+    document.getElementById(elementId).innerHTML = explanation;
+    break;
   }
 }
