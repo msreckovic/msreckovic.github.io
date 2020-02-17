@@ -6,7 +6,7 @@ SHOP_NAME = ENV["SHOPIFY_SHOP_NAME"]
 API_KEY = ENV["SHOPIFY_API_KEY"]
 PASSWORD = ENV["SHOPIFY_PASSWORD"]
 
-ORDERS_START_DATE = '2019-12-01'
+ORDERS_START_DATE = '2020-01-26'
 
 shop_url = "https://#{API_KEY}:#{PASSWORD}@#{SHOP_NAME}.myshopify.com"
 ShopifyAPI::Base.site = shop_url
@@ -57,8 +57,7 @@ class PrintOrders
     "I'm interested in helping with..." => "VolunteerFor",
   }
 
-  ITEMS_MEMBERSHIP = ["2020 ",
-                      "2019 Winter",
+  ITEMS_MEMBERSHIP = ["2020 Learn To Row",
                      ]
 
   def self.process(filename, since, filters)
@@ -109,6 +108,10 @@ class PrintOrders
   def process_orders(orders, filters)
     total = []
     orders.each do |order|
+      puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      puts order.attributes
+      puts "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
       pname = [order.customer.first_name, order.customer.last_name].join(' ')
       pemail = order.customer.email
       pnote = order.note
