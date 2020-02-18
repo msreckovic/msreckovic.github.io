@@ -138,17 +138,20 @@ function MembersPersonal(elementId, entries, whoisthis)
 {
   console.log("MembersPersonal with " + whoisthis);
   if (!whoisthis) return;
-  var person = whoisthis[0];
+  var member = whoisthis[0];
   var rcaid = whoisthis[1];
 
-  console.log("Calling MembersPersonal for " + person + " and " + rcaid);
+  console.log("Calling MembersPersonal for " + member + " and " + rcaid);
 
-  if (!person) {
+  if (!member) {
     return;
   }
 
-  console.log("Looking for MembersPersonal for " + person + " and " + rcaid);
-  var who = person.toLowerCase();
+  console.log("Looking for MembersPersonal for " + member + " and " + rcaid);
+  var explanation = "<h3>" + member + " (Member Information)</h3>";
+  var found = false;
+
+  var who = member.toLowerCase();
   for (i=1; i<entries.length; i++) {
     var person = GetValue(entries[i], "gsx$firstname", "") + " " +
         GetValue(entries[i], "gsx$lastname", "");
@@ -165,7 +168,6 @@ function MembersPersonal(elementId, entries, whoisthis)
 
     // console.log("Matched entry " + JSON.stringify(entries[i]));
 
-    var explanation = "<h3>" + person + " (Member Information)</h3>";
     explanation += "The registration details for " + person + " are below. ";
     explanation += "Please report any incorrect or incomplete information to the captain. ";
     explanation += "<ul>";
@@ -204,17 +206,23 @@ function MembersPersonal(elementId, entries, whoisthis)
     }
     explanation += "</ul>";
 
-    explanation += "<h3>Regatta Fees</h3>";
-    explanation += "This is the summary of the regatta fees for " + person + " since 2016. ";
-    explanation += "As there is a manual step involved in processing the payments, " ;
-    explanation += "the information may be slightly out of date. Click on the regattas ";
-    explanation += "you participated in to see the details. If you have overpaid, or believe ";
-    explanation += "the information is incorrect, please email captain@argonautrowingclub.com. ";
-    explanation += "You can pay the outstanding fees in the Argo store or directly by clicking ";
-    explanation += "on the summary amount in the Outstanding column.";
-
-    // console.log("The explanation for " + person + " is " + explanation);
-    document.getElementById(elementId).innerHTML = explanation;
+    found = true;
     break;
   }
+
+  if (!found) {
+    explanation += "" + member + " is currently not a registered club member. ";
+  }
+
+  explanation += "<h3>Regatta Fees</h3>";
+  explanation += "This is the summary of the regatta fees for " + member + " since 2016. ";
+  explanation += "As there is a manual step involved in processing the payments, " ;
+  explanation += "the information may be slightly out of date. Click on the regattas ";
+  explanation += "you participated in to see the details. If you have overpaid, or believe ";
+  explanation += "the information is incorrect, please email captain@argonautrowingclub.com. ";
+  explanation += "You can pay the outstanding fees in the Argo store or directly by clicking ";
+  explanation += "on the summary amount in the Outstanding column.";
+
+  // console.log("The explanation for " + member + " is " + explanation);
+  document.getElementById(elementId).innerHTML = explanation;
 }
