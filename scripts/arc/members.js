@@ -8,7 +8,6 @@ var map = {
   "rc" : "gsx$rc",
   "locker" : "gsx$locker",
   "boatrack" : "gsx$boatrack",
-  "accesscard" : "gsx$accesscard",
   "status" : "gsx$status"
 };
 
@@ -203,16 +202,9 @@ function MembersPersonal(elementId, entries, whoisthis)
     } else {
       explanation += "<li>You do not have a private boat rack.</li>";
     }
-
-    var accesscard = entries[i][map.accesscard].$t;
-    if (accesscard) {
-      explanation += "<li>Your access card is " + accesscard + ".</li>";
-    } else {
-      explanation += "<li>You do not have an access card.</li>";
-    }
     explanation += "</ul>";
-    explanation += "<h3>Regatta Fees</h3>";
 
+    explanation += "<h3>Regatta Fees</h3>";
     explanation += "This is the summary of the regatta fees for " + person + " since 2016. ";
     explanation += "As there is a manual step involved in processing the payments, " ;
     explanation += "the information may be slightly out of date. Click on the regattas ";
