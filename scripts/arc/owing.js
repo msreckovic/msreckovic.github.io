@@ -147,6 +147,10 @@ function GetOwingHelperPerson(header, entries, person)
 
 function GetPerson(qpar)
 {
+  if (!qpar) {
+    return ["", ""];
+  }
+
   var r = qpar.replace(/_/g, " ").replace(/%20/g, " ");
   var s = r.split(' ');
   var id = "";
