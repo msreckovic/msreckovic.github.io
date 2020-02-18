@@ -144,7 +144,7 @@ function MembersPersonal(elementId, entries, whoisthis)
 
   console.log("Calling MembersPersonal for " + person + " and " + rcaid);
 
-  if (! (person && rcaid)) {
+  if (!person) {
     return;
   }
 
@@ -160,7 +160,7 @@ function MembersPersonal(elementId, entries, whoisthis)
     console.log("Found MembersPersonal for " + person + " and " + rcaid);
     var rca = entries[i]["gsx$rca"].$t;
     if (rca != rcaid) {
-      console.log("Not matching RCA id for " + person + " with " + rca + " vs. " + rcaid);
+//      console.log("Not matching RCA id for " + person + " with " + rca + " vs. " + rcaid);
 //      return;
     }
 
@@ -212,6 +212,14 @@ function MembersPersonal(elementId, entries, whoisthis)
     }
     explanation += "</ul>";
     explanation += "<h3>Regatta Fees</h3>";
+
+    explanation += "This is the summary of the regatta fees for " + person + " since 2016. ";
+    explanation += "As there is a manual step involved in processing the payments, " ;
+    explanation += "the information may be slightly out of date. Click on the regattas ";
+    explanation += "you participated in to see the details. If you have overpaid, or believe ";
+    explanation += "the information is incorrect, please email captain@argonautrowingclub.com. ";
+    explanation += "You can pay the outstanding fees in the Argo store or directly by clicking ";
+    explanation += "on the summary amount in the Outstanding column.
 
     // console.log("The explanation for " + person + " is " + explanation);
     document.getElementById(elementId).innerHTML = explanation;
