@@ -219,7 +219,7 @@ function MembersPersonal(elementId, entries, whoisthis)
     explanation += "you participated in to see the details. If you have overpaid, or believe ";
     explanation += "the information is incorrect, please email captain@argonautrowingclub.com. ";
     explanation += "You can pay the outstanding fees in the Argo store or directly by clicking ";
-    explanation += "on the summary amount in the Outstanding column.
+    explanation += "on the summary amount in the Outstanding column.";
 
     // console.log("The explanation for " + person + " is " + explanation);
     document.getElementById(elementId).innerHTML = explanation;
