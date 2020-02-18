@@ -174,35 +174,35 @@ function MembersPersonal(elementId, entries, whoisthis)
 
     var status = entries[i][map.status].$t;
     if (status.search("ok:1") >= 0) {
-      explanation += "<li>You are fully insured and registered for competition. ";
-      explanation += "Your Rowing Canada number is #" + rca + ".</li>";
+      explanation += "<li>Fully insured and registered for competition. ";
+      explanation += "Rowing Canada number #" + rca + ".</li>";
     } else if (status.search("bad:1") >= 0) {
-      explanation += "<li>You are missing Rowing Canada registration, are not insured and cannot compete.</li>";
+      explanation += "<li>Missing Rowing Canada registration, not insured and cannot compete.</li>";
     } else if (status.search("error:2") >= 0) {
-      explanation += "<li>There is an error in your registration.</li>";
+      explanation += "<li>There is an error in the registration.</li>";
     } else if (status.search("warning:1") >= 0) {
-      explanation += "<li>Your Rowing Canada registration is incomplete.</li>";
+      explanation += "<li>Rowing Canada registration is incomplete.</li>";
     }
 
     var email = entries[i][map.email].$t;
     if (email) {
-      explanation += "<li>You have registered " + email + " as an active e-mail.</li>";
+      explanation += "<li>Registered " + email + " as an active e-mail.</li>";
     } else {
-      explanation += "<li>Please registered a valid e-mail with the club.</li>";
+      explanation += "<li>No valid e-mail registered with the club.</li>";
     }
 
     var locker = entries[i][map.locker].$t;
     if (locker) {
-      explanation += "<li>You are assigned locker " + locker + ".</li>";
+      explanation += "<li>Purchased locker " + locker + ".</li>";
     } else {
-      explanation += "<li>You can use daily lockers.</li>";
+      explanation += "<li>Can use daily lockers only.</li>";
     }
 
     var boatrack = entries[i][map.boatrack].$t;
     if (boatrack) {
-      explanation += "<li>Your private boat rack is " + boatrack + ".</li>";
+      explanation += "<li>Private boat rack " + boatrack + ".</li>";
     } else {
-      explanation += "<li>You do not have a private boat rack.</li>";
+      explanation += "<li>No private boat rack.</li>";
     }
     explanation += "</ul>";
 
