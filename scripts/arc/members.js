@@ -238,11 +238,13 @@ function MembersPersonal(elementId, entries, whoisthis)
 var WOMENS = {
   "Max" : 22,
   "Step" : 2,
+  "PerRow" : 4,
   "Lots" : [[1, 9], [11, 23], [25, 41], [43, 53]]
 };
 var MENS = {
   "Max" : 30,
   "Step" : 2,
+  "PerRow" : 3,
   "Lots" : [[1, 11], [13, 29], [31, 43], [45, 49], [51, 63], [65, 69]]
 };
 
@@ -253,7 +255,13 @@ function DefaultLockers(filter, title, settings)
 
   text += "<h3>" + title + "</h3>";
   text += "<table><tr>";
+  var counter = settings.PerRow;
   for (i = 0; i < settings.Lots.length; i++) {
+    if (counter <= 0) {
+      text += "</tr><tr>";
+      counter = settings.PerRow;
+    }
+
     text += '<td valign="top">';
     text += '<ul>';
     for (j = settings.Lots[i][0]; j <= settings.Lots[i][1]; j += settings.Step) {
@@ -262,6 +270,8 @@ function DefaultLockers(filter, title, settings)
 
     text += "</ul>";
     text += "</td>";
+
+    counter --;
   }
   text += "</tr></table>";
   text += '<span id="' + filter + 'comment"></span>';
