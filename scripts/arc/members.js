@@ -11,6 +11,14 @@ var map = {
   "status" : "gsx$status"
 };
 
+function SetElement(elementId, value)
+{
+  var el = document.getElementById(elementId);
+  if (el) {
+    el.innerHTML = value;
+  }
+}
+
 function Capitalize(name)
 {
   return name.replace(/\b\w/g, function(a) { return a.toUpperCase(); });
@@ -124,14 +132,14 @@ function Categorized(entries, onlygood, category, header, getlinks, memberlink)
 function MembersEverything(entries, getLinks, memberLink)
 {
   var yess = Categorized(entries, true, "yes", "Registered Members", getLinks, memberLink);
-  document.getElementById("racing").innerHTML = yess;
+  SetElement("racing", yess);
   
   var norca = Categorized(entries, false, 1, "Members missing the RCA registration", getLinks, memberLink);
-  document.getElementById("norca").innerHTML = norca;
+  SetElement("norca", norca);
   
   var timestamp = "Updated on " + entries[0][map.timestamp].$t;
   console.log("THE timestamp is " + timestamp);
-  document.getElementById("timestamp").innerHTML = timestamp;
+  SetElement("timestamp", timestamp);
 }
 
 function MembersPersonal(elementId, entries, whoisthis)
@@ -224,5 +232,72 @@ function MembersPersonal(elementId, entries, whoisthis)
   explanation += "on the summary amount in the Outstanding column.";
 
   // console.log("The explanation for " + member + " is " + explanation);
-  document.getElementById(elementId).innerHTML = explanation;
+  SetElement(elementId, explanation);
+}
+
+var WOMENS = {
+  "Max" : 22,
+  "Step" : 2,
+  "Lots" : [[1, 9], [11, 23], [25, 41], [43, 53]]
+};
+var MENS = {
+  "Max" : 30,
+  "Step" : 2,
+  "Lots" : [[1, 11], [13, 29], [31, 43], [45, 49], [51, 63], [65, 69]]
+};
+
+function DefaultLockers(filter, title, settings)
+{
+  var i, j;
+  var text = "";
+
+  text += "<h3>" + title + "</h3>";
+  text += "<table><tr>";
+  for (i = 0; i < settings.Lots.length; i++) {
+    text += '<td valign="top">';
+    text += '<ul>';
+    for (j = settings.Lots[i][0]; j <= settings.Lots[i][1]; j += settings.Step) {
+      text += '<li id="' + filter + j + '">' + j + '</li>';
+    }
+
+    text += "</ul>";
+    text += "</td>";
+  }
+  text += "</tr></table>";
+  text += '<span id="' + filter + 'comment"></span>';
+  return text;
+}
+
+function ReserveLockers(filter, settings, entries)
+{
+  var i, j;
+  var count = 0;
+
+  for (i = 1; i < entries.length; i++) {
+    var lockerName = entries[i][map.locker].$t;
+    if (lockerName.search(filter) == 0) {
+      var first = entries[i][map.first].$t;
+      var last = entries[i][map.last].$t;
+
+      SetElement(lockerName, lockerName.slice(filter.length) + ': ' + first + ' ' + last);
+      count ++;
+    }
+  }
+  SetElement(filter + "comment", "Reserved: " + count + ". Available: " + (settings.Max - count) + ".");
+}
+
+function ShowAllLockers(elementId, entries)
+{
+  var element = document.getElementById(elementId);
+  if (element) {
+    element.innerHTML = DefaultLockers("W", "Women's Changeroom", WOMENS) +
+      "<br><hr><br>" + DefaultLockers("M", "Men's Changeroom", MENS);
+    ReserveLockers("W", WOMENS, entries);
+    ReserveLockers("M", MENS, entries);
+  }
+}
+
+function LockersCallback(jsonIn)
+{
+  ShowAllLockers("lockers", jsonIn.feed.entry);
 }
