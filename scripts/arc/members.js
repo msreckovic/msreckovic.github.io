@@ -278,7 +278,7 @@ function DefaultLockers(filter, title, settings)
   return text;
 }
 
-function ReserveLockers(filter, settings, entries)
+function ReserveLockers(filter, settings, entries, full_details)
 {
   var i, j;
   var count = 0;
@@ -288,26 +288,30 @@ function ReserveLockers(filter, settings, entries)
     if (lockerName.search(filter) == 0) {
       var first = entries[i][map.first].$t;
       var last = entries[i][map.last].$t;
-
-      SetElement(lockerName, lockerName.slice(filter.length) + ': ' + first + ' ' + last);
+      if (full_details) {
+        SetElement(lockerName, lockerName.slice(filter.length) + ': ' + first + ' ' + last);
+      } else {
+        SetElement(lockerName, lockerName.slice(filter.length) + ': reserved');
+      }
       count ++;
     }
   }
   SetElement(filter + "comment", "Reserved: " + count + ". Available: " + (settings.Max - count) + ".");
 }
 
-function ShowAllLockers(elementId, entries)
+function ShowAllLockers(elementId, entries, full_details)
 {
   var element = document.getElementById(elementId);
   if (element) {
     element.innerHTML = DefaultLockers("W", "Women's Changeroom", WOMENS) +
       "<br><hr><br>" + DefaultLockers("M", "Men's Changeroom", MENS);
-    ReserveLockers("W", WOMENS, entries);
-    ReserveLockers("M", MENS, entries);
+    ReserveLockers("W", WOMENS, entries, full_details);
+    ReserveLockers("M", MENS, entries, full_details);
   }
 }
 
-function LockersCallback(jsonIn)
+function LockersCallback(jsonIn, qp)
 {
-  ShowAllLockers("lockers", jsonIn.feed.entry);
+  var full_details = qp && qp.details == "full";
+  ShowAllLockers("lockers", jsonIn.feed.entry, full_details);
 }
