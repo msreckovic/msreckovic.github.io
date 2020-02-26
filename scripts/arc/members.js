@@ -390,7 +390,7 @@ function WomensLockers(settings)
     <td class="tg-camb"><span id="W51">51</span></td>
     <td class="tg-oxfd"><span id="W52">52</span></td>
     <td class="tg-blanks"></td>
-    <td class="tg-text" colspan="7" rowspan="3">WOMEN'S<br>CHANGEROOM<br><span id="Wcomment"></span></td>
+    <td class="tg-text" colspan="7" rowspan="3">WOMEN'S<br>CHANGEROOM<br><span class="locker-comment" id="Wcomment"></span></td>
     <td class="tg-blanks"></td>
     <td class="tg-oxfd"><span id="W16">16</span></td>
     <td class="tg-camb"><span id="W15">15</span></td>
@@ -573,7 +573,7 @@ function MensLockers(settings)
 <td class="tg-camb"><span id="M3">3</span></td>
 <td class="tg-oxfd"><span id="M4">4</span></td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-text" colspan="7" rowspan="3">MEN'S<br>CHANGEROOM<br><span id="Mcomment"></span></td>
+<td class="tg-text" colspan="7" rowspan="3">MEN'S<br>CHANGEROOM<br><span class="locker-comment" id="Mcomment"></span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-oxfd"><span id="M40">40</span></td>
 <td class="tg-camb"><span id="M39">39</span></td>
@@ -704,7 +704,7 @@ function ReserveTableLockers(filter, settings, entries, full_details)
       count ++;
     }
   }
-  SetElement(filter + "comment", "" + (settings.Max - count) + " of " + settings.Max + " available");
+  SetElement(filter + "comment", "" + (settings.Max - count) + " of " + settings.Max + " reserved lockers available");
 }
 
 function ShowAllLockers(elementId, entries, full_details)
@@ -713,11 +713,10 @@ function ShowAllLockers(elementId, entries, full_details)
   if (element) {
     if (full_details) {
       element.innerHTML = DefaultLockers("W", "Women's Changeroom", WOMENS) +
-        "<br><hr><br>" + DefaultLockers("M", "Men's Changeroom", MENS) +
+        "<br><hr><br>" + DefaultLockers("M", "Men's Changeroom", MENS);
       ReserveLockers("W", WOMENS, entries, full_details);
       ReserveLockers("M", MENS, entries, full_details);
     } else {
-      // element.innerHTML = "<table><tr><td>" + WomensLockers(WOMENS) + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + MensLockers(MENS) + "</td></tr></table>";
       element.innerHTML = "" + WomensLockers(WOMENS) + "<br><hr><br>" + MensLockers(MENS) + "";
       ReserveTableLockers("W", WOMENS, entries);
       ReserveTableLockers("M", MENS, entries);
