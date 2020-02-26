@@ -333,11 +333,11 @@ function WomensLockers(settings)
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W2">2</span></td>
+    <td class="tg-oxfd-p"><span id="W2">2</span></td>
     <td class="tg-oxfd"><span id="W4">4</span></td>
     <td class="tg-oxfd"><span id="W6">6</span></td>
     <td class="tg-oxfd"><span id="W8">8</span></td>
-    <td class="tg-oxfd"><span id="W10">10</span></td>
+    <td class="tg-oxfd-p"><span id="W10">10</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
   </tr>
@@ -368,12 +368,12 @@ function WomensLockers(settings)
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W12">12</span></td>
+    <td class="tg-oxfd-p"><span id="W12">12</span></td>
     <td class="tg-camb"><span id="W11">11</span></td>
   </tr>
   <tr>
     <td class="tg-camb"><span id="W53">53</span></td>
-    <td class="tg-oxfd"><span id="W54">54</span></td>
+    <td class="tg-oxfd-p"><span id="W54">54</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
@@ -580,7 +580,7 @@ function MensLockers(settings)
 </tr>
 <tr>
 <td class="tg-camb"><span id="M1">1</span></td>
-<td class="tg-oxfd"><span id="M2">2</span></td>
+<td class="tg-oxfd-p"><span id="M2">2</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-oxfd"><span id="M42">42</span></td>
@@ -591,7 +591,7 @@ function MensLockers(settings)
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M44">44</span></td>
+<td class="tg-oxfd-p"><span id="M44">44</span></td>
 <td class="tg-camb"><span id="M43">43</span></td>
 </tr>
 <tr>
@@ -613,7 +613,7 @@ function MensLockers(settings)
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-camb"><span id="M69">69</span></td>
-<td class="tg-oxfd"><span id="M70">70</span></td>
+<td class="tg-oxfd-p"><span id="M70">70</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
@@ -621,7 +621,7 @@ function MensLockers(settings)
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M46">46</span></td>
+<td class="tg-oxfd-p"><span id="M46">46</span></td>
 <td class="tg-camb"><span id="M45">45</span></td>
 </tr>
 <tr>
