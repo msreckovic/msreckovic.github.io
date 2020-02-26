@@ -19,6 +19,14 @@ function SetElement(elementId, value)
   }
 }
 
+function SetClass(elementId, value)
+{
+  var el = document.getElementById(elementId);
+  if (el) {
+    el.className = value;
+  }
+}
+
 function Capitalize(name)
 {
   return name.replace(/\b\w/g, function(a) { return a.toUpperCase(); });
@@ -299,14 +307,421 @@ function ReserveLockers(filter, settings, entries, full_details)
   SetElement(filter + "comment", "Reserved: " + count + ". Available: " + (settings.Max - count) + ".");
 }
 
+function WomensLockers(settings)
+{
+  var text = `
+<table class="tg">
+  <tr>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-camb"><span id="W1">1</span></td>
+    <td class="tg-camb"><span id="W3">3</span></td>
+    <td class="tg-camb"><span id="W5">5</span></td>
+    <td class="tg-camb"><span id="W7">7</span></td>
+    <td class="tg-camb"><span id="W9">9</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+  </tr>
+  <tr>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W2">2</span></td>
+    <td class="tg-oxfd"><span id="W4">4</span></td>
+    <td class="tg-oxfd"><span id="W6">6</span></td>
+    <td class="tg-oxfd"><span id="W8">8</span></td>
+    <td class="tg-oxfd"><span id="W10">10</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+  </tr>
+  <tr>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+  </tr>
+  <tr>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W12">12</span></td>
+    <td class="tg-camb"><span id="W11">11</span></td>
+  </tr>
+  <tr>
+    <td class="tg-camb"><span id="W53">53</span></td>
+    <td class="tg-oxfd"><span id="W54">54</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W14">14</span></td>
+    <td class="tg-camb"><span id="W13">13</span></td>
+  </tr>
+  <tr>
+    <td class="tg-camb"><span id="W51">51</span></td>
+    <td class="tg-oxfd"><span id="W52">52</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-text" colspan="7" rowspan="3">WOMEN'S<br>CHANGEROOM<br><span id="Wcomment"></span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W16">16</span></td>
+    <td class="tg-camb"><span id="W15">15</span></td>
+  </tr>
+  <tr>
+    <td class="tg-camb"><span id="W49">49</span></td>
+    <td class="tg-oxfd"><span id="W50">50</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W18">18</span></td>
+    <td class="tg-camb"><span id="W17">17</span></td>
+  </tr>
+  <tr>
+    <td class="tg-camb"><span id="W47">47</span></td>
+    <td class="tg-oxfd"><span id="W48">48</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W20">20</span></td>
+    <td class="tg-camb"><span id="W19">19</span></td>
+  </tr>
+  <tr>
+    <td class="tg-camb"><span id="W45">45</span></td>
+    <td class="tg-oxfd"><span id="W46">46</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W22">22</span></td>
+    <td class="tg-camb"><span id="W21">21</span></td>
+  </tr>
+  <tr>
+    <td class="tg-camb"><span id="W43">43</span></td>
+    <td class="tg-oxfd"><span id="W44">44</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W24">24</span></td>
+    <td class="tg-camb"><span id="W23">23</span></td>
+  </tr>
+  <tr>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-oxfd"><span id="W42">42</span></td>
+    <td class="tg-oxfd"><span id="W40">40</span></td>
+    <td class="tg-oxfd"><span id="W38">38</span></td>
+    <td class="tg-oxfd"><span id="W36">36</span></td>
+    <td class="tg-oxfd"><span id="W34">34</span></td>
+    <td class="tg-oxfd"><span id="W32">32</span></td>
+    <td class="tg-oxfd"><span id="W30">30</span></td>
+    <td class="tg-oxfd"><span id="W28">28</span></td>
+    <td class="tg-oxfd"><span id="W26">26</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+  </tr>
+  <tr>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-camb"><span id="W41">41</span></td>
+    <td class="tg-camb"><span id="W39">39</span></td>
+    <td class="tg-camb"><span id="W37">37</span></td>
+    <td class="tg-camb"><span id="W35">35</span></td>
+    <td class="tg-camb"><span id="W33">33</span></td>
+    <td class="tg-camb"><span id="W31">31</span></td>
+    <td class="tg-camb"><span id="W29">29</span></td>
+    <td class="tg-camb"><span id="W27">27</span></td>
+    <td class="tg-camb"><span id="W25">25</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+  </tr>
+</table>`;
+  return text;
+}
+
+function MensLockers(settings)
+{
+  var text = `
+<table class="tg"><tbody>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-camb"><span id="M13">13</span></td>
+<td class="tg-camb"><span id="M15">15</span></td>
+<td class="tg-camb"><span id="M17">17</span></td>
+<td class="tg-camb"><span id="M19">19</span></td>
+<td class="tg-camb"><span id="M21">21</span></td>
+<td class="tg-camb"><span id="M23">23</span></td>
+<td class="tg-camb"><span id="M25">25</span></td>
+<td class="tg-camb"><span id="M27">27</span></td>
+<td class="tg-camb"><span id="M29">29</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M14">14</span></td>
+<td class="tg-oxfd"><span id="M16">16</span></td>
+<td class="tg-oxfd"><span id="M18">18</span></td>
+<td class="tg-oxfd"><span id="M20">20</span></td>
+<td class="tg-oxfd"><span id="M22">22</span></td>
+<td class="tg-oxfd"><span id="M24">24</span></td>
+<td class="tg-oxfd"><span id="M26">26</span></td>
+<td class="tg-oxfd"><span id="M28">28</span></td>
+<td class="tg-oxfd"><span id="M30">30</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+</tr>
+<tr>
+<td class="tg-camb"><span id="M11">11</span></td>
+<td class="tg-oxfd"><span id="M12">12</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M32">32</span></td>
+<td class="tg-camb"><span id="M31">31</span></td>
+</tr>
+<tr>
+<td class="tg-camb"><span id="M9">9</span></td>
+<td class="tg-oxfd"><span id="M10">10</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M34">34</span></td>
+<td class="tg-camb"><span id="M33">33</span></td>
+</tr>
+<tr>
+<td class="tg-camb"><span id="M7">7</span></td>
+<td class="tg-oxfd"><span id="M8">8</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M36">36</span></td>
+<td class="tg-camb"><span id="M35">35</span></td>
+</tr>
+<tr>
+<td class="tg-camb"><span id="M5">5</span></td>
+<td class="tg-oxfd"><span id="M6">6</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M38">38</span></td>
+<td class="tg-camb"><span id="M37">37</span></td>
+</tr>
+<tr>
+<td class="tg-camb"><span id="M3">3</span></td>
+<td class="tg-oxfd"><span id="M4">4</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-text" colspan="7" rowspan="3">MEN'S<br>CHANGEROOM<br><span id="Mcomment"></span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M40">40</span></td>
+<td class="tg-camb"><span id="M39">39</span></td>
+</tr>
+<tr>
+<td class="tg-camb"><span id="M1">1</span></td>
+<td class="tg-oxfd"><span id="M2">2</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M42">42</span></td>
+<td class="tg-camb"><span id="M41">41</span></td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M44">44</span></td>
+<td class="tg-camb"><span id="M43">43</span></td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-camb"><span id="M69">69</span></td>
+<td class="tg-oxfd"><span id="M70">70</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M46">46</span></td>
+<td class="tg-camb"><span id="M45">45</span></td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-camb"><span id="M67">67</span></td>
+<td class="tg-oxfd"><span id="M68">68</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M48">48</span></td>
+<td class="tg-camb"><span id="M47">47</span></td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-camb"><span id="M65">65</span></td>
+<td class="tg-oxfd"><span id="M66">66</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M50">50</span></td>
+<td class="tg-camb"><span id="M49">49</span></td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-oxfd"><span id="M64">64</span></td>
+<td class="tg-oxfd"><span id="M62">62</span></td>
+<td class="tg-oxfd"><span id="M60">60</span></td>
+<td class="tg-oxfd"><span id="M58">58</span></td>
+<td class="tg-oxfd"><span id="M56">56</span></td>
+<td class="tg-oxfd"><span id="M54">54</span></td>
+<td class="tg-oxfd"><span id="M52">52</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-camb"><span id="M63">63</span></td>
+<td class="tg-camb"><span id="M61">61</span></td>
+<td class="tg-camb"><span id="M59">59</span></td>
+<td class="tg-camb"><span id="M57">57</span></td>
+<td class="tg-camb"><span id="M55">55</span></td>
+<td class="tg-camb"><span id="M53">53</span></td>
+<td class="tg-camb"><span id="M51">51</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+`;
+  return text;
+}
+
+function ReserveTableLockers(filter, settings, entries, full_details)
+{
+  var i, j;
+  var count = 0;
+
+  for (i = 1; i < entries.length; i++) {
+    var lockerName = entries[i][map.locker].$t;
+    if (lockerName.search(filter) == 0) {
+      var first = entries[i][map.first].$t;
+      var last = entries[i][map.last].$t;
+      SetClass(lockerName, "cross-it");
+      count ++;
+    }
+  }
+  SetElement(filter + "comment", "" + (settings.Max - count) + " of " + settings.Max + " available");
+}
+
 function ShowAllLockers(elementId, entries, full_details)
 {
   var element = document.getElementById(elementId);
   if (element) {
-    element.innerHTML = DefaultLockers("W", "Women's Changeroom", WOMENS) +
-      "<br><hr><br>" + DefaultLockers("M", "Men's Changeroom", MENS);
-    ReserveLockers("W", WOMENS, entries, full_details);
-    ReserveLockers("M", MENS, entries, full_details);
+    if (full_details) {
+      element.innerHTML = DefaultLockers("W", "Women's Changeroom", WOMENS) +
+        "<br><hr><br>" + DefaultLockers("M", "Men's Changeroom", MENS) +
+      ReserveLockers("W", WOMENS, entries, full_details);
+      ReserveLockers("M", MENS, entries, full_details);
+    } else {
+      // element.innerHTML = "<table><tr><td>" + WomensLockers(WOMENS) + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + MensLockers(MENS) + "</td></tr></table>";
+      element.innerHTML = "" + WomensLockers(WOMENS) + "<br><hr><br>" + MensLockers(MENS) + "";
+      ReserveTableLockers("W", WOMENS, entries);
+      ReserveTableLockers("M", MENS, entries);
+    }
   }
 }
 
