@@ -729,3 +729,8 @@ function LockersCallback(jsonIn, qp)
   var full_details = qp && qp.details == "full";
   ShowAllLockers("lockers", jsonIn.feed.entry, full_details);
 }
+
+function LockersCallbackOverview(jsonIn)
+{
+  LockersCallback(jsonIn, null);
+}
