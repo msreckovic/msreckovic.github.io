@@ -19,11 +19,15 @@ function SetElement(elementId, value)
   }
 }
 
-function SetClass(elementId, value)
+function SetClass(elementId, cValue, pValue)
 {
   var el = document.getElementById(elementId);
   if (el) {
-    el.className = value;
+    el.className = cValue;
+    var who = document.createAttribute("who");
+    who.value = pValue;
+    el.attributes.setNamedItem(who);
+    // el.attributes.getNamedItem("who").value;
   }
 }
 
@@ -318,11 +322,11 @@ function WomensLockers(settings)
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-camb"><span id="W1">1</span></td>
-    <td class="tg-camb"><span id="W3">3</span></td>
-    <td class="tg-camb"><span id="W5">5</span></td>
-    <td class="tg-camb"><span id="W7">7</span></td>
-    <td class="tg-camb"><span id="W9">9</span></td>
+    <td class="tg-clickable tg-camb"><span id="W1">1</span></td>
+    <td class="tg-clickable tg-camb"><span id="W3">3</span></td>
+    <td class="tg-clickable tg-camb"><span id="W5">5</span></td>
+    <td class="tg-clickable tg-camb"><span id="W7">7</span></td>
+    <td class="tg-clickable tg-camb"><span id="W9">9</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
   </tr>
@@ -333,26 +337,11 @@ function WomensLockers(settings)
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd-p"><span id="W2">2</span></td>
-    <td class="tg-oxfd"><span id="W4">4</span></td>
-    <td class="tg-oxfd"><span id="W6">6</span></td>
-    <td class="tg-oxfd"><span id="W8">8</span></td>
-    <td class="tg-oxfd-p"><span id="W10">10</span></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-  </tr>
-  <tr>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
+    <td class="tg-clickable tg-oxfd-p"><span id="W2">2</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W4">4</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W6">6</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W8">8</span></td>
+    <td class="tg-clickable tg-oxfd-p"><span id="W10">10</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
   </tr>
@@ -368,52 +357,52 @@ function WomensLockers(settings)
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd-p"><span id="W12">12</span></td>
-    <td class="tg-camb"><span id="W11">11</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
   </tr>
   <tr>
-    <td class="tg-camb"><span id="W53">53</span></td>
-    <td class="tg-oxfd-p"><span id="W54">54</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
+    <td class="tg-text" id="Wshow" rowspan="2" colspan="8"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W14">14</span></td>
-    <td class="tg-camb"><span id="W13">13</span></td>
+    <td class="tg-clickable tg-oxfd-p"><span id="W12">12</span></td>
+    <td class="tg-clickable tg-camb"><span id="W11">11</span></td>
   </tr>
   <tr>
-    <td class="tg-camb"><span id="W51">51</span></td>
-    <td class="tg-oxfd"><span id="W52">52</span></td>
+    <td class="tg-clickable tg-camb"><span id="W53">53</span></td>
+    <td class="tg-clickable tg-oxfd-p"><span id="W54">54</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-clickable tg-oxfd"><span id="W14">14</span></td>
+    <td class="tg-clickable tg-camb"><span id="W13">13</span></td>
+  </tr>
+  <tr>
+    <td class="tg-clickable tg-camb"><span id="W51">51</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W52">52</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-text" colspan="7" rowspan="3">WOMEN'S<br>CHANGEROOM<br><span class="locker-comment" id="Wcomment"></span></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W16">16</span></td>
-    <td class="tg-camb"><span id="W15">15</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W16">16</span></td>
+    <td class="tg-clickable tg-camb"><span id="W15">15</span></td>
   </tr>
   <tr>
-    <td class="tg-camb"><span id="W49">49</span></td>
-    <td class="tg-oxfd"><span id="W50">50</span></td>
+    <td class="tg-clickable tg-camb"><span id="W49">49</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W50">50</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W18">18</span></td>
-    <td class="tg-camb"><span id="W17">17</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W18">18</span></td>
+    <td class="tg-clickable tg-camb"><span id="W17">17</span></td>
   </tr>
   <tr>
-    <td class="tg-camb"><span id="W47">47</span></td>
-    <td class="tg-oxfd"><span id="W48">48</span></td>
+    <td class="tg-clickable tg-camb"><span id="W47">47</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W48">48</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W20">20</span></td>
-    <td class="tg-camb"><span id="W19">19</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W20">20</span></td>
+    <td class="tg-clickable tg-camb"><span id="W19">19</span></td>
   </tr>
   <tr>
-    <td class="tg-camb"><span id="W45">45</span></td>
-    <td class="tg-oxfd"><span id="W46">46</span></td>
+    <td class="tg-clickable tg-camb"><span id="W45">45</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W46">46</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
@@ -423,12 +412,12 @@ function WomensLockers(settings)
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W22">22</span></td>
-    <td class="tg-camb"><span id="W21">21</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W22">22</span></td>
+    <td class="tg-clickable tg-camb"><span id="W21">21</span></td>
   </tr>
   <tr>
-    <td class="tg-camb"><span id="W43">43</span></td>
-    <td class="tg-oxfd"><span id="W44">44</span></td>
+    <td class="tg-clickable tg-camb"><span id="W43">43</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W44">44</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
@@ -438,36 +427,36 @@ function WomensLockers(settings)
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W24">24</span></td>
-    <td class="tg-camb"><span id="W23">23</span></td>
-  </tr>
-  <tr>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-oxfd"><span id="W42">42</span></td>
-    <td class="tg-oxfd"><span id="W40">40</span></td>
-    <td class="tg-oxfd"><span id="W38">38</span></td>
-    <td class="tg-oxfd"><span id="W36">36</span></td>
-    <td class="tg-oxfd"><span id="W34">34</span></td>
-    <td class="tg-oxfd"><span id="W32">32</span></td>
-    <td class="tg-oxfd"><span id="W30">30</span></td>
-    <td class="tg-oxfd"><span id="W28">28</span></td>
-    <td class="tg-oxfd"><span id="W26">26</span></td>
-    <td class="tg-blanks"></td>
-    <td class="tg-blanks"></td>
+    <td class="tg-clickable tg-oxfd"><span id="W24">24</span></td>
+    <td class="tg-clickable tg-camb"><span id="W23">23</span></td>
   </tr>
   <tr>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
-    <td class="tg-camb"><span id="W41">41</span></td>
-    <td class="tg-camb"><span id="W39">39</span></td>
-    <td class="tg-camb"><span id="W37">37</span></td>
-    <td class="tg-camb"><span id="W35">35</span></td>
-    <td class="tg-camb"><span id="W33">33</span></td>
-    <td class="tg-camb"><span id="W31">31</span></td>
-    <td class="tg-camb"><span id="W29">29</span></td>
-    <td class="tg-camb"><span id="W27">27</span></td>
-    <td class="tg-camb"><span id="W25">25</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W42">42</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W40">40</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W38">38</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W36">36</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W34">34</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W32">32</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W30">30</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W28">28</span></td>
+    <td class="tg-clickable tg-oxfd"><span id="W26">26</span></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+  </tr>
+  <tr>
+    <td class="tg-blanks"></td>
+    <td class="tg-blanks"></td>
+    <td class="tg-clickable tg-camb"><span id="W41">41</span></td>
+    <td class="tg-clickable tg-camb"><span id="W39">39</span></td>
+    <td class="tg-clickable tg-camb"><span id="W37">37</span></td>
+    <td class="tg-clickable tg-camb"><span id="W35">35</span></td>
+    <td class="tg-clickable tg-camb"><span id="W33">33</span></td>
+    <td class="tg-clickable tg-camb"><span id="W31">31</span></td>
+    <td class="tg-clickable tg-camb"><span id="W29">29</span></td>
+    <td class="tg-clickable tg-camb"><span id="W27">27</span></td>
+    <td class="tg-clickable tg-camb"><span id="W25">25</span></td>
     <td class="tg-blanks"></td>
     <td class="tg-blanks"></td>
   </tr>
@@ -482,36 +471,36 @@ function MensLockers(settings)
 <tr>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-camb"><span id="M13">13</span></td>
-<td class="tg-camb"><span id="M15">15</span></td>
-<td class="tg-camb"><span id="M17">17</span></td>
-<td class="tg-camb"><span id="M19">19</span></td>
-<td class="tg-camb"><span id="M21">21</span></td>
-<td class="tg-camb"><span id="M23">23</span></td>
-<td class="tg-camb"><span id="M25">25</span></td>
-<td class="tg-camb"><span id="M27">27</span></td>
-<td class="tg-camb"><span id="M29">29</span></td>
+<td class="tg-clickable tg-camb"><span id="M13">13</span></td>
+<td class="tg-clickable tg-camb"><span id="M15">15</span></td>
+<td class="tg-clickable tg-camb"><span id="M17">17</span></td>
+<td class="tg-clickable tg-camb"><span id="M19">19</span></td>
+<td class="tg-clickable tg-camb"><span id="M21">21</span></td>
+<td class="tg-clickable tg-camb"><span id="M23">23</span></td>
+<td class="tg-clickable tg-camb"><span id="M25">25</span></td>
+<td class="tg-clickable tg-camb"><span id="M27">27</span></td>
+<td class="tg-clickable tg-camb"><span id="M29">29</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 </tr>
 <tr>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M14">14</span></td>
-<td class="tg-oxfd"><span id="M16">16</span></td>
-<td class="tg-oxfd"><span id="M18">18</span></td>
-<td class="tg-oxfd"><span id="M20">20</span></td>
-<td class="tg-oxfd"><span id="M22">22</span></td>
-<td class="tg-oxfd"><span id="M24">24</span></td>
-<td class="tg-oxfd"><span id="M26">26</span></td>
-<td class="tg-oxfd"><span id="M28">28</span></td>
-<td class="tg-oxfd"><span id="M30">30</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M14">14</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M16">16</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M18">18</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M20">20</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M22">22</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M24">24</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M26">26</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M28">28</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M30">30</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 </tr>
 <tr>
-<td class="tg-camb"><span id="M11">11</span></td>
-<td class="tg-oxfd"><span id="M12">12</span></td>
+<td class="tg-clickable tg-camb"><span id="M11">11</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M12">12</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
@@ -521,42 +510,27 @@ function MensLockers(settings)
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M32">32</span></td>
-<td class="tg-camb"><span id="M31">31</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M32">32</span></td>
+<td class="tg-clickable tg-camb"><span id="M31">31</span></td>
 </tr>
 <tr>
-<td class="tg-camb"><span id="M9">9</span></td>
-<td class="tg-oxfd"><span id="M10">10</span></td>
+<td class="tg-clickable tg-camb"><span id="M9">9</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M10">10</span></td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M34">34</span></td>
-<td class="tg-camb"><span id="M33">33</span></td>
+<td class="tg-text" id="Mshow" rowspan="2" colspan="8"></td>
+<td class="tg-clickable tg-oxfd"><span id="M34">34</span></td>
+<td class="tg-clickable tg-camb"><span id="M33">33</span></td>
 </tr>
 <tr>
-<td class="tg-camb"><span id="M7">7</span></td>
-<td class="tg-oxfd"><span id="M8">8</span></td>
+<td class="tg-clickable tg-camb"><span id="M7">7</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M8">8</span></td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M36">36</span></td>
-<td class="tg-camb"><span id="M35">35</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M36">36</span></td>
+<td class="tg-clickable tg-camb"><span id="M35">35</span></td>
 </tr>
 <tr>
-<td class="tg-camb"><span id="M5">5</span></td>
-<td class="tg-oxfd"><span id="M6">6</span></td>
+<td class="tg-clickable tg-camb"><span id="M5">5</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M6">6</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
@@ -566,39 +540,39 @@ function MensLockers(settings)
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M38">38</span></td>
-<td class="tg-camb"><span id="M37">37</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M38">38</span></td>
+<td class="tg-clickable tg-camb"><span id="M37">37</span></td>
 </tr>
 <tr>
-<td class="tg-camb"><span id="M3">3</span></td>
-<td class="tg-oxfd"><span id="M4">4</span></td>
+<td class="tg-clickable tg-camb"><span id="M3">3</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M4">4</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-text" colspan="7" rowspan="3">MEN'S<br>CHANGEROOM<br><span class="locker-comment" id="Mcomment"></span></td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M40">40</span></td>
-<td class="tg-camb"><span id="M39">39</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M40">40</span></td>
+<td class="tg-clickable tg-camb"><span id="M39">39</span></td>
 </tr>
 <tr>
-<td class="tg-camb"><span id="M1">1</span></td>
-<td class="tg-oxfd-p"><span id="M2">2</span></td>
+<td class="tg-clickable tg-camb"><span id="M1">1</span></td>
+<td class="tg-clickable tg-oxfd-p"><span id="M2">2</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M42">42</span></td>
-<td class="tg-camb"><span id="M41">41</span></td>
-</tr>
-<tr>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd-p"><span id="M44">44</span></td>
-<td class="tg-camb"><span id="M43">43</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M42">42</span></td>
+<td class="tg-clickable tg-camb"><span id="M41">41</span></td>
 </tr>
 <tr>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
+<td class="tg-clickable tg-oxfd-p"><span id="M44">44</span></td>
+<td class="tg-clickable tg-camb"><span id="M43">43</span></td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
@@ -612,8 +586,8 @@ function MensLockers(settings)
 <tr>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-camb"><span id="M69">69</span></td>
-<td class="tg-oxfd-p"><span id="M70">70</span></td>
+<td class="tg-clickable tg-camb"><span id="M69">69</span></td>
+<td class="tg-clickable tg-oxfd-p"><span id="M70">70</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
@@ -621,14 +595,14 @@ function MensLockers(settings)
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd-p"><span id="M46">46</span></td>
-<td class="tg-camb"><span id="M45">45</span></td>
+<td class="tg-clickable tg-oxfd-p"><span id="M46">46</span></td>
+<td class="tg-clickable tg-camb"><span id="M45">45</span></td>
 </tr>
 <tr>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-camb"><span id="M67">67</span></td>
-<td class="tg-oxfd"><span id="M68">68</span></td>
+<td class="tg-clickable tg-camb"><span id="M67">67</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M68">68</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
@@ -636,14 +610,14 @@ function MensLockers(settings)
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M48">48</span></td>
-<td class="tg-camb"><span id="M47">47</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M48">48</span></td>
+<td class="tg-clickable tg-camb"><span id="M47">47</span></td>
 </tr>
 <tr>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-camb"><span id="M65">65</span></td>
-<td class="tg-oxfd"><span id="M66">66</span></td>
+<td class="tg-clickable tg-camb"><span id="M65">65</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M66">66</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
@@ -651,36 +625,36 @@ function MensLockers(settings)
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M50">50</span></td>
-<td class="tg-camb"><span id="M49">49</span></td>
-</tr>
-<tr>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-oxfd"><span id="M64">64</span></td>
-<td class="tg-oxfd"><span id="M62">62</span></td>
-<td class="tg-oxfd"><span id="M60">60</span></td>
-<td class="tg-oxfd"><span id="M58">58</span></td>
-<td class="tg-oxfd"><span id="M56">56</span></td>
-<td class="tg-oxfd"><span id="M54">54</span></td>
-<td class="tg-oxfd"><span id="M52">52</span></td>
-<td class="tg-blanks">&nbsp;</td>
-<td class="tg-blanks">&nbsp;</td>
+<td class="tg-clickable tg-oxfd"><span id="M50">50</span></td>
+<td class="tg-clickable tg-camb"><span id="M49">49</span></td>
 </tr>
 <tr>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
-<td class="tg-camb"><span id="M63">63</span></td>
-<td class="tg-camb"><span id="M61">61</span></td>
-<td class="tg-camb"><span id="M59">59</span></td>
-<td class="tg-camb"><span id="M57">57</span></td>
-<td class="tg-camb"><span id="M55">55</span></td>
-<td class="tg-camb"><span id="M53">53</span></td>
-<td class="tg-camb"><span id="M51">51</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M64">64</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M62">62</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M60">60</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M58">58</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M56">56</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M54">54</span></td>
+<td class="tg-clickable tg-oxfd"><span id="M52">52</span></td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+</tr>
+<tr>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-blanks">&nbsp;</td>
+<td class="tg-clickable tg-camb"><span id="M63">63</span></td>
+<td class="tg-clickable tg-camb"><span id="M61">61</span></td>
+<td class="tg-clickable tg-camb"><span id="M59">59</span></td>
+<td class="tg-clickable tg-camb"><span id="M57">57</span></td>
+<td class="tg-clickable tg-camb"><span id="M55">55</span></td>
+<td class="tg-clickable tg-camb"><span id="M53">53</span></td>
+<td class="tg-clickable tg-camb"><span id="M51">51</span></td>
 <td class="tg-blanks">&nbsp;</td>
 <td class="tg-blanks">&nbsp;</td>
 </tr>
@@ -700,7 +674,7 @@ function ReserveTableLockers(filter, settings, entries, full_details)
     if (lockerName.search(filter) == 0) {
       var first = entries[i][map.first].$t;
       var last = entries[i][map.last].$t;
-      SetClass(lockerName, "cross-it");
+      SetClass(lockerName, "cross-it", `${first} ${last}`);
       count ++;
     }
   }
@@ -724,10 +698,67 @@ function ShowAllLockers(elementId, entries, full_details)
   }
 }
 
+function DrillToTarget(event)
+{
+  var id = event.target.id;
+  if (id) {
+    return event.target;
+  }
+
+  var children = event.target.children;
+  for (var i = 0; i < children.length; i++) {
+    if (children[i].id) {
+      return children[i];
+    }
+  }
+
+  return null;
+}
+
+function ClickedOnClickable(target)
+{
+  if (!target) return;
+  var who = target.attributes.getNamedItem("who");
+  var filter = target.id[0];
+  var number = target.id.slice(1);
+
+  if (who) {
+    SetElement(filter + "show", `${number}. ${who.value}`);
+  } else if (target.closest(".tg-oxfd-p")) {
+    SetElement(filter + "show", `${number}. --reserved for para--`);
+  } else if (target.closest(".tg-oxfd")) {
+    SetElement(filter + "show", `${number}. **daily use**`);
+  } else if (target.closest(".tg-camb")) {
+    SetElement(filter + "show", `${number}. ++available++`);
+  } else {
+    SetElement(filter + "show", `${number}. ++available++`);
+  }
+}
+
+function SetupCallbacks()
+{
+  var box = document.querySelector(".tg-clickable");
+
+  // Detect all clicks on the document
+  document.addEventListener("click", function(event) {
+	  // If user clicks inside the element, do nothing
+	  if (event.target.closest(".tg-clickable")) {
+      var target = DrillToTarget(event);
+      ClickedOnClickable(target);
+    } else {
+      SetElement("Wshow", "");
+      SetElement("Mshow", "");
+    }
+	  // If user clicks outside the element, hide it!
+	  // box.classList.add("js-is-hidden");
+  });
+}
+
 function LockersCallback(jsonIn, qp)
 {
   var full_details = qp && qp.details == "full";
   ShowAllLockers("lockers", jsonIn.feed.entry, full_details);
+  SetupCallbacks();
 }
 
 function LockersCallbackOverview(jsonIn)
