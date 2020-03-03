@@ -222,7 +222,7 @@ function MembersPersonal(elementId, entries, whoisthis)
     if (boatrack) {
       explanation += "<li>Private boat rack " + boatrack + ".</li>";
     } else {
-      explanation += "<li>No private boat rack.</li>";
+      // explanation += "<li>No private boat rack.</li>";
     }
     explanation += "</ul>";
 
