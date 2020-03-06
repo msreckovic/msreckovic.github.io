@@ -681,17 +681,33 @@ function ReserveTableLockers(filter, settings, entries, full_details)
   SetElement(filter + "comment", "" + (settings.Max - count) + " of " + settings.Max + " reserved lockers available");
 }
 
+function LockerLegend()
+{
+  var result = "<br>";
+  result += `
+<table class="tg"><tr>
+<td class="tg-oxfd-p">Lower (Para<br>Reservable)</td>
+<td class="tg-oxfd">Lower (Daily<br>Use)</td>
+<td class="tg-camb">Upper<br>(Available)</td>
+<td class="tg-camb-r">Upper<br>(Reserved)</td>
+</tr></table>
+  `;
+  result += "<br>";
+  return result;
+}
+
 function ShowAllLockers(elementId, entries, full_details)
 {
   var element = document.getElementById(elementId);
   if (element) {
     if (full_details) {
       element.innerHTML = DefaultLockers("W", "Women's Changeroom", WOMENS) +
-        "<br><hr><br>" + DefaultLockers("M", "Men's Changeroom", MENS);
+        LockerLegend() + DefaultLockers("M", "Men's Changeroom", MENS);
       ReserveLockers("W", WOMENS, entries, full_details);
       ReserveLockers("M", MENS, entries, full_details);
     } else {
-      element.innerHTML = "" + WomensLockers(WOMENS) + "<br><hr><br>" + MensLockers(MENS) + "";
+      element.innerHTML = "" + WomensLockers(WOMENS) +
+        LockerLegend() + MensLockers(MENS) + "";
       ReserveTableLockers("W", WOMENS, entries);
       ReserveTableLockers("M", MENS, entries);
     }
