@@ -29,8 +29,66 @@ If you are a returning ARC adult member, you have not registered this year throu
 <span id="arccomplete3">default complete</span>
 
 <script src="testing.js"></script>
+<script src="srecko/open.js"></script>
+
+<script>
+var OPENING = [[13*60 + 0, 21*60 + 30],  // Sunday
+               [-1, -1],                 // Monday
+               [16*60 + 0, 21*60 + 0],   // Tuesday
+               [16*60 + 0, 21*60 + 0],   // Wednesday
+               [16*60 + 0, 21*60 + 0],   // Thursday
+               [13*60 + 0, 21*60 + 30],  // Friday
+               [13*60 + 0, 21*60 + 30]]; // Saturday
+var d = 5;
+var h = 12;
+var m = 21;
+var res = ItemsStatus(d, h, m, OPENING);
+console.log("C For day " + d + " at " + h + ":" + m + " get " + res[0] + " - " + res[1]);
+
+d = 0;
+h = 22;
+m = 21;
+res = ItemsStatus(d, h, m, OPENING);
+console.log("C For day " + d + " at " + h + ":" + m + " get " + res[0] + " - " + res[1]);
+
+d = 1;
+h = 17;
+m = 21;
+res = ItemsStatus(d, h, m, OPENING);
+console.log("C For day " + d + " at " + h + ":" + m + " get " + res[0] + " - " + res[1]);
+
+d = 4;
+h = 18;
+m = 21;
+res = ItemsStatus(d, h, m, OPENING);
+console.log("O For day " + d + " at " + h + ":" + m + " get " + res[0] + " - " + res[1]);
+
+d = 5;
+h = 13;
+m = 21;
+res = ItemsStatus(d, h, m, OPENING);
+console.log("O For day " + d + " at " + h + ":" + m + " get " + res[0] + " - " + res[1]);
+
+d = 5;
+h = 21;
+m = 33;
+res = ItemsStatus(d, h, m, OPENING);
+console.log("C For day " + d + " at " + h + ":" + m + " get " + res[0] + " - " + res[1]);
+
+d = 0;
+h = 21;
+m = 23;
+res = ItemsStatus(d, h, m, OPENING);
+console.log("O For day " + d + " at " + h + ":" + m + " get " + res[0] + " - " + res[1]);
+
+d = 0;
+h = 23;
+m = 23;
+res = ItemsStatus(d, h, m, OPENING);
+console.log("C For day " + d + " at " + h + ":" + m + " get " + res[0] + " - " + res[1]);
+</script>
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Wed Mar  6 21:06:30 EST 2019 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Fri Aug 21 12:31:55 EDT 2020 <!-- hhmts end -->
 </body> </html>
