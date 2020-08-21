@@ -11,11 +11,17 @@ ShopifyAPI::Base.site = shop_url
 ShopifyAPI::Base.api_version = '2020-07'
 
 PAGE_ID = 63694438565
-PAGE_TITLE = "Menu"
 
-PRODUCT_TYPES = ['Pizza', 'Vegetarian Pizza', 'PanPizza',
-                 'Defina Family Style', 'Defina TV Dinners',
-                 'Grill', 'Pasta', 'Salad', 'Vegetables', 'Dessert']
+PRODUCT_TYPES = [['Pizza', 'Wood Fired Pizza'],
+                 ['Vegetarian Pizza', 'Vegetarian Pizza'],
+                 ['PanPizza', 'Pizza In The Pan'],
+                 ['Defina Family Style', 'Defina Family Style'],
+                 ['Defina TV Dinners', 'Defina TV Dinners'],
+                 ['Grill', 'From The Wood Grill'],
+                 ['Pasta', 'Fresh Pasta'],
+                 ['Salad', 'Salads'],
+                 ['Vegetables', 'Vegetables'],
+                 ['Dessert', 'Dessert']];
 PRODUCT_TAGS = { 'GF' => 'Gluten Free', 'V' => 'Vegan', 'Vt' => 'Vegetarian' }
 
 class UpdateMenu
@@ -38,8 +44,8 @@ class UpdateMenu
     prod = products
     puts "******************* PRODUCTS TO CONTENT"
     types.map do |t|
-      next unless prod[t]
-      section(t, prod[t])
+      next unless prod[t[0]]
+      section(t[1], prod[t[0]])
     end.compact.join("\n")
   end
 

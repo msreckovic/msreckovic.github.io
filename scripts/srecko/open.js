@@ -10,7 +10,7 @@ var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'S
 //                  [13*60 + 0, 21*60 + 30],  // Friday
 //                  [13*60 + 0, 21*60 + 30]]) // Saturday
 
-function ItemsVisibility(vis_id, msg_id, opening_hours)
+function ItemsVisibility(vis_id, msg_id, extra_msg, opening_hours)
 {
   var n = new Date();
   var status = ItemsStatus(n.getDay(), n.getHours(), n.getMinutes(), opening_hours);
@@ -28,7 +28,7 @@ function ItemsVisibility(vis_id, msg_id, opening_hours)
 
   e = document.getElementById(msg_id);
   if (e) {
-    e.innerHTML = msg;
+    e.innerHTML = msg + extra_msg;
   }
 }
   
