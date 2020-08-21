@@ -1,0 +1,9 @@
+<h3 style="text-align: center;">Pizza</h3>
+<p><strong>Diavola</strong> - tomato sauce, fior di latte, sopressata, grana padano, basil <strong>$17</strong></p>
+<p><strong>Margherita</strong> - tomato sauce, fior di latte, grana padano, basil <strong>$15</strong></p>
+<p><strong>Roncy</strong> - fior di latte, yukon gold potatoes, double smoked bacon, caramelized shallots, grana padano, cracked black pepper, dill <strong>$17</strong></p>
+<h3 style="text-align: center;">Salads</h3>
+<p><strong>Shopska Salata</strong> - bulgarian feta, roasted red peppers, cucumbers, tomatoes, parsley, olives, red vinegar <strong>$16</strong></p>
+<p><strong>Grafton Peach Caprese</strong> - grilled peach, bufala, prosciutto, arugula, blackberries, basil, mint, toasted fennel seeds, olive oil <strong>$18</strong></p>
+<p><strong>Kabbouleh</strong> - parsley, kale, mint, peach, feta, tomatoes, red onion, pomegranate, toasted sesame/fennel seeds, taro, hummus, blueberry vinaigrette <strong>$16</strong></p>
+<p><strong>Romaine Garden</strong> - celery root, crispy prosciutto, focaccia croutons, caesar vinaigrette, grana, caper berries<strong> $12</strong></p>
