@@ -60,7 +60,7 @@ function FillSheet(jsonIn, where)
   details += "  </thead>\n";
   details += "  <tbody>\n";
 
-  for (var i=entries.length-1; i>=0; i-=1) {
+  for (var i = 0; i < entries.length; i++) {
     details += ForSingleOne(entries[i]);
   }
   details += "  </tbody>\n";
