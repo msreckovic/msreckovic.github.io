@@ -1,9 +1,5 @@
-var map = {
-  "question" :    {"label" : "Q",
-                "item" : "gsx$question"},
-  "answer" :     {"label" : "A",
-                "item" : "gsx$answer"},
-};
+var labels = ["Q", "A"];
+var items = ["question", "answer"];
 
 function GetValue(where, what, instead)
 {
@@ -17,14 +13,11 @@ function GetValue(where, what, instead)
 
 function ForSingleOne(entry)
 {
-  var q = GetValue(entry, map.question.item, "");
-  var a = GetValue(entry, map.answer.item, "");
-
   var total = "<tr>\n";
-  total += "    <td data-label=" + map.question.label +">" + q  + "</td>\n";
-  total += "    <td data-label=" + map.answer.label + ">" + a  + "</td>\n";
+  for (var i = 0; i < labels.length; i++) {
+    total += "    <td data-label=" + labels[i] +">" + GetValue(entry, "gsx$" + items[i], "") + "</td>\n";
+  }
   total += "</tr>\n";
-
   return total;
 }
 
@@ -35,8 +28,9 @@ function FillSheet(jsonIn, where)
   var details = "<table>\n";
   details += "  <thead>\n";
   details += "    <tr>\n";
-  details += "      <th>" + map["question"].label + "</th>\n";
-  details += "      <th>" + map.answer.label + "</th>\n";
+  for (var i = 0; i < labels.length; i++) {
+    details += "      <th>" + labels[i] + "</th>\n";
+  }
   details += "    </tr>\n";
   details += "  </thead>\n";
   details += "  <tbody>\n";
