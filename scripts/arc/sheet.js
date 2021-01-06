@@ -11,14 +11,14 @@ function GetParameters()
     if (arglabels) {
       var splitlabels = arglabels.split(',');
       console.log("Setting sheet.js.labels from data-labels to " + splitlabels)
-      // labels = splitlabels;
+      labels = splitlabels;
     }
     
     var argitems = script_tag.getAttribute("data-items");
     if (argitems) {
       var splititems = argitems.split(',');
       console.log("Setting sheet.js.items from data-items to " + splititems)
-      // items = splititems;
+      items = splititems;
     }
 
   }
