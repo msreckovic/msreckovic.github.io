@@ -35,7 +35,7 @@ function FillSheet(jsonIn, where)
   var details = "<table>\n";
   details += "  <thead>\n";
   details += "    <tr>\n";
-  details += "      <th>" + map.question.label + "</th>\n";
+  details += "      <th>" + map["question"].label + "</th>\n";
   details += "      <th>" + map.answer.label + "</th>\n";
   details += "    </tr>\n";
   details += "  </thead>\n";
