@@ -125,8 +125,8 @@ function AssignedBoats(jsonIn)
   }
   for (i=0; i<entries.length; i+=1) {
     var boat = entries[i].gsx$boats.$t;
-    var rack = entries[i].gsx$rack.$t;
-    var spot = entries[i].gsx$spot.$t;
+    var rack = entries[i].gsx$tower.$t;
+    var spot = entries[i].gsx$rack.$t;
     var type = entries[i].gsx$type.$t;
     var category = entries[i].gsx$category.$t.toLowerCase();
     
