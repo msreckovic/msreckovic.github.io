@@ -24,7 +24,7 @@ function FillRacks(elementRacks)
     var rightOf = (i==0 || i==2 || i==4 || i==7 || i == 10);
     for (var j=0; j<jsonRacks.fRacks[i].length; j+=1 ) {
       var name = jsonRacks.fRacks[i][j][0];
-      var category = jsonRacks.fRacks[i][j][1];
+      var grade = jsonRacks.fRacks[i][j][1];
       var uppers = name.toUpperCase();
       var index = boatsThatAreOnWater.indexOf(uppers);
       
@@ -33,7 +33,7 @@ function FillRacks(elementRacks)
         classes = "red ";
         countOut += 1;
       }
-      if (category == "damaged") {
+      if (grade == "damaged") {
         classes += "damaged ";
         countDamaged +=1;
       }
@@ -53,18 +53,18 @@ function FillRacks(elementRacks)
       }
       if (name == "&nbsp;") {
         total += name;
-      } else if (!category) {
+      } else if (!grade) {
         total += name;
         countBoats +=1;
       } else if (rightOf) {
         countBoats +=1;
         total +=
           name +
-          "&nbsp;<img height=\"16\" src=\"https://srecko.ca/ARC/images/cat-" + category + ".png\">";
+          "&nbsp;<img height=\"16\" src=\"https://srecko.ca/ARC/images/cat-" + grade + ".png\">";
       } else {
         countBoats +=1;
         total +=
-          "<img height=\"16\" src=\"https://srecko.ca/ARC/images/cat-" + category + ".png\">&nbsp;" +
+          "<img height=\"16\" src=\"https://srecko.ca/ARC/images/cat-" + grade + ".png\">&nbsp;" +
           name;
       }
       total += "</li>\n";
@@ -130,7 +130,7 @@ function AssignedBoats(jsonIn)
 
     var rack = parseInt(entries[i].gsx$rack.$t.split(" / ")[0]);
     var type = entries[i].gsx$type.$t;
-    var category = entries[i].gsx$category.$t.toLowerCase();
+    var grade = entries[i].gsx$grade.$t.toLowerCase();
     
     if (tower >= 0 && rack >= 0) {
       while (jsonRacks.fRacks[tower].length <= rack) {
@@ -139,7 +139,7 @@ function AssignedBoats(jsonIn)
       if (jsonRacks.fRacks[tower][rack][0] != "&nbsp;") {
         console.log("Clobber " + tower + ", " + rack + " with " + boat);
       }
-      jsonRacks.fRacks[tower][rack] = [type + " " + boat, category];
+      jsonRacks.fRacks[tower][rack] = [type + " " + boat, grade];
     }
   }
 }
