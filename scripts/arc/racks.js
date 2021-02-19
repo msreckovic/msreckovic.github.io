@@ -125,19 +125,19 @@ function AssignedBoats(jsonIn)
   }
   for (i=0; i<entries.length; i+=1) {
     var boat = entries[i].gsx$boats.$t;
-    var rack = entries[i].gsx$tower.$t;
-    var spot = entries[i].gsx$rack.$t;
+    var tower = entries[i].gsx$tower.$t;
+    var rack = entries[i].gsx$rack.$t;
     var type = entries[i].gsx$type.$t;
     var category = entries[i].gsx$category.$t.toLowerCase();
     
-    if (rack >= 0 && spot >= 0) {
-      while (jsonRacks.fRacks[rack].length <= spot) {
-        jsonRacks.fRacks[rack].push(["&nbsp;",""]);
+    if (tower >= 0 && rack >= 0) {
+      while (jsonRacks.fRacks[tower].length <= rack) {
+        jsonRacks.fRacks[tower].push(["&nbsp;",""]);
       }
-      if (jsonRacks.fRacks[rack][spot][0] != "&nbsp;") {
-        console.log("Clobber " + rack + ", " + spot + " with " + boat);
+      if (jsonRacks.fRacks[tower][rack][0] != "&nbsp;") {
+        console.log("Clobber " + tower + ", " + rack + " with " + boat);
       }
-      jsonRacks.fRacks[rack][spot] = [type + " " + boat, category];
+      jsonRacks.fRacks[tower][rack] = [type + " " + boat, category];
     }
   }
 }
