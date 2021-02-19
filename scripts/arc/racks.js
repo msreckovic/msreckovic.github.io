@@ -110,7 +110,10 @@ function AssignedBoats(jsonIn)
   var i;
   jsonRacks.fNames = [];
   for (var i=0; i<entries.length; i+=1) {
-    var boat = entries[i].gsx$boats.$t;
+    var boat = entries[i].gsx$boats.$t.toLowerCase()
+        .split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1))
+        .join(' ').replace("Ii", "II");
+
     var tower_def = entries[i].gsx$tower.$t.split(" / ");
     var tower = parseInt(tower_def[0]);
 
@@ -121,18 +124,18 @@ function AssignedBoats(jsonIn)
       jsonRacks.fNames.push(["", ""]);
     }
 
-    if (jsonRacks.fNames[tower][0] == "") {
-      jsonRacks.fNames[tower][0] = tower_def[2];
-
-      // This one gives us the correct CSS - racksL or racksR
-      jsonRacks.fNames[tower][1] = "racks" + tower_def[1];
-    }
-
     var rack = parseInt(entries[i].gsx$rack.$t.split(" / ")[0]);
     var type = entries[i].gsx$type.$t;
     var grade = entries[i].gsx$grade.$t.toLowerCase();
     
     if (tower >= 0 && rack >= 0) {
+      if (jsonRacks.fNames[tower][0] == "") {
+        jsonRacks.fNames[tower][0] = tower_def[2];
+
+        // This one gives us the correct CSS - racksL or racksR
+        jsonRacks.fNames[tower][1] = "racks" + tower_def[1];
+      }
+
       while (jsonRacks.fRacks[tower].length <= rack) {
         jsonRacks.fRacks[tower].push(["&nbsp;",""]);
       }
