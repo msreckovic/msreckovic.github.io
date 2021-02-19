@@ -1,22 +1,4 @@
-var jsonRacks = 
-    {"fNames":
-     [["westbay", "racksR", "West Bay"],
-      ["middlebaywest", "racksL", "Middle Bay - Left"],
-      ["middlebayeast", "racksR", "Middle Bay - Right"],
-      
-      ["eastbaywest", "racksL", "East Bay - Left"],
-      ["eastbayeast", "racksR", "East Bay - Right"],
-      ["eastbayfront", "racksL", "East Bay - Singles"],
-      
-      ["doublesbaywest", "racksL", "Doubles Bay - Front"],
-      ["doublesbayeast", "racksR", "Doubles Bay - Right"],
-      ["doublesbayrear", "racksL", "Doubles Bay - Back"],
-      
-      ["outsidewall", "racksL", "Outside - Wall"],
-      ["outsidefront", "racksR", "Outside - Front"],
-     ],
-     "fRacks" : [],
-    };
+jsonRacks = {"fNames": [], "fRacks" : [] };
 
 var boatsThatAreOnWater = [];
 var boatsThatAreOnWaterExtra = [];
@@ -30,9 +12,13 @@ function FillRacks(elementRacks)
   var total = "<table id=\"boathouse\">";
   total += "<tr><td>\n";
   for (var i=0; i<jsonRacks.fNames.length; i+=1) {
+    if (i % 3 == 0) {
+      total += "</td></tr><tr><td>\n";
+    }
+
     total += " <div class=\"" + jsonRacks.fNames[i][1] + "\" id=\"" + jsonRacks.fNames[i][0] + "\">\n";
     total += "  <ul>\n";
-    total += "   <li class=\"bay\">" + jsonRacks.fNames[i][2] + "</li>\n";
+    total += "   <li class=\"bay\">" + jsonRacks.fNames[i][0] + "</li>\n";
     
     // 0, 2, 4, 7, 10 are to the right
     var rightOf = (i==0 || i==2 || i==4 || i==7 || i == 10);
@@ -119,14 +105,30 @@ function UpdateStatus(jsonIn)
 function AssignedBoats(jsonIn)
 {
   var entries = jsonIn.feed.entry;
+  // console.log("HERE IS THE INCOMING JSON " + entries);
+
   var i;
-  for (i=0; i<jsonRacks.fNames.length; i+=1) {
-    jsonRacks.fRacks.push([["&nbsp;",""],["&nbsp;",""],["&nbsp;",""],["&nbsp;",""],["&nbsp;",""],["&nbsp;",""],["&nbsp;",""],]);
-  }
-  for (i=0; i<entries.length; i+=1) {
+  jsonRacks.fNames = [];
+  for (var i=0; i<entries.length; i+=1) {
     var boat = entries[i].gsx$boats.$t;
-    var tower = entries[i].gsx$tower.$t;
-    var rack = entries[i].gsx$rack.$t;
+    var tower_def = entries[i].gsx$tower.$t.split(" / ");
+    var tower = parseInt(tower_def[0]);
+
+    while (tower >= jsonRacks.fRacks.length) {
+      // This assumes at most 7 racks, indexed 0 through 6, but we correct it below
+      jsonRacks.fRacks.push([["&nbsp;",""], ["&nbsp;",""], ["&nbsp;",""],
+                             ["&nbsp;",""], ["&nbsp;",""], ["&nbsp;",""], ["&nbsp;",""],]);
+      jsonRacks.fNames.push(["", ""]);
+    }
+
+    if (jsonRacks.fNames[tower][0] == "") {
+      jsonRacks.fNames[tower][0] = tower_def[2];
+
+      // This one gives us the correct CSS - racksL or racksR
+      jsonRacks.fNames[tower][1] = "racks" + tower_def[1];
+    }
+
+    var rack = parseInt(entries[i].gsx$rack.$t.split(" / ")[0]);
     var type = entries[i].gsx$type.$t;
     var category = entries[i].gsx$category.$t.toLowerCase();
     
