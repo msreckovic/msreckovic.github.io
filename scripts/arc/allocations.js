@@ -2,13 +2,13 @@ var jsonSchedule =
     {"fDate" : "September 30, 2015, 06:39PM",
      "fWeekdays" : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
      "fWeekends" : ["Saturday", "Sunday"],
-     "fTimesDays" : ["5:30-7:30am", "7:30-9:30am", "9:30-11:30am", "11:30am-4:30pm", "4:30-6:30pm", "6:30-8:30pm"],
-     "fTimesEnds" : ["6-8am", "8-10am", "10-12pm", "2-4pm", "4-6pm"],
+     "fTimesDays" : ["5:30am-6:45am", "6:45am-8am", "8am-9:15am", "9:15am-10:30am", "10:30am-11:45am", "11:45am-1pm", "1pm-2:15pm", "2:15pm-3:30pm", "3:30pm-4:45pm", "4:45pm-6pm", "6pm-7:15pm", "7:15pm-8:30pm"],
+     "fTimesEnds" : ["5:30am-6:45am", "6:45am-8am", "8am-9:15am", "9:15am-10:30am", "10:30am-11:45am", "11:45am-1pm", "1pm-2:15pm", "2:15pm-3:30pm", "3:30pm-4:45pm", "4:45pm-6pm", "6pm-7:15pm", "7:15pm-8:30pm"],
      
      "fSchedule" : [
        {
          "fDay" : "Monday",
-         "fTime" : "5:30-7:30am",
+         "fTime" : "5:30am-6:45am",
          "fProgram" : "Program",
          "fWho" : "John Smith <jsmith@email.com>",
          "fType" : "type",
@@ -58,6 +58,8 @@ function Allocate(entry)
 
 function DefaultSummary(stamp,wdays,wends)
 {
+  console.log("Weekdays " + wdays);
+  console.log("Weekends " + wends);
   var summary = 
       {"fDate" : stamp,
        "fWeekdays" : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
@@ -83,7 +85,8 @@ function ProcessJson(jsonIn)
   var schedule = [];
   if ("entry" in jsonIn.feed) {
     var entries = jsonIn.feed.entry;
-    if (entries.length > 2) {
+    console.log("THERE ARE " + entries.length + " ENTRIES");
+    if (entries.length >= 2) {
       summary = DefaultSummary(jsonIn.feed.updated.$t,
                                entries[0][map[5]].$t,
                                entries[1][map[5]].$t);
