@@ -687,78 +687,101 @@ var jsonBoats = [];
 function FillFleet(boats, across)
 {
   var boatType = [8,4,2,1];
-  
+
   var collect8 = "";
   var collect4 = "";
   var collect2 = "";
-  var collect1 = "";
-  
+  var collect11 = "";
+  var collect12 = "";
+  var collect13 = "";
+
   // console.log(CountingUsage);
-  
+
+  var split_count = 0;
+  var one = "";
+
   var i, j;
   for (i=0; i<jsonBoats.length; i+=1){
     var name = jsonBoats[i][0];
     var upper = name.toUpperCase();
     var type = jsonBoats[i][1];
+
+    one = name;
+
     if (ValFromType(type) == 8) {
       if (upper in CountingUsage) {
-        collect8 += "<li>" + name + " (" + CountingUsage[upper] + ")</li>";
-      } else {
-        collect8 += "<li>" + name + "</li>";
+        one += " (" + CountingUsage[upper] + ")";
       }
+      collect8 += "<li>" + one + "</li>";
+
     } else if (ValFromType(type) == 4) {
       if (upper in CountingUsage) {
-        collect4 += "<li>" + name + " (" + CountingUsage[upper] + ")</li>";
-      } else {
-        collect4 += "<li>" + name + "</li>";
+        one += " (" + CountingUsage[upper] + ")";
       }
+      collect4 += "<li>" + one + "</li>";
+
     } else if (ValFromType(type) == 2) {
       if (upper in CountingUsage) {
-        collect2 += "<li>" + name + " (" + CountingUsage[upper] + ")</li>";
-      } else {
-        collect2 += "<li>" + name + "</li>";
+        one += " (" + CountingUsage[upper] + ")";
       }
+      collect2 += "<li>" + one + "</li>";
+
     } else if (ValFromType(type) == 1) {
+      split_count += 1;
+
       if (upper in CountingUsage) {
-        collect1 += "<li>" + name + " (" + CountingUsage[upper] + ")</li>";
-      } else {
-        collect1 += "<li>" + name + "</li>";
+        one += " (" + CountingUsage[upper] + ")</li>";
       }
+      if (split_count > 24) {
+        collect13 += "<li>" + one + "</li>";
+      } else if (split_count > 12) {
+        collect12 += "<li>" + one + "</li>";
+      } else {
+        collect11 += "<li>" + one + "</li>";
+      }
+
     } else {
       console.log("There is a problem with " + jsonBoats[0]);
     }
   }
-  
+
   var total = "<br><hr><table width=\"100%\">";
-  total += "<tr><th>8+</th><th>4x/4-/4+</th>";
-  if (across) {
-    total += "<th>2x/2-</th><th>1x</th></tr>";
-  } else {
-    total += "</tr><tr>";
-  }
-  
-  total += "<tr><td><ul>";
+  total += "<tr><th>8+</th><th>4x/4-/4+</th><th>2x/2-</th></tr>";
+
+  total += "<tr>";
+
+  total += "<td><ul>";
   total += collect8;
   total += "</ul></td>";
-  
+
   total += "<td><ul>";
   total += collect4;
   total += "</ul></td>";
-  
-  if (!across) {
-    total += "</tr><tr>";
-    total += "<th>2x/2-</th><th>1x</th></tr>";
-  }
-  
+
   total += "<td><ul>";
   total += collect2;
   total += "</ul></td>";
-  
+
+  total += "</tr>";
+
+  total += "<tr><td colspan=3>&nbsp;</td></tr>";
+
+  total += "<tr><th>1x</th><th>1x cntd.</th><th>1x cntd.</th></tr>";
+
   total += "<td><ul>";
-  total += collect1;
+  total += collect11;
   total += "</ul></td>";
-  
-  total += "</tr></table>";
+
+  total += "<td><ul>";
+  total += collect12;
+  total += "</ul></td>";
+
+  total += "<td><ul>";
+  total += collect13;
+  total += "</ul></td>";
+
+  total += "</tr>";
+  total += "</table>";
   document.getElementById(boats).innerHTML = total;
 }
 
