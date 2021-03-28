@@ -34,18 +34,24 @@ function GetValue(where, what, instead)
   return instead;
 }
 
-function ForSingleOne(entry)
+function ForSingleOne(entry, td_style)
 {
   var total = "<tr>\n";
   for (var i = 0; i < labels.length; i++) {
-    total += "    <td data-label=" + labels[i] +">" + GetValue(entry, "gsx$" + items[i], "") + "</td>\n";
+    var value = GetValue(entry, "gsx$" + items[i], "");
+    value = value.replaceAll("\n", "<br>");
+    total += "    <td " + td_style + " data-label=" + labels[i] +">" + value + "</td>\n";
   }
   total += "</tr>\n";
   return total;
 }
 
-function FillSheet(jsonIn, where)
+function FillSheet(jsonIn, where, td_style)
 {
+  if (!td_style) {
+    td_style = "";
+  }
+
   GetParameters();
 
   var entries = jsonIn.feed.entry;
@@ -61,7 +67,7 @@ function FillSheet(jsonIn, where)
   details += "  <tbody>\n";
 
   for (var i = 0; i < entries.length; i++) {
-    details += ForSingleOne(entries[i]);
+    details += ForSingleOne(entries[i], td_style);
   }
   details += "  </tbody>\n";
   details += "</table>\n";
