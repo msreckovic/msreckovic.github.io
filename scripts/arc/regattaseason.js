@@ -29,15 +29,23 @@ function ExamineRegattas(e) {
     return;
   }
 
+  console.log("Continuing with Regatta set to " + Regatta);
+  
+  console.log("Called with " + JSON.stringify(e));
+
   StandardRegattaCallback(e);
   var t = e.feed.entry;
+  console.log("Feed entry is " + t + " with length " + t.length);
   for (i = 1; i < t.length; i++) {
+    console.log("Short name is " + GetValue(t[i], "gsx$shortname", ""));
     if (GetValue(t[i], "gsx$shortname", "").toLowerCase() == Regatta.toLowerCase()) {
       sheetIndex = GetValue(t[i], "gsx$index", "");
       console.log("Found " + Regatta + " at index " + i + " and value " + sheetIndex);
       break;
     }
   }
+
+  console.log("Sheet index is " + sheetIndex);
 
   if (sheetIndex > 0) {
     var googleSheet = GoogleSheetSquare;
