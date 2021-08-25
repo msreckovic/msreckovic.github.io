@@ -314,6 +314,5 @@ function _RegattasConvertedResult(sheet_string, sheet_index)
     ]
   }
 }
-}
 
 CallbackListRegattas(_RegattasConvertedResult("17LYqUhluO8mzP74uLc2yl0xMVFQiXL8KvNqOlVqxKtA", 6 - 1));
