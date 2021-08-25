@@ -1,2 +1,173 @@
 // API callback
-FullCallback({"version":"1.0","encoding":"UTF-8","feed":{"xmlns":"http://www.w3.org/2005/Atom","xmlns$openSearch":"http://a9.com/-/spec/opensearchrss/1.0/","xmlns$gsx":"http://schemas.google.com/spreadsheets/2006/extended","id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"Camp Argo"},"link":[{"rel":"alternate","type":"application/atom+xml","href":"https://docs.google.com/spreadsheets/u/0/d/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/pubhtml"},{"rel":"http://schemas.google.com/g/2005#feed","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values"},{"rel":"http://schemas.google.com/g/2005#post","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values"},{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values?alt\u003djson-in-script"}],"author":[{"name":{"$t":"captain"},"email":{"$t":"captain@argonautrowingclub.com"}}],"openSearch$totalResults":{"$t":"8"},"openSearch$startIndex":{"$t":"1"},"entry":[{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/cokwr"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: 1, dates: June 28 - July 2, notes: Camp will not be held on Thu, July 1 (Canada Day), campweek: Week 1, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/cokwr"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"1"},"gsx$dates":{"$t":"June 28 - July 2"},"gsx$notes":{"$t":"Camp will not be held on Thu, July 1 (Canada Day)"},"gsx$campweek":{"$t":"Week 1"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/cpzh4"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: 2, dates: July 5 - July 9, campweek: Week 2, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/cpzh4"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"2"},"gsx$dates":{"$t":"July 5 - July 9"},"gsx$notes":{"$t":""},"gsx$campweek":{"$t":"Week 2"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/cre1l"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: 3, dates: July 12 - Jul 16, campweek: Week 3, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/cre1l"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"3"},"gsx$dates":{"$t":"July 12 - Jul 16"},"gsx$notes":{"$t":""},"gsx$campweek":{"$t":"Week 3"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/chk2m"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: 4, dates: July 19 - July 23, campweek: Week 4, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/chk2m"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"4"},"gsx$dates":{"$t":"July 19 - July 23"},"gsx$notes":{"$t":""},"gsx$campweek":{"$t":"Week 4"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/ciyn3"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: 5, dates: July 26 - July 30, campweek: Week 5, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/ciyn3"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"5"},"gsx$dates":{"$t":"July 26 - July 30"},"gsx$notes":{"$t":""},"gsx$campweek":{"$t":"Week 5"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/ckd7g"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: 6, dates: Aug 3 - Aug 6, notes: Camp will not be held on Mon, Aug 2, campweek: Week 6, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/ckd7g"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"6"},"gsx$dates":{"$t":"Aug 3 - Aug 6"},"gsx$notes":{"$t":"Camp will not be held on Mon, Aug 2"},"gsx$campweek":{"$t":"Week 6"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/clrrx"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: 7, dates: Aug 9 - Aug 13, campweek: Week 7, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/clrrx"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"7"},"gsx$dates":{"$t":"Aug 9 - Aug 13"},"gsx$notes":{"$t":""},"gsx$campweek":{"$t":"Week 7"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/cyevm"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: 8, dates: Aug 16 - Aug 20, campweek: Week 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/2/public/values/cyevm"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"8"},"gsx$dates":{"$t":"Aug 16 - Aug 20"},"gsx$notes":{"$t":""},"gsx$campweek":{"$t":"Week 8"},"gsx$status":{"$t":"Closed"}}]}});
+function _CampArgoConvertedResult(sheet_string, sheet_index)
+{
+return {
+  "feed": {
+    "entry": [
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "1"
+        },
+        "gsx$dates": {
+          "$t": "June 28 - July 2"
+        },
+        "gsx$notes": {
+          "$t": "Camp will not be held on Thu, July 1 (Canada Day)"
+        },
+        "gsx$campweek": {
+          "$t": "Week 1"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "2"
+        },
+        "gsx$dates": {
+          "$t": "July 5 - July 9"
+        },
+        "gsx$notes": {
+          "$t": ""
+        },
+        "gsx$campweek": {
+          "$t": "Week 2"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "3"
+        },
+        "gsx$dates": {
+          "$t": "July 12 - Jul 16"
+        },
+        "gsx$notes": {
+          "$t": ""
+        },
+        "gsx$campweek": {
+          "$t": "Week 3"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "4"
+        },
+        "gsx$dates": {
+          "$t": "July 19 - July 23"
+        },
+        "gsx$notes": {
+          "$t": ""
+        },
+        "gsx$campweek": {
+          "$t": "Week 4"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "5"
+        },
+        "gsx$dates": {
+          "$t": "July 26 - July 30"
+        },
+        "gsx$notes": {
+          "$t": ""
+        },
+        "gsx$campweek": {
+          "$t": "Week 5"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "6"
+        },
+        "gsx$dates": {
+          "$t": "Aug 3 - Aug 6"
+        },
+        "gsx$notes": {
+          "$t": "Camp will not be held on Mon, Aug 2"
+        },
+        "gsx$campweek": {
+          "$t": "Week 6"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "7"
+        },
+        "gsx$dates": {
+          "$t": "Aug 9 - Aug 13"
+        },
+        "gsx$notes": {
+          "$t": ""
+        },
+        "gsx$campweek": {
+          "$t": "Week 7"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "8"
+        },
+        "gsx$dates": {
+          "$t": "Aug 16 - Aug 20"
+        },
+        "gsx$notes": {
+          "$t": ""
+        },
+        "gsx$campweek": {
+          "$t": "Week 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      }
+    ]
+  }
+}
+}
+
+
+FullCallback(_CampArgoConvertedResult("1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ", 2 - 1));

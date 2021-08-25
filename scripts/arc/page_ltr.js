@@ -1,2 +1,385 @@
-// API callback
-FullCallback({"version":"1.0","encoding":"UTF-8","feed":{"xmlns":"http://www.w3.org/2005/Atom","xmlns$openSearch":"http://a9.com/-/spec/opensearchrss/1.0/","xmlns$gsx":"http://schemas.google.com/spreadsheets/2006/extended","id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"Learn To Row"},"link":[{"rel":"alternate","type":"application/atom+xml","href":"https://docs.google.com/spreadsheets/u/0/d/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/pubhtml"},{"rel":"http://schemas.google.com/g/2005#feed","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values"},{"rel":"http://schemas.google.com/g/2005#post","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values"},{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values?alt\u003djson-in-script"}],"author":[{"name":{"$t":"captain"},"email":{"$t":"captain@argonautrowingclub.com"}}],"openSearch$totalResults":{"$t":"22"},"openSearch$startIndex":{"$t":"1"},"entry":[{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cokwr"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: A, dates: Apr 17 - May 1, times: Saturday \u0026 Sunday mornings 8 - 10, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cokwr"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"A"},"gsx$dates":{"$t":"Apr 17 - May 1"},"gsx$times":{"$t":"Saturday \u0026 Sunday mornings 8 - 10"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cpzh4"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: B, dates: May 3 - May 17, times: Monday \u0026amp; Wednesday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cpzh4"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"B"},"gsx$dates":{"$t":"May 3 - May 17"},"gsx$times":{"$t":"Monday \u0026amp; Wednesday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cre1l"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: C, dates: May 4 - May 18, times: Tuesday \u0026amp; Thursday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cre1l"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"C"},"gsx$dates":{"$t":"May 4 - May 18"},"gsx$times":{"$t":"Tuesday \u0026amp; Thursday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/chk2m"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: D, dates: May 8 - May 23, times: Saturday \u0026 Sunday mornings 8 - 10, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/chk2m"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"D"},"gsx$dates":{"$t":"May 8 - May 23"},"gsx$times":{"$t":"Saturday \u0026 Sunday mornings 8 - 10"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/ciyn3"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: E, dates: May 26 - June 9, times: Monday \u0026amp; Wednesday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/ciyn3"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"E"},"gsx$dates":{"$t":"May 26 - June 9"},"gsx$times":{"$t":"Monday \u0026amp; Wednesday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/ckd7g"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: F, dates: May 25 - June 8, times: Tuesday \u0026amp; Thursday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/ckd7g"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"F"},"gsx$dates":{"$t":"May 25 - June 8"},"gsx$times":{"$t":"Tuesday \u0026amp; Thursday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/clrrx"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: G, dates: May 29 - June 12, times: Saturday \u0026 Sunday mornings 8 - 10, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/clrrx"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"G"},"gsx$dates":{"$t":"May 29 - June 12"},"gsx$times":{"$t":"Saturday \u0026 Sunday mornings 8 - 10"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cyevm"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: H, dates: June 14 - June 28, times: Monday \u0026amp; Wednesday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cyevm"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"H"},"gsx$dates":{"$t":"June 14 - June 28"},"gsx$times":{"$t":"Monday \u0026amp; Wednesday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cztg3"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: I, dates: June 15 - June 29, times: Tuesday \u0026amp; Thursday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cztg3"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"I"},"gsx$dates":{"$t":"June 15 - June 29"},"gsx$times":{"$t":"Tuesday \u0026amp; Thursday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d180g"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: J, dates: June 19 - July 4, times: Saturday \u0026 Sunday mornings 8 - 10, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d180g"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"J"},"gsx$dates":{"$t":"June 19 - July 4"},"gsx$times":{"$t":"Saturday \u0026 Sunday mornings 8 - 10"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d2mkx"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: K, dates: Jul 5 - July 19, times: Monday \u0026amp; Wednesday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d2mkx"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"K"},"gsx$dates":{"$t":"Jul 5 - July 19"},"gsx$times":{"$t":"Monday \u0026amp; Wednesday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cssly"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: L, dates: Jul 6 - July 20, times: Tuesday \u0026amp; Thursday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cssly"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"L"},"gsx$dates":{"$t":"Jul 6 - July 20"},"gsx$times":{"$t":"Tuesday \u0026amp; Thursday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cu76f"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: M, dates: Jul 10 - July 24, times: Saturday \u0026 Sunday mornings 8 - 10, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cu76f"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"M"},"gsx$dates":{"$t":"Jul 10 - July 24"},"gsx$times":{"$t":"Saturday \u0026 Sunday mornings 8 - 10"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cvlqs"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: N, dates: July 26 - August 11, times: Monday \u0026amp; Wednesday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cvlqs"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"N"},"gsx$dates":{"$t":"July 26 - August 11"},"gsx$times":{"$t":"Monday \u0026amp; Wednesday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cx0b9"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: O, dates: July 27 - August 10, times: Tuesday \u0026amp; Thursday evenings 6 - 8, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/cx0b9"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"O"},"gsx$dates":{"$t":"July 27 - August 10"},"gsx$times":{"$t":"Tuesday \u0026amp; Thursday evenings 6 - 8"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d9ney"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: P, dates: July 31 - August 14, times: Saturday \u0026 Sunday mornings 8 - 10, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d9ney"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"P"},"gsx$dates":{"$t":"July 31 - August 14"},"gsx$times":{"$t":"Saturday \u0026 Sunday mornings 8 - 10"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/db1zf"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: Q, dates: Aug 16 - August 30, times: Monday \u0026amp; Wednesday evenings 6 - 8, status: \u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-Q'\u003eClick to Register\u003c/a\u003e"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/db1zf"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"Q"},"gsx$dates":{"$t":"Aug 16 - August 30"},"gsx$times":{"$t":"Monday \u0026amp; Wednesday evenings 6 - 8"},"gsx$status":{"$t":"\u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-Q'\u003eClick to Register\u003c/a\u003e"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/dcgjs"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: R, dates: Aug 17 - August 31, times: Tuesday \u0026amp; Thursday evenings 6 - 8, status: \u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-R'\u003eClick to Register\u003c/a\u003e"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/dcgjs"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"R"},"gsx$dates":{"$t":"Aug 17 - August 31"},"gsx$times":{"$t":"Tuesday \u0026amp; Thursday evenings 6 - 8"},"gsx$status":{"$t":"\u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-R'\u003eClick to Register\u003c/a\u003e"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/ddv49"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: S, dates: Aug 14 - August 28, times: Saturday \u0026 Sunday mornings 8 - 10, status: Closed"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/ddv49"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"S"},"gsx$dates":{"$t":"Aug 14 - August 28"},"gsx$times":{"$t":"Saturday \u0026 Sunday mornings 8 - 10"},"gsx$status":{"$t":"Closed"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d415a"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: T, dates: Sep 8 - Sep 22, times: Monday \u0026amp; Wednesday evenings 6 - 8, status: \u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-T'\u003eClick to Register\u003c/a\u003e"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d415a"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"T"},"gsx$dates":{"$t":"Sep 8 - Sep 22"},"gsx$times":{"$t":"Monday \u0026amp; Wednesday evenings 6 - 8"},"gsx$status":{"$t":"\u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-T'\u003eClick to Register\u003c/a\u003e"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d5fpr"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: U, dates: Sep 7 - Sep 21, times: Tuesday \u0026amp; Thursday evenings 6 - 8, status: \u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-U'\u003eClick to Register\u003c/a\u003e"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d5fpr"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"U"},"gsx$dates":{"$t":"Sep 7 - Sep 21"},"gsx$times":{"$t":"Tuesday \u0026amp; Thursday evenings 6 - 8"},"gsx$status":{"$t":"\u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-U'\u003eClick to Register\u003c/a\u003e"}},{"id":{"$t":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d6ua4"},"updated":{"$t":"2021-08-14T22:23:38.457Z"},"category":[{"scheme":"http://schemas.google.com/spreadsheets/2006","term":"http://schemas.google.com/spreadsheets/2006#list"}],"title":{"type":"text","$t":"y"},"content":{"type":"text","$t":"session: V, dates: Sep 11 - Sep 25, times: Saturday \u0026 Sunday mornings 8 - 10, status: \u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-V'\u003eClick to Register\u003c/a\u003e"},"link":[{"rel":"self","type":"application/atom+xml","href":"https://spreadsheets.google.com/feeds/list/1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ/1/public/values/d6ua4"}],"gsx$registrationopen":{"$t":"y"},"gsx$session":{"$t":"V"},"gsx$dates":{"$t":"Sep 11 - Sep 25"},"gsx$times":{"$t":"Saturday \u0026 Sunday mornings 8 - 10"},"gsx$status":{"$t":"\u003ca target\u003d'_blank' rel\u003d'noopener noreferrer' href\u003d'https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-V'\u003eClick to Register\u003c/a\u003e"}}]}});
+function _LtrConvertedResult(sheet_string, sheet_index)
+{
+  return {
+  "feed": {
+    "entry": [
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "A"
+        },
+        "gsx$dates": {
+          "$t": "Apr 17 - May 1"
+        },
+        "gsx$times": {
+          "$t": "Saturday & Sunday mornings 8 - 10"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "B"
+        },
+        "gsx$dates": {
+          "$t": "May 3 - May 17"
+        },
+        "gsx$times": {
+          "$t": "Monday &amp; Wednesday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "C"
+        },
+        "gsx$dates": {
+          "$t": "May 4 - May 18"
+        },
+        "gsx$times": {
+          "$t": "Tuesday &amp; Thursday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "D"
+        },
+        "gsx$dates": {
+          "$t": "May 8 - May 23"
+        },
+        "gsx$times": {
+          "$t": "Saturday & Sunday mornings 8 - 10"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "E"
+        },
+        "gsx$dates": {
+          "$t": "May 26 - June 9"
+        },
+        "gsx$times": {
+          "$t": "Monday &amp; Wednesday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "F"
+        },
+        "gsx$dates": {
+          "$t": "May 25 - June 8"
+        },
+        "gsx$times": {
+          "$t": "Tuesday &amp; Thursday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "G"
+        },
+        "gsx$dates": {
+          "$t": "May 29 - June 12"
+        },
+        "gsx$times": {
+          "$t": "Saturday & Sunday mornings 8 - 10"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "H"
+        },
+        "gsx$dates": {
+          "$t": "June 14 - June 28"
+        },
+        "gsx$times": {
+          "$t": "Monday &amp; Wednesday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "I"
+        },
+        "gsx$dates": {
+          "$t": "June 15 - June 29"
+        },
+        "gsx$times": {
+          "$t": "Tuesday &amp; Thursday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "J"
+        },
+        "gsx$dates": {
+          "$t": "June 19 - July 4"
+        },
+        "gsx$times": {
+          "$t": "Saturday & Sunday mornings 8 - 10"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "K"
+        },
+        "gsx$dates": {
+          "$t": "Jul 5 - July 19"
+        },
+        "gsx$times": {
+          "$t": "Monday &amp; Wednesday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "L"
+        },
+        "gsx$dates": {
+          "$t": "Jul 6 - July 20"
+        },
+        "gsx$times": {
+          "$t": "Tuesday &amp; Thursday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "M"
+        },
+        "gsx$dates": {
+          "$t": "Jul 10 - July 24"
+        },
+        "gsx$times": {
+          "$t": "Saturday & Sunday mornings 8 - 10"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "N"
+        },
+        "gsx$dates": {
+          "$t": "July 26 - August 11"
+        },
+        "gsx$times": {
+          "$t": "Monday &amp; Wednesday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "O"
+        },
+        "gsx$dates": {
+          "$t": "July 27 - August 10"
+        },
+        "gsx$times": {
+          "$t": "Tuesday &amp; Thursday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "P"
+        },
+        "gsx$dates": {
+          "$t": "July 31 - August 14"
+        },
+        "gsx$times": {
+          "$t": "Saturday & Sunday mornings 8 - 10"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "Q"
+        },
+        "gsx$dates": {
+          "$t": "Aug 16 - August 30"
+        },
+        "gsx$times": {
+          "$t": "Monday &amp; Wednesday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "<a target='_blank' rel='noopener noreferrer' href='https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-Q'>Click to Register</a>"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "R"
+        },
+        "gsx$dates": {
+          "$t": "Aug 17 - August 31"
+        },
+        "gsx$times": {
+          "$t": "Tuesday &amp; Thursday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "<a target='_blank' rel='noopener noreferrer' href='https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-R'>Click to Register</a>"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "S"
+        },
+        "gsx$dates": {
+          "$t": "Aug 14 - August 28"
+        },
+        "gsx$times": {
+          "$t": "Saturday & Sunday mornings 8 - 10"
+        },
+        "gsx$status": {
+          "$t": "Closed"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "T"
+        },
+        "gsx$dates": {
+          "$t": "Sep 8 - Sep 22"
+        },
+        "gsx$times": {
+          "$t": "Monday &amp; Wednesday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "<a target='_blank' rel='noopener noreferrer' href='https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-T'>Click to Register</a>"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "U"
+        },
+        "gsx$dates": {
+          "$t": "Sep 7 - Sep 21"
+        },
+        "gsx$times": {
+          "$t": "Tuesday &amp; Thursday evenings 6 - 8"
+        },
+        "gsx$status": {
+          "$t": "<a target='_blank' rel='noopener noreferrer' href='https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-U'>Click to Register</a>"
+        }
+      },
+      {
+        "gsx$registrationopen": {
+          "$t": "y"
+        },
+        "gsx$session": {
+          "$t": "V"
+        },
+        "gsx$dates": {
+          "$t": "Sep 11 - Sep 25"
+        },
+        "gsx$times": {
+          "$t": "Saturday & Sunday mornings 8 - 10"
+        },
+        "gsx$status": {
+          "$t": "<a target='_blank' rel='noopener noreferrer' href='https://argonaut-rowing-club.myshopify.com/collections/learn-to-row/products/learn-to-row-V'>Click to Register</a>"
+        }
+      }
+    ]
+  }
+}
+}
+
+FullCallback(_LtrConvertedResult("1QSvdGZj5X8CL8cmkWdL-gzI0GfK8AKSijB9oe8rZMRQ", 1 - 1));
