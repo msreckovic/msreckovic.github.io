@@ -11,7 +11,12 @@ function V4V3_MapV4ToV3(first_row)
   var i;
   for (i = 0; i < first_row.length; i++) {
     var v = first_row[i]["effectiveValue"]["stringValue"];
-    result.push("gsx$" + v.replace(/[^A-Z0-9]/ig, "").toLowerCase());
+    if (v && v != "") {
+      // console.log("FIRST ROW AT " + i + " IS " + JSON.stringify(first_row[i]));
+      result.push("gsx$" + v.replace(/[^A-Z0-9]/ig, "").toLowerCase());
+    } else {
+      break;
+    }
   }
   return result;
 }
@@ -48,6 +53,8 @@ function V4V3_ConvertV4ToV3(sheet_data)
 function V4V3_FinalCallback(f, whole_thing_str, sheet_index)
 {
   var whole_thing = JSON.parse(whole_thing_str);
+  // console.log("WHOLE THING");
+  // console.log(whole_thing["sheets"][sheet_index]["data"][0]["rowData"]);
   var converted = V4V3_ConvertV4ToV3(whole_thing["sheets"][sheet_index]["data"][0]["rowData"]);
   f(converted);
 }
