@@ -1,8 +1,15 @@
+function ConsoleLog(str)
+{
+  if (false) console.log(str);
+}
+
 function V4V3_OriginalDataURL(sheet_string)
 {
-  return "https://sheets.googleapis.com/v4/spreadsheets/" +
+  var url = "https://sheets.googleapis.com/v4/spreadsheets/" +
     sheet_string +
     "?includeGridData=true&key=AIzaSyBMyls_WuzEgk2MVmL0N_ksjOfJ_TjEtvk";
+  ConsoleLog("URL " + url);
+  return url;
 }
 
 function V4V3_MapV4ToV3(first_row)
@@ -12,7 +19,7 @@ function V4V3_MapV4ToV3(first_row)
   for (i = 0; i < first_row.length; i++) {
     var v = first_row[i]["effectiveValue"]["stringValue"];
     if (v && v != "") {
-      // console.log("FIRST ROW AT " + i + " IS " + JSON.stringify(first_row[i]));
+      // ConsoleLog("FIRST ROW AT " + i + " IS " + JSON.stringify(first_row[i]));
       result.push("gsx$" + v.replace(/[^A-Z0-9]/ig, "").toLowerCase());
     } else {
       break;
@@ -24,15 +31,22 @@ function V4V3_MapV4ToV3(first_row)
 function V4V3_ConvertV4ToV3(sheet_data)
 {
   var map = V4V3_MapV4ToV3(sheet_data[0]["values"]);
-  console.log("MAP " + map);
+  ConsoleLog("MAP " + map);
 
   var result = [];
   var i, j;
 
   for (i = 1; i < sheet_data.length; i++) {
     var single = {};
+    ConsoleLog("Processing " + i);
+    ConsoleLog(JSON.stringify(sheet_data[i]["values"]));
     for (j = 0; j < map.length; j++) {
-      var v = sheet_data[i]["values"][j]["effectiveValue"];
+      ConsoleLog("   sub " + j);
+      ConsoleLog("   " + JSON.stringify(sheet_data[i]["values"][j]));
+      var v = sheet_data[i]["values"][j];
+      if (v) {
+        v = v["effectiveValue"];
+      }
       if (v) {
         single[map[j]] = {"$t" : v["stringValue"]}
       } else {
@@ -53,8 +67,8 @@ function V4V3_ConvertV4ToV3(sheet_data)
 function V4V3_FinalCallback(f, whole_thing_str, sheet_index)
 {
   var whole_thing = JSON.parse(whole_thing_str);
-  // console.log("WHOLE THING");
-  // console.log(whole_thing["sheets"][sheet_index]["data"][0]["rowData"]);
+  // ConsoleLog("WHOLE THING");
+  // ConsoleLog(whole_thing["sheets"][sheet_index]["data"][0]["rowData"]);
   var converted = V4V3_ConvertV4ToV3(whole_thing["sheets"][sheet_index]["data"][0]["rowData"]);
   f(converted);
 }
