@@ -73,6 +73,18 @@ function V4V3_FinalCallback(f, whole_thing_str, sheet_index)
   f(converted);
 }
 
+function V4V3_FinalCallbackList(f_list, whole_thing_str, sheet_index_list)
+{
+  var whole_thing = JSON.parse(whole_thing_str);
+  // ConsoleLog("WHOLE THING");
+  // ConsoleLog(whole_thing["sheets"][sheet_index]["data"][0]["rowData"]);
+  var i;
+  for (i = 0; i < f_list.length; i++) {
+    var converted = V4V3_ConvertV4ToV3(whole_thing["sheets"][sheet_index_list[i]]["data"][0]["rowData"]);
+    f_list[i](converted);
+  }
+}
+
 function V4V3_GetOriginalData(f, sheet_string, sheet_index)
 {
   var url = V4V3_OriginalDataURL(sheet_string);
@@ -83,5 +95,18 @@ function V4V3_GetOriginalData(f, sheet_string, sheet_index)
 
   Http.onreadystatechange = (e) => {
     V4V3_FinalCallback(f, Http.responseText, sheet_index);
+  }
+}
+
+function V4V3_GetOriginalDataList(f_list, sheet_string, sheet_index_list)
+{
+  var url = V4V3_OriginalDataURL(sheet_string);
+
+  const Http = new XMLHttpRequest();
+  Http.open("GET", url);
+  Http.send();
+
+  Http.onreadystatechange = (e) => {
+    V4V3_FinalCallbackList(f_list, Http.responseText, sheet_index_list);
   }
 }
