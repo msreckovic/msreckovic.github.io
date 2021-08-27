@@ -1,0 +1,25 @@
+name: Bugs
+description: Issues for ugly or incorrect code
+body:
+  - type: input
+    attributes:
+      label: Bug Summary
+      description: A short summary of the problem
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Frequency
+      description: How easily can you reproduce this?
+      options:
+        - "Every time"
+        - "Once in a while"
+        - "Just happened once"
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional comments or information
