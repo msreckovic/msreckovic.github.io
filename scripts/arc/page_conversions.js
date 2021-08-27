@@ -31,7 +31,7 @@ function V4V3_MapV4ToV3(first_row)
 function V4V3_ConvertV4ToV3(sheet_data)
 {
   var map = V4V3_MapV4ToV3(sheet_data[0]["values"]);
-  ConsoleLog("MAP " + map);
+  console.log("MAP " + map);
 
   var result = [];
   var i, j;
@@ -48,20 +48,22 @@ function V4V3_ConvertV4ToV3(sheet_data)
         v = v["effectiveValue"];
       }
       if (v) {
-        single[map[j]] = {"$t" : v["stringValue"]}
+        single[map[j]] = {"$t" : v["stringValue"]};
       } else {
-        single[map[j]] = {"$t" : ""}
+        if (j == 0) break;
+        single[map[j]] = {"$t" : ""};
       }
     }
 
-    if (single[map[0]]["$t"] && single[map[0]]["$t"] != "") {
+    if (single[map[0]] && single[map[0]]["$t"] && single[map[0]]["$t"] != "") {
+      ConsoleLog(JSON.stringify(single));
       result.push(single);
     } else {
       break;
     }
   }
 
-  return {"feed" : { "entry" : result }};
+  return {"feed" : { "updated" : "tbd", "entry" : result }};
 }
 
 function V4V3_FinalCallback(f, whole_thing_str, sheet_index)

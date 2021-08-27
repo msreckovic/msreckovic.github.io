@@ -17,6 +17,12 @@ var jsonSchedule =
        },
      ]};
 
+function SafeT(where)
+{
+  if (where) return where.$t;
+  return "";
+}
+
 function ParseEmail(entry)
 {
   var email = "";
@@ -40,19 +46,25 @@ function ParseEmail(entry)
 
 function Allocate(entry)
 {
+  // console.log("Allocating " + JSON.stringify(entry));
   var email = "";
   if ("gsx$e-mail" in entry) {
-    email = ParseEmail(entry["gsx$e-mail"].$t);
+    email = ParseEmail(SafeT(entry["gsx$e-mail"]));
+  }
+  if ("gsx$email" in entry) {
+    email = ParseEmail(SafeT(entry["gsx$email"]));
   }
   var total = {
-    "fDay" : entry.gsx$day.$t,
-    "fTime" : entry.gsx$time.$t,
-    "fProgram" : entry.gsx$crew.$t,
+    "fDay" : SafeT(entry.gsx$day),
+    "fTime" : SafeT(entry.gsx$time),
+    "fProgram" : SafeT(entry.gsx$crew),
     "fWho" : email,
-    "fType" : entry.gsx$type.$t,
-    "fName" : entry.gsx$boat.$t,
-    "fRecurrence" : entry.gsx$recurrence.$t,
+    "fType" : SafeT(entry.gsx$type),
+    "fName" : SafeT(entry.gsx$boat),
+    "fRecurrence" : SafeT(entry.gsx$recurrence),
   };
+
+  //console.log("TOTAL " + JSON.stringify(total));
   return total;
 }
 
@@ -74,22 +86,19 @@ function ProcessJson(jsonIn)
 {
   var map = ["gsx$day", "gsx$time", "gsx$type", "gsx$boat", "gsx$crew", "gsx$_ckd7g"];
   
-  var summary/* = 
-                {"fDate" : jsonIn.feed.updated.$t,
-                "fWeekdays" : ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "fWeekends" : ["Saturday", "Sunday"],
-                "fTimesDays" : ["5:30-7:30am", "7:30-9:30am", "9:30-11:30am", "11:30am-4:30pm", "4:30-6:30pm", "6:30-8:30pm"],
-                "fTimesEnds" : ["6-8am", "8-10am", "10-12pm", "2-4pm", "4-6pm"],
-                }*/;
-  
+  var summary;
   var schedule = [];
   if ("entry" in jsonIn.feed) {
     var entries = jsonIn.feed.entry;
     console.log("THERE ARE " + entries.length + " ENTRIES");
-    if (entries.length >= 2) {
-      summary = DefaultSummary(jsonIn.feed.updated.$t,
-                               entries[0][map[5]].$t,
-                               entries[1][map[5]].$t);
+    if (false && entries.length >= 2) {
+      summary = DefaultSummary(SafeT(jsonIn.feed.updated),
+                               SafeT(entries[0][map[5]]),
+                               SafeT(entries[1][map[5]]));
+    } else {
+      summary = DefaultSummary(SafeT(jsonIn.feed.updated),
+                               "5:30am-6:45am,6:45am-8am,8am-9:15am,9:15am-10:30am,10:30am-11:45am,11:45am-1pm,1pm-2:15pm,2:15pm-3:30pm,3:30pm-4:45pm,4:45pm-6:30pm,6:30pm-7:45pm",
+                               "5:30am-6:45am,6:45am-8am,8am-9:15am,9:15am-10:30am,10:30am-11:45am,11:45am-1pm,1pm-2:15pm,2:15pm-3:30pm,3:30pm-4:45pm,4:45pm-6:30pm,6:30pm-7:45pm");
     }
     for (var i=0; i<entries.length; i+=1) {
       schedule.push(Allocate(entries[i]));
