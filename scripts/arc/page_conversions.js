@@ -12,18 +12,28 @@ function V4V3_OriginalDataURL(sheet_string)
   return url;
 }
 
+function GetBestValue(v)
+{
+  if (!v) return "";
+  v = v["effectiveValue"];
+  if (!v) return "";
+  if (v["stringValue"] && v["stringValue"] != "") return v["stringValue"];
+  ConsoleLog("No string value " + JSON.stringify(v));
+  if (v["numberValue"] && v["numberValue"] != "") return v["numberValue"];
+  return "";
+}
+
 function V4V3_MapV4ToV3(first_row)
 {
   var result = [];
   var i;
   for (i = 0; i < first_row.length; i++) {
-    var v = first_row[i]["effectiveValue"]["stringValue"];
-    if (v && v != "") {
-      // ConsoleLog("FIRST ROW AT " + i + " IS " + JSON.stringify(first_row[i]));
-      result.push("gsx$" + v.replace(/[^A-Z0-9]/ig, "").toLowerCase());
-    } else {
-      break;
-    }
+    ConsoleLog("FIRST " + i + " IS " + JSON.stringify(first_row[i]));
+    var v = GetBestValue(first_row[i]);
+    // ConsoleLog("FIRST ROW AT " + i + " IS " + JSON.stringify(first_row[i]));
+    if (v == "") break;
+
+    result.push("gsx$" + v.replace(/[^A-Z0-9]/ig, "").toLowerCase());
   }
   return result;
 }
@@ -43,16 +53,10 @@ function V4V3_ConvertV4ToV3(sheet_data)
     for (j = 0; j < map.length; j++) {
       ConsoleLog("   sub " + j);
       ConsoleLog("   " + JSON.stringify(sheet_data[i]["values"][j]));
-      var v = sheet_data[i]["values"][j];
-      if (v) {
-        v = v["effectiveValue"];
-      }
-      if (v) {
-        single[map[j]] = {"$t" : v["stringValue"]};
-      } else {
-        if (j == 0) break;
-        single[map[j]] = {"$t" : ""};
-      }
+      var v = GetBestValue(sheet_data[i]["values"][j]);
+      ConsoleLog("   Picked up " + v);
+      if (v == "" && j == 0) break;
+      single[map[j]] = {"$t" : v};
     }
 
     if (single[map[0]] && single[map[0]]["$t"] && single[map[0]]["$t"] != "") {

@@ -31,11 +31,11 @@ function ExamineRegattas(e) {
 
   console.log("Continuing with Regatta set to " + Regatta);
   
-  console.log("Called with " + JSON.stringify(e));
+  // console.log("Called with " + JSON.stringify(e));
 
   StandardRegattaCallback(e);
   var t = e.feed.entry;
-  console.log("Feed entry is " + t + " with length " + t.length);
+  console.log("Feed entry is " + JSON.stringify(t) + " with length " + t.length);
   for (i = 1; i < t.length; i++) {
     console.log("Short name is " + GetValue(t[i], "gsx$shortname", ""));
     if (GetValue(t[i], "gsx$shortname", "").toLowerCase() == Regatta.toLowerCase()) {
@@ -59,15 +59,11 @@ function ExamineRegattas(e) {
       }
     }
 
-    var a = document.createElement("script");
-    a.type = "text/javascript", a.src = "https://spreadsheets.google.com/feeds/list/" + googleSheet + "/" + sheetIndex + "/public/values?alt=json-in-script", document.getElementsByTagName("script")[0].parentNode.appendChild(a)
+    V4V3_GetOriginalData(JsonCallback, googleSheet, sheetIndex - 1);
   }
 }
 
 if ("" != Regatta && void 0 != Regatta) {
   document.getElementById("regatta-title").innerHTML = Regatta;
-
   StandardRegattaConfiguration(Regatta);
-  var gdata = new Object;
-  gdata.io = new Object, gdata.io.handleScriptLoaded = function(e) { JsonCallback(e) };
 }
