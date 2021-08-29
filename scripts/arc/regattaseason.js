@@ -35,12 +35,12 @@ function ExamineRegattas(e) {
 
   StandardRegattaCallback(e);
   var t = e.feed.entry;
-  console.log("Feed entry is " + JSON.stringify(t) + " with length " + t.length);
+  // console.log("Feed entry is " + JSON.stringify(t) + " with length " + t.length);
   for (i = 1; i < t.length; i++) {
-    console.log("Short name is " + GetValue(t[i], "gsx$shortname", ""));
+    // console.log("Short name is " + GetValue(t[i], "gsx$shortname", ""));
     if (GetValue(t[i], "gsx$shortname", "").toLowerCase() == Regatta.toLowerCase()) {
       sheetIndex = GetValue(t[i], "gsx$index", "");
-      console.log("Found " + Regatta + " at index " + i + " and value " + sheetIndex);
+      // console.log("Found " + Regatta + " at index " + i + " and value " + sheetIndex);
       break;
     }
   }
@@ -59,7 +59,7 @@ function ExamineRegattas(e) {
       }
     }
 
-    V4V3_GetOriginalData(JsonCallback, googleSheet, sheetIndex - 1);
+    V4V3_GetOriginalData(RegattasCallback, googleSheet, sheetIndex - 1);
   }
 }
 
