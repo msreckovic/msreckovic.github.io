@@ -270,15 +270,22 @@ function ExtractAthletes(entries, count)
   return [extracted,evented];
 }
 
+function FieldValue(field)
+{
+  // Math.ceil(parseFloat(field.substring(1).replace(/,/g,'')));
+  return parseFloat(field);
+}
+
 // https://squareup.com/receipt/preview/vfQrQI0V4hy2AkKKASJrKtMF
 function AddAthlete(who, data, regattaName)
 {
   var total = "<tr>";
   total += "    <td data-label=Name class=\"athletes\">" + who + "</td>\n";
   total += "    <td data-label=Events class=\"athletes\">" + data[0] + "</td>\n";
-  var amountUp = Math.ceil(parseFloat(data[1].substring(1).replace(/,/g,'')));
+  var d1 = data[1];
+  var amountUp = Math.ceil(FieldValue(d1));
 
-  if (parseFloat(data[1].substring(1).replace(/,/g,'')) > parseFloat(data[2].substring(1).replace(/,/g,''))) {
+  if (FieldValue(data[1]) > FieldValue(data[2])) {
 
     var whoAdjusted = who.replace(/ /g, '%20');
     var linkToPay = "https://argonaut-rowing-club.myshopify.com/cart/12624166387814:" + amountUp + "?note=" + whoAdjusted + "-for-Regattas-" + regattaName;
@@ -307,6 +314,8 @@ function AddAthlete(who, data, regattaName)
 
 function AllAthletes(extracted, regattaName)
 {
+  console.log("Calling AllAthletes");
+
   var athletes = "If you have fees outstanding, please pay by clicking on the amount in the \"Fees\" column.  If you have paid, you can get the receipt by clicking on the amount in the \"Paid\" column."
   athletes += "<table>\n";
   athletes += "  <thead>\n";
@@ -329,10 +338,18 @@ function AllAthletes(extracted, regattaName)
   return athletes;
 }
 
-function JsonCallback(jsonIn)
+function RegattasCallback(jsonIn)
 {
+  console.log("CALLING regattas.js.RegattasCallback");
+  //console.log(JSON.stringify(jsonIn));
   var eventCount = CountEvents(jsonIn.feed.entry);
+  //console.log("Event count " + eventCount);
   var extracted = ExtractAthletes(jsonIn.feed.entry, eventCount);
+  //console.log("Extracted count " + extracted.length);
+  //console.log("Extracted 1");
+  //console.log(JSON.stringify(extracted[0]));
+  //console.log("Extracted 2");
+  //console.log(JSON.stringify(extracted[1]));
   var eventCountAndDetails = AllDetails(jsonIn.feed.entry, extracted[1]);
   var el;
   el = document.getElementById("summary");
@@ -345,6 +362,7 @@ function JsonCallback(jsonIn)
   }
   el = document.getElementById("athletes");
   if (el) {
+    console.log("Setting inner on athletes");
     el.innerHTML = AllAthletes(extracted[0],
                                encodeURIComponent(GetValue(jsonIn.feed.entry[0], "gsx$regatta", "")));
   }

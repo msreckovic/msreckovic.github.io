@@ -251,6 +251,7 @@ function StandardRegattaConfiguration(shortname, yearsheet, regattasheet)
 
   var div = document.getElementById("standardregatta");
   if (div) {
+    console.log("Setting on the standardregatta");
     div.innerHTML = total;
     if (yearsheet) {
       var src = "https://spreadsheets.google.com/feeds/list/" + yearsheet + "/public/values?alt=json-in-script&callback=StandardRegattaCallback";
@@ -260,7 +261,8 @@ function StandardRegattaConfiguration(shortname, yearsheet, regattasheet)
       div.insertBefore(script, null);
     }
     if (regattasheet) {
-      var src = "https://spreadsheets.google.com/feeds/list/" + regattasheet + "/public/values?alt=json-in-script&callback=JsonCallback";
+      console.log("This is regatta sheet " + regattasheet);
+      var src = "https://spreadsheets.google.com/feeds/list/" + regattasheet + "/public/values?alt=json-in-script&callback=RegattasCallback";
       var script = document.createElement("script");
       script.type = "text/javascript";
       script.src = src;
