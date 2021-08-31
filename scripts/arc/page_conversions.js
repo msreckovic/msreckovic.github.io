@@ -29,11 +29,12 @@ function V4V3_MapV4ToV3(first_row)
   var i;
   for (i = 0; i < first_row.length; i++) {
     ConsoleLog("FIRST " + i + " IS " + JSON.stringify(first_row[i]));
+    ConsoleLog("FROM " + JSON.stringify(first_row[i]));
     var v = GetBestValue(first_row[i]);
     // ConsoleLog("FIRST ROW AT " + i + " IS " + JSON.stringify(first_row[i]));
     if (v == "") break;
-
-    result.push("gsx$" + v.replace(/[^A-Z0-9]/ig, "").toLowerCase());
+    ConsoleLog("VALUE IS " + v);
+    result.push("gsx$" + (""+v).replace(/[^A-Z0-9]/ig, "").toLowerCase());
   }
   return result;
 }
