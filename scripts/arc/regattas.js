@@ -6,6 +6,15 @@
 // gsx$paid
 // gsx$note
 
+function MakeSureD(val)
+{
+  var v = parseFloat(val);
+  if (isNaN(v)) {
+    return val;
+  }
+  return "$" + Math.ceil(v);
+}
+
 function ForEvent(event, crews, trailer, entry, total, captains)
 {
   var summary = "";
@@ -16,9 +25,9 @@ function ForEvent(event, crews, trailer, entry, total, captains)
     summary += ": " + captains;
   }
   summary +=       "</td>\n";
-  summary += "    <td data-label=Entry-Fees>" + entry + "</td>\n";
-  summary += "    <td data-label=Trailer-Fees>" + trailer + "</td>\n";
-  summary += "    <td data-label=Event-Total>" + total + "</td>\n";
+  summary += "    <td data-label=Entry-Fees>" + MakeSureD(entry) + "</td>\n";
+  summary += "    <td data-label=Trailer-Fees>" + MakeSureD(trailer) + "</td>\n";
+  summary += "    <td data-label=Event-Total>" + MakeSureD(total) + "</td>\n";
   return summary;
 }
 
@@ -30,19 +39,29 @@ function GetValue(where, what, instead)
   return instead;
 }
 
+function GetValueD(where, what, instead)
+{
+  return MakeSureD(GetValue(where, what, instead));
+}
+
 function GetValueX(where, what, instead)
 {
   if (what in where) {
     var val = where[what].$t;
     if (!val) val = instead;
-    return val;
+    return MakeSureD(val);
   }
-  return instead;
+  return MakeSureD(instead);
 }
 
 function GetTotal(entry)
 {
-  return GetValue(entry, "gsx$totals", "$0");
+  return GetValue(entry, "gsx$totals", "0");
+}
+
+function GetTotalD(entry)
+{
+  return MakeSureD(GetTotal(entry));
 }
 
 function AllSummary(entries, count)
@@ -63,10 +82,10 @@ function AllSummary(entries, count)
   summary += "    <tr>";
   summary += "    <td data-label=Crews>" + GetTotal(entries[3]) + " (" + GetTotal(entries[6]) + " seats)</td>\n";
   summary += "    <td data-label=Athletes>" + count + "</td>\n";
-  summary += "    <td data-label=Entry-Fees>" + GetTotal(entries[5]) + "</td>\n";
-  summary += "    <td data-label=Trailer-Fees>" + GetTotal(entries[4])  + "</td>\n";
-  summary += "    <td data-label=Total-Fees>" + GetTotal(entries[7])  + "</td>\n";
-  summary += "    <td data-label=Collected>" + GetValue(entries[7], "gsx$paid", "0")  + "</td>\n";
+  summary += "    <td data-label=Entry-Fees>" + GetTotalD(entries[5]) + "</td>\n";
+  summary += "    <td data-label=Trailer-Fees>" + GetTotalD(entries[4])  + "</td>\n";
+  summary += "    <td data-label=Total-Fees>" + GetTotalD(entries[7])  + "</td>\n";
+  summary += "    <td data-label=Collected>" + GetValueD(entries[7], "gsx$paid", "0")  + "</td>\n";
   summary += "    </tr>";
   
   summary += "  </tbody>\n";
@@ -264,7 +283,7 @@ function ExtractAthletes(entries, count)
       }
     }
     if (events) {
-      extracted[who] = [events, GetValue(enr, "gsx$totals", "$0"), GetValueX(enr, "gsx$paid", "$0"), GetValue(enr, "gsx$note", "")];
+      extracted[who] = [events, GetValue(enr, "gsx$totals", "0"), GetValueX(enr, "gsx$paid", "0"), GetValue(enr, "gsx$note", "")];
     }
   }
   return [extracted,evented];
@@ -283,7 +302,7 @@ function AddAthlete(who, data, regattaName)
   total += "    <td data-label=Name class=\"athletes\">" + who + "</td>\n";
   total += "    <td data-label=Events class=\"athletes\">" + data[0] + "</td>\n";
   var d1 = data[1];
-  var amountUp = Math.ceil(FieldValue(d1));
+  var amountUp = MakeSureD(FieldValue(d1));
 
   if (FieldValue(data[1]) > FieldValue(data[2])) {
 
@@ -292,20 +311,20 @@ function AddAthlete(who, data, regattaName)
 
     total += "    <td class=\"alert\" data-label=Fees>";
     total += "<a target=\"_blank\" href=\"" + linkToPay + "\">";
-    total += data[1];
+    total += MakeSureD(data[1]);
     total += "</a>";
     total += "    </td>\n";
-    total += "    <td data-label=Paid>" + data[2] + "</td>\n";
+    total += "    <td data-label=Paid>" + MakeSureD(data[2]) + "</td>\n";
   } else {
-    total += "    <td class=\"gone\" data-label=Fees>" + data[1] + "</td>\n";
+    total += "    <td class=\"gone\" data-label=Fees>" + MakeSureD(data[1]) + "</td>\n";
     if (data[3].length > 16) {
       total += "    <td class=\"square\" data-label=Paid>";
-      total += "<a target=\"_blank\" href=\"" + data[3] + "\">";
+      total += "<a target=\"_blank\" href=\"" + MakeSureD(data[3]) + "\">";
       total += data[2];
       total += "</a>";
       total += "    </td>\n";
     } else {
-      total += "    <td data-label=Paid>" + data[2] + "</td>\n";
+      total += "    <td data-label=Paid>" + MakeSureD(data[2]) + "</td>\n";
     }
   }
   
