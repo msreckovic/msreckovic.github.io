@@ -1,7 +1,7 @@
 var map = {
   "first" : "gsx$firstname",
   "last" : "gsx$lastname",
-  "email" : "gsx$e-mail",
+  "email" : "gsx$email",
   "timestamp" : "gsx$timestamp",
   "affiliation" : "gsx$affiliation",
   "rca" : "gsx$rca",
@@ -206,9 +206,9 @@ function MembersPersonal(elementId, entries, whoisthis)
 
     var email = entries[i][map.email].$t;
     if (email) {
-      explanation += "<li>Registered " + email + " as an active e-mail.</li>";
+      explanation += "<li>Registered " + email + " as an active email.</li>";
     } else {
-      explanation += "<li>No valid e-mail registered with the club.</li>";
+      explanation += "<li>No valid email registered with the club.</li>";
     }
 
     var locker = entries[i][map.locker].$t;
