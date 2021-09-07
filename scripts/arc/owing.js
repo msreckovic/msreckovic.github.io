@@ -3,12 +3,21 @@
 // gsx$paid
 // gsx$owing
 
+function MakeSureD(val)
+{
+  var v = parseFloat(val);
+  if (isNaN(v)) {
+    return val;
+  }
+  return "$" + Math.ceil(v);
+}
+
 function ToStore(who, amount)
 {
   var whomod = who.replace(/ /g, "%20");
   var rounded = Math.ceil(amount);
   return "<a href=\"https://argonaut-rowing-club.myshopify.com/cart/12624166387814:" + rounded +
-    "?note=" + whomod + "-for-Regattas-Summary\" target=\"_blank\">$" + amount.toFixed(2) + "</a>";        
+    "?note=" + whomod + "-for-Regattas-Summary\" target=\"_blank\">" + MakeSureD(amount) + "</a>";
 }
 
 function ForTickets(entry, h3s, h3e)
@@ -69,8 +78,8 @@ function GetOwingHelperAll(header, entries)
       arrears = GetValue(entries[i], "gsx$arrears", "");
       linked = "<a href=\"http://www.argonautrowingclub.com/member/?who=" + who + "\">" + who + "</a>";
       if (amount) {
-        people.push([linked, participation, "$" + amount, "$" + paid,
-                     ToStore(who, owing), arrears]);
+        people.push([linked, participation, MakeSureD(amount), MakeSureD(paid),
+                     ToStore(who, owing), MakeSureD(arrears)]);
       }
     }
   }
@@ -133,9 +142,9 @@ function GetOwingHelperPerson(header, entries, person)
   tickets += "  <tbody>\n";
   for (i=0; i<details.regattas.length; i++) {
     tickets += ForTickets([details.regattas[i].link,
-                           "$" + (details.regattas[i].fees/100).toFixed(2),
-                           "$" + (details.regattas[i].paid/100).toFixed(2),
-                           "$" + ((details.regattas[i].fees - details.regattas[i].paid)/100).toFixed(2),                               
+                           MakeSureD(details.regattas[i].fees/100),
+                           MakeSureD(details.regattas[i].paid/100),
+                           MakeSureD((details.regattas[i].fees - details.regattas[i].paid)/100),
                            ""], "", "");
   }
   tickets += ForTickets(people, "", "");
