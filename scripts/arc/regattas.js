@@ -8,7 +8,12 @@
 
 function MakeSureD(val)
 {
-  var v = parseFloat(val);
+  var v;
+  if (val[0] == "$") {
+    v = parseFloat(val.substring(1));
+  } else {
+    v = parseFloat(val);
+  }
   if (isNaN(v)) {
     return val;
   }
@@ -292,7 +297,11 @@ function ExtractAthletes(entries, count)
 function FieldValue(field)
 {
   // Math.ceil(parseFloat(field.substring(1).replace(/,/g,'')));
-  return parseFloat(field);
+  if (field[0] == "$") {
+    return parseFloat(field.substring(1));
+  } else {
+    return parseFloat(field);
+  }
 }
 
 // https://squareup.com/receipt/preview/vfQrQI0V4hy2AkKKASJrKtMF
@@ -303,6 +312,9 @@ function AddAthlete(who, data, regattaName)
   total += "    <td data-label=Events class=\"athletes\">" + data[0] + "</td>\n";
   var d1 = data[1];
   var amountUp = MakeSureD(FieldValue(d1));
+
+  // console.log("ComparE " + data[1] + " and " + data[2]);
+  // console.log("Compare " + FieldValue(data[1]) + " and " + FieldValue(data[2]));
 
   if (FieldValue(data[1]) > FieldValue(data[2])) {
 
