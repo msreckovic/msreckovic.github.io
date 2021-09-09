@@ -6,6 +6,20 @@
 // gsx$paid
 // gsx$note
 
+function MakeSure(val)
+{
+  var v;
+  if (val[0] == "$") {
+    v = parseFloat(val.substring(1));
+  } else {
+    v = parseFloat(val);
+  }
+  if (isNaN(v)) {
+    return val;
+  }
+  return Math.ceil(v);
+}
+
 function MakeSureD(val)
 {
   var v;
@@ -311,7 +325,7 @@ function AddAthlete(who, data, regattaName)
   total += "    <td data-label=Name class=\"athletes\">" + who + "</td>\n";
   total += "    <td data-label=Events class=\"athletes\">" + data[0] + "</td>\n";
   var d1 = data[1];
-  var amountUp = MakeSureD(FieldValue(d1));
+  var amountUp = MakeSure(FieldValue(d1));
 
   // console.log("ComparE " + data[1] + " and " + data[2]);
   // console.log("Compare " + FieldValue(data[1]) + " and " + FieldValue(data[2]));
