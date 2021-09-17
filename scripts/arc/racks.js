@@ -110,7 +110,7 @@ function AssignedBoats(jsonIn)
   var i;
   jsonRacks.fNames = [];
   for (var i=0; i<entries.length; i+=1) {
-    var boat = entries[i].gsx$boats.$t.toLowerCase()
+    var boat = ("" + entries[i].gsx$boats.$t).toLowerCase()
         .split(' ').map(word => word.charAt(0).toUpperCase() + word.substring(1))
         .join(' ').replace("Ii", "II");
 
@@ -124,7 +124,7 @@ function AssignedBoats(jsonIn)
       jsonRacks.fNames.push(["", ""]);
     }
 
-    var rack = parseInt(entries[i].gsx$rack.$t.split(" / ")[0]);
+    var rack = parseInt(("" + entries[i].gsx$rack.$t).split(" / ")[0]);
     var type = entries[i].gsx$type.$t;
     var grade = entries[i].gsx$grade.$t.toLowerCase();
     
