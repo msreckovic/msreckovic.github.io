@@ -73,6 +73,9 @@ function V4V3_ConvertV4ToV3(sheet_data)
 
 function V4V3_FinalCallback(f, whole_thing_str, sheet_index)
 {
+  // if (whole_thing_str == "") {
+  //   return;
+  // }
   var whole_thing = JSON.parse(whole_thing_str);
   // ConsoleLog("WHOLE THING");
   // ConsoleLog(whole_thing["sheets"][sheet_index]["data"][0]["rowData"]);
