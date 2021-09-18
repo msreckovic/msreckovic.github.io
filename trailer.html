@@ -1,0 +1,29 @@
+<head>
+<link rel='stylesheet' href='https://msreckovic.github.io/css/trailer.css' type='text/css'/>
+<script src="https://msreckovic.github.io/scripts/arc/trailer.js"></script>
+<script src="https://msreckovic.github.io/scripts/arc/page_conversions.js"></script>
+</head> 
+<body> 
+<div id="trailer" class="clearFloat"> </div> 
+<script>
+function GetQueryParameters(what) {
+  var queryString = window.location.search.slice(1);
+  var queryParameters = {};
+  queryString.split("&").forEach(function(e) {
+    var t = e.split("=");
+    queryParameters[t[0]] = decodeURIComponent(t[1])
+  });
+  console.log("Parameters " + queryString);
+  var res = queryParameters[what];
+  if (res) return res.replace("_", " ").replace("%20", " ");
+  return undefined;
+}
+
+var Regatta = GetQueryParameters("regatta");
+console.log("Regatta " + Regatta);
+
+function ProcessAll(jsonIn){ShowTrailer("trailer", jsonIn);}
+
+V4V3_GetOriginalDataName(ProcessAll, "15PZrfBOFCz_CRnIqEWbmt04nBcnfFKXoeX3YCRK9Yew", Regatta);
+</script>
+</body>
