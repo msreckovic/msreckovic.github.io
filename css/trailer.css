@@ -1,0 +1,46 @@
+.trailertop {
+  background: #a3c1ad;
+  display: inline-block;
+  margin: 20px 1em 1em 0;
+  text-align: center;
+  vertical-align: baseline;
+  color: #002147;
+  height: 90px;
+  width: 120px;
+  border-top-left-radius: 120px;
+  border-top-right-radius: 120px;
+}
+
+.trailertop p {
+  margin: 30 2 2 2;
+  font-size: medium;
+}
+
+.trailersmall {
+  background: #a3c1ad;
+  display: inline-block;
+  margin: 20px 1em 1em 0;
+  text-align: center;
+  vertical-align: baseline;
+  color: #002147;
+  height: 60px;
+  width: 80px;
+  border-top-left-radius: 80px;
+  border-top-right-radius: 80px;
+}
+
+.trailersmall p {
+  margin: 20 2 2 2;
+  font-size: smaller;
+}
+
+.trailercell
+ {
+  border-bottom: 2px solid black; 
+}
+
+.trailercellright
+ {
+  border-bottom: 2px solid black; 
+  border-right: 4px solid black; 
+}
