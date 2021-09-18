@@ -27,7 +27,7 @@ function FillTrailer(entries)
 {
   if (entries.length < 1) return "";
 
-  var total = "<table id=\"trailertable\">";
+  var total = "<table style=\"all: revert\" class=\"trailertable\">";
   for(var i = 0; i < entries.length; i++) {
     total += "<tr>";
     total += FillCell(GetValue(entries[i], "gsx$outsideleft"), false);

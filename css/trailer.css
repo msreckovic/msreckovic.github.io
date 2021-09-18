@@ -1,3 +1,6 @@
+.trailertable {
+}
+
 .trailertop {
   background: #a3c1ad;
   display: inline-block;
@@ -34,8 +37,7 @@
   font-size: smaller;
 }
 
-.trailercell
- {
+.trailercell {
   border-bottom: 2px solid black; 
 }
 
