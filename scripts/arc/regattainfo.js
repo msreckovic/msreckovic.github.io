@@ -245,6 +245,8 @@ function StandardRegattaConfiguration(shortname, yearsheet, regattasheet)
   total += "<h3>Event List</h3><div id=\"details\"></div>\n";
   total += "<hr />\n";
   total += "<h3>Boats</h3><div id=\"boats\"></div>\n";
+  total += "<hr />\n";
+  total += "<h3>Trailer Map</h3><div id=\"trailermap\"></div>\n";
 
   console.log("Calling with yearsheet " + yearsheet);
   console.log("Calling with regattasheet " + regattasheet);
