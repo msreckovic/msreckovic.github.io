@@ -78,7 +78,7 @@ function V4V3_FinalCallbackName(f, whole_thing_str, sheet_name)
   }
   var whole_thing = JSON.parse(whole_thing_str);
   for (var i = 0; i < whole_thing["sheets"].length; i++) {
-    if (whole_thing["sheets"][0]["properties"]["title"] == sheet_name) {
+    if (whole_thing["sheets"][i]["properties"]["title"] == sheet_name) {
       var converted = V4V3_ConvertV4ToV3(whole_thing["sheets"][i]["data"][0]["rowData"]);
       f(converted);
       return;
