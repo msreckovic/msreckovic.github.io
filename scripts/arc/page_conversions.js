@@ -71,6 +71,21 @@ function V4V3_ConvertV4ToV3(sheet_data)
   return {"feed" : { "updated" : "tbd", "entry" : result }};
 }
 
+function V4V3_FinalCallbackName(f, whole_thing_str, sheet_name)
+{
+  if (whole_thing_str == "") {
+     return;
+  }
+  var whole_thing = JSON.parse(whole_thing_str);
+  for (var i = 0; i < whole_thing["sheets"].length; i++) {
+    if (whole_thing["sheets"][0]["properties"]["title"] == sheet_name) {
+      var converted = V4V3_ConvertV4ToV3(whole_thing["sheets"][i]["data"][0]["rowData"]);
+      f(converted);
+      return;
+    }
+  }
+}
+
 function V4V3_FinalCallback(f, whole_thing_str, sheet_index)
 {
   // if (whole_thing_str == "") {
@@ -92,6 +107,21 @@ function V4V3_FinalCallbackList(f_list, whole_thing_str, sheet_index_list)
   for (i = 0; i < f_list.length; i++) {
     var converted = V4V3_ConvertV4ToV3(whole_thing["sheets"][sheet_index_list[i]]["data"][0]["rowData"]);
     f_list[i](converted);
+  }
+}
+
+function V4V3_GetOriginalDataName(f, sheet_string, sheet_name)
+{
+  if (sheet_name == "") return;
+
+  var url = V4V3_OriginalDataURL(sheet_string);
+
+  const Http = new XMLHttpRequest();
+  Http.open("GET", url);
+  Http.send();
+
+  Http.onreadystatechange = (e) => {
+    V4V3_FinalCallbackName(f, Http.responseText, sheet_name);
   }
 }
 
