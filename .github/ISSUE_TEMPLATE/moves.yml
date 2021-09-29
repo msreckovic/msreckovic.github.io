@@ -1,8 +1,11 @@
 name: Time to move
 description: Move it from one place to another
+labels: the-move
+title: Request to move
 body:
   - type: markdown
-    value: "## Moving is not easy!"
+    attributes:
+      value: "## Moving is not easy!"
   - type: input
     attributes:
       label: The ID
