@@ -18,5 +18,4 @@ body:
       description: Has this actually been approved?
       options:
         - label: Yes!
-    validations:
       required: true
