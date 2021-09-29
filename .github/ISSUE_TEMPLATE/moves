@@ -1,0 +1,19 @@
+name: Time to move
+description: Move it from one place to another
+body:
+  - type: markdown
+    value: "## Moving is not easy!"
+  - type: input
+    attributes:
+      label: The ID
+      description: This is where the ID goes
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: This is approved?
+      description: Has this actually been approved?
+      options:
+        - label: Yes!
+    validations:
+      required: true
