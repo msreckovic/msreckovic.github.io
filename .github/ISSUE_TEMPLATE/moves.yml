@@ -1,7 +1,7 @@
 name: Time to move
 description: Move it from one place to another
 labels: the-move
-title: Request to move
+title: Request to move <replace-with-shop-url> to Canada
 body:
   - type: markdown
     attributes:
