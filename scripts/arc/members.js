@@ -226,9 +226,9 @@ function MembersPersonal(elementId, entries, whoisthis)
       // explanation += "<li>No private boat rack.</li>";
     }
 
-    var accesscard = entries[i][map.boatrack].$t;
+    var accesscard = entries[i][map.accesscard].$t;
     if (accesscard) {
-      explanation += "<li>Access card/fob number " + accesscard + ".</li>";
+      explanation += "<li>Access card/fob " + accesscard + ".</li>";
     } else {
       explanation += "<li>No active access card.</li>";
     }
