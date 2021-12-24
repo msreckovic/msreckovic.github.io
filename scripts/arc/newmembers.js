@@ -48,7 +48,7 @@ var LABELS = ["",
               "Join Now", "Single Payment: ",
               "Join Now", "Single Payment: ",
               "Payment Plan", "Payment Plan: ",
-              "Join Now", "Late Season Only:"];
+              "Join Now", "Late Season Only: "];
 
 var AnsweredQuestions = {};
 
@@ -264,6 +264,12 @@ function FormatEverything(countAgreed)
     var categories = FormatCategories(CatAndQues[0], "", "none", "");
     Buttons = categories[1];
     var ce = document.getElementById("categories");
+
+//      console.log("CATEGORIES CATEGORIES CATEGORIES CATEGORIES CATEGORIES");
+//      console.log(categories[0]);
+//      console.log("categories categories categories categories categories");
+
+
     if (ce) {
       ce.innerHTML = categories[0];
     }
