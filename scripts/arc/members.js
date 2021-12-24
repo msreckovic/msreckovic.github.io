@@ -8,6 +8,7 @@ var map = {
   "rc" : "gsx$rc",
   "locker" : "gsx$locker",
   "boatrack" : "gsx$boatrack",
+  "accesscard" : "gsx$accesscard",
   "status" : "gsx$status"
 };
 
@@ -224,6 +225,14 @@ function MembersPersonal(elementId, entries, whoisthis)
     } else {
       // explanation += "<li>No private boat rack.</li>";
     }
+
+    var accesscard = entries[i][map.boatrack].$t;
+    if (accesscard) {
+      explanation += "<li>Access card/fob number " + accesscard + ".</li>";
+    } else {
+      explanation += "<li>No active access card.</li>";
+    }
+
     explanation += "</ul>";
 
     found = true;
