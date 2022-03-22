@@ -39,7 +39,7 @@ function ForSingleOne(entry, td_style)
   var total = "<tr>\n";
   for (var i = 0; i < labels.length; i++) {
     var value = GetValue(entry, "gsx$" + items[i], "");
-    value = value.replaceAll("\n", "<br>");
+    value = String(value).replaceAll("\n", "<br>");
     total += "    <td " + td_style + " data-label=" + labels[i] +">" + value + "</td>\n";
   }
   total += "</tr>\n";
