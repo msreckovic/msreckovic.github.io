@@ -141,16 +141,16 @@ function AssignedBoats(jsonIn)
     } else if (tower_def[0] == "AE") {
       tower = 1;
       leftOrRight = "R";
-    } else if (tower_def[0] == "CW") {
+    } else if (tower_def[0] == "RW") {
       tower = 2;
       leftOrRight = "L";
-    } else if (tower_def[0] == "CE") {
+    } else if (tower_def[0] == "RE") {
       tower = 3;
       leftOrRight = "R";
-    } else if (tower_def[0] == "RW") {
+    } else if (tower_def[0] == "CW") {
       tower = 4;
       leftOrRight = "L";
-    } else if (tower_def[0] == "RE") {
+    } else if (tower_def[0] == "CE") {
       tower = 5;
       leftOrRight = "R";
     } else if (tower_def[0] == "DWF") {
