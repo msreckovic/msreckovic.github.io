@@ -25,7 +25,7 @@ function FillRacks(elementRacks)
     total += "   <li class=\"bay\">" + jsonRacks.fNames[i][0] + "</li>\n";
     
     var rightOf = (i==1 || i==3 || i==5 || i==7 || i == 9);
-    for (var j=0; j<jsonRacks.fRacks[i].length; j+=1 ) {
+    for (var j=jsonRacks.fRacks[i].length-1; j >= 0; j-=1 ) {
       var name = jsonRacks.fRacks[i][j][0];
       var grade = jsonRacks.fRacks[i][j][1];
       var uppers = name.toUpperCase();
@@ -131,39 +131,19 @@ function AssignedBoats(jsonIn)
 
     console.log("TOWER ENTRY " + entries[i].gsx$tower.$t);
 
-    var tower_def = entries[i].gsx$tower.$t.split(" \(");
+    var tower_def = entries[i].gsx$tower.$t.split(" - ");
     console.log("TOWER DEF " + tower_def.length + " = " + tower_def);
-    var tower = 0;
-    var leftOrRight = "L";
-    if (tower_def[0] == "AW") {
-      tower = 0;
+
+    var tower_name = tower_def[0];
+    var tower = parseInt(tower_def[2]);
+    var leftOrRight = "X";
+    if (tower_name[1] == "W") {
       leftOrRight = "L";
-    } else if (tower_def[0] == "AE") {
-      tower = 1;
-      leftOrRight = "R";
-    } else if (tower_def[0] == "RW") {
-      tower = 2;
-      leftOrRight = "L";
-    } else if (tower_def[0] == "RE") {
-      tower = 3;
-      leftOrRight = "R";
-    } else if (tower_def[0] == "CW") {
-      tower = 4;
-      leftOrRight = "L";
-    } else if (tower_def[0] == "CE") {
-      tower = 5;
-      leftOrRight = "R";
-    } else if (tower_def[0] == "DWF") {
-      tower = 6;
-      leftOrRight = "L";
-    } else if (tower_def[0] == "DWR") {
-      tower = 7;
-      leftOrRight = "L";
-    } else if (tower_def[0] == "DE") {
-      tower = 8;
+    } else if (tower_name[1] == "E") {
       leftOrRight = "R";
     }
-    console.log("BOAT " + boat + " TOWER_DEF " + tower_def[0] + " and index " + tower);
+
+    console.log("BOAT " + boat + " TOWER_DEF " + tower_name + " and index " + tower + " LorR " + leftOrRight);
 
     var rack = parseInt(("" + entries[i].gsx$rack.$t).split(" / ")[0]);
     var type = entries[i].gsx$type.$t;
@@ -174,7 +154,7 @@ function AssignedBoats(jsonIn)
     if (tower >= 0 && rack >= 0) {
       console.log("TOWER INDEX " + tower + " out of " + jsonRacks.fNames.length);
       if (jsonRacks.fNames[tower][0] == "") {
-        jsonRacks.fNames[tower][0] = tower_def[0];
+        jsonRacks.fNames[tower][0] = tower_name;
 
         // This one gives us the correct CSS - racksL or racksR
         jsonRacks.fNames[tower][1] = "racks" + leftOrRight;
