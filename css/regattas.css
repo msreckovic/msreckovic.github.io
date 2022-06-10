@@ -1,5 +1,5 @@
-#regattas-table {
-  border-collapse: collapse;
+#regattas-table
+{
   border: 3px solid blue;
 }
 
@@ -13,4 +13,8 @@
 
 #regattas-table tbody tr:nth-child(even) {
   background-color: #eeeeee;
+}
+
+#regattas-table th {
+  letter-spacing: 5px;
 }
