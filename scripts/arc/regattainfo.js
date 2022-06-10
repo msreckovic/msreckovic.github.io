@@ -86,7 +86,7 @@ function CallbackListRegattasHow(jsonIn, active)
   head += "</th></tr>"
   var el = document.getElementById("regattas");
   if (el) {
-    el.innerHTML = "<table>" + head + total + "</table>";
+    el.innerHTML = "<table id=\"regattas-table\">" + head + total + "</table>";
   }
 }
 
