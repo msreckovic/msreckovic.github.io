@@ -2,3 +2,15 @@
   border-collapse: collapse;
   border: 3px solid blue;
 }
+
+#regattas-table th, td {
+  padding: 5px;
+}
+
+#regattas-table tbody tr:nth-child(odd) {
+  background-color: #cccccc;
+}
+
+#regattas-table tbody tr:nth-child(even) {
+  background-color: #eeeeee;
+}
