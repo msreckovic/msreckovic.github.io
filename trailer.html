@@ -1,5 +1,5 @@
 <head>
-<link rel='stylesheet' href='https://msreckovic.github.io/css/trailer.css' type='text/css'/>
+<link rel='stylesheet' href='css/trailer.css' type='text/css'/>
 <script src="https://msreckovic.github.io/scripts/arc/trailer.js"></script>
 <script src="https://msreckovic.github.io/scripts/arc/page_conversions.js"></script>
 </head> 
@@ -22,8 +22,7 @@ function GetQueryParameters(what) {
 var Regatta = GetQueryParameters("regatta");
 console.log("Regatta " + Regatta);
 
-function ProcessAll(jsonIn){ShowTrailer("trailer", jsonIn);}
-
-V4V3_GetOriginalDataName(ProcessAll, "15PZrfBOFCz_CRnIqEWbmt04nBcnfFKXoeX3YCRK9Yew", Regatta);
+function ProcessTrailer(jsonIn){ShowTrailer("trailer", jsonIn);}
+V4V3_GetOriginalDataName(ProcessTrailer, "15PZrfBOFCz_CRnIqEWbmt04nBcnfFKXoeX3YCRK9Yew", Regatta);
 </script>
 </body>

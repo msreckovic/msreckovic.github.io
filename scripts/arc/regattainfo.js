@@ -66,7 +66,7 @@ function CallbackListRegattasHow(jsonIn, active)
       detail += "<a target=\"_blank\" href=\"" + ln + "\">click for details</a>";
     } else if (whatyear && ind) {
       var sn = GV(entry,"shortname");
-      ln = "http://www.argonautrowingclub.com/" + whatyear + "-regattas/?regatta=" + sn;
+      ln = "?regatta=" + sn;
       detail += "<a target=\"_blank\" href=\"" + ln + "\">click for details</a>";
     } else if (active) {
       detail += "<a href=\"mailto:captain@argonautrowingclub.com\">click to inquire</a>";
