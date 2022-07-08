@@ -36,6 +36,13 @@ function FillTrailer(entries)
     total += FillCell(GetValue(entries[i], "gsx$outsideright"), false);
     total += "</tr>";
   }
+
+  total += "<tr>";
+  total += '<tr><td></td>';
+  total += '<td colspan="2"><center><h1>L&nbsp;&nbsp;O&nbsp;&nbsp;N&nbsp;&nbsp;G &nbsp;&nbsp;&nbsp;&nbsp; L&nbsp;&nbsp;O&nbsp;&nbsp;A&nbsp;&nbsp;D</h1></center></td>';
+  total += '<td></td>';
+  total += "</tr>";
+
   total += "</table>";
   return total;
 }
