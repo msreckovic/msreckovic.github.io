@@ -19,6 +19,10 @@
   letter-spacing: 5px;
 }
 
+.arc-table td {
+  vertical-align: top;
+}
+
 #regattas-table
 {
   border: 3px solid blue;
