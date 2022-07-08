@@ -85,7 +85,7 @@ function GetTotalD(entry)
 
 function AllSummary(entries, count)
 {
-  var summary = "<table>\n";
+  var summary = "<table class=\"arc-table\">\n";
   summary += "  <thead>\n";
   summary += "    <tr>\n";
   summary += "      <th>Crews</th>\n";
@@ -171,7 +171,7 @@ function BoatsFromSet(boats)
   all["2"].sort();
   all["1"].sort();
   
-  var total = "<table id=\"boats\">";
+  var total = "<table class=\"arc-table\" id=\"boats\">";
   total += "<tr><th class=\"athletes\">Eights</th><th>Fours</th><th>Doubles</th><th>Singles</th></tr>";
   total += "<tr>";
   
@@ -217,7 +217,7 @@ function AllDetails(entries, evented)
 {
   var boats = new Set();
   
-  var details = "<table>\n";
+  var details = "<table class=\"arc-table\">\n";
   details += "  <thead>\n";
   details += "    <tr>\n";
   details += "      <th class=\"athletes\">Event</th>\n";
@@ -362,7 +362,7 @@ function AllAthletes(extracted, regattaName)
   console.log("Calling AllAthletes");
 
   var athletes = "If you have fees outstanding, please pay by clicking on the amount in the \"Fees\" column.  If you have paid, you can get the receipt by clicking on the amount in the \"Paid\" column."
-  athletes += "<table>\n";
+  athletes += "<table class=\"arc-table\">\n";
   athletes += "  <thead>\n";
   athletes += "    <tr>\n";
   athletes += "      <th class=\"athletes\">Name</th>\n";
