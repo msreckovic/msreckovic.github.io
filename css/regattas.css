@@ -1,3 +1,24 @@
+.arc-table
+{
+  border: 3px solid blue;
+}
+
+.arc-table th, td {
+  padding: 5px;
+}
+
+.arc-table tbody tr:nth-child(odd) {
+  background-color: #cccccc;
+}
+
+.arc-table tbody tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+.arc-table th {
+  letter-spacing: 5px;
+}
+
 #regattas-table
 {
   border: 3px solid blue;
