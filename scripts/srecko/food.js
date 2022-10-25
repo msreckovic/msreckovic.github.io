@@ -53,13 +53,19 @@ function FormatAsCurrency(amount)
 
 function FormatAsDate(when)
 {
-  return when;
+  // So that it works for integer dates
+  if (Math.floor(when) == when) {
+    when = when + 0.25;
+  }
+  var d = new Date((when - 25569)*86400*1000);
+  return d.toDateString();
 }
 
 function DivSummary(map, entries)
 {
+  var when = FormatAsDate(entries[3].gsx$body.$t);
   var summary = `
-<h4>Last updated ${ entries[3].gsx$body.$t }</h4>
+<h4>Last updated ${ when }</h4>
 <table>
   <thead>
     <tr>
