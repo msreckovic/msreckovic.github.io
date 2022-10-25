@@ -14,8 +14,8 @@ function ForPeople(who, spent, paid)
 {
   var summary = `
     <td data-label=Who>${ who }</td>
-    <td data-label=Spent>${ spent }</td>
-    <td data-label=Paid>${ paid }</td>
+    <td data-label=Spent>$${ spent.toFixed(2) }</td>
+    <td data-label=Paid>$${ paid.toFixed(2) }</td>
   `;
   return summary;
 }
@@ -26,11 +26,11 @@ function ForAmount(amount)
 
   var asInt = parseInt(amount, 10);
   if (asInt < 0) {
-    summary += amount + " (due)</td>\n";
+    summary += "$" + amount.toFixed(2) + " (due)</td>\n";
   } else if (asInt > 0) {
-    summary += amount + " (owes)</td>\n";
+    summary += "$" + amount.toFixed(2) + " (owes)</td>\n";
   } else {
-	  summary += amount + "&nbsp;</td>\n";
+    summary += "$" + amount.toFixed(2) + "&nbsp;</td>\n";
   }
   return summary;
 }
@@ -41,6 +41,19 @@ function GetValue(where, what, instead)
     return where[what].$t;
   }
   return instead;
+}
+
+function FormatAsCurrency(amount)
+{
+  if (amount) {
+    return "$" + amount.toFixed(2);
+  }
+  return "&nbsp;";
+}
+
+function FormatAsDate(when)
+{
+  return when;
 }
 
 function DivSummary(map, entries)
@@ -86,7 +99,7 @@ function DivDetails(map, entries)
   for (var j in map) {
     details += "      <th>" + map[j].label + "</th>\n";
   }
-  details += "      <th>Per-Person</th>\n";
+  // details += "      <th>Per-Person</th>\n";
   details += "    </tr>\n";
   details += "  </thead>\n";
   details += "  <tbody>\n";
@@ -98,7 +111,7 @@ function DivDetails(map, entries)
     var cur = "$";
 
     var what = entries[i].gsx$what.$t;
-    var when = entries[i].gsx$when.$t;
+    var when = FormatAsDate(entries[i].gsx$when.$t);
     var perperson = entries[i].gsx$perperson.$t;
 
     var people = [];
@@ -107,7 +120,7 @@ function DivDetails(map, entries)
 
     for (j in map) {
       var pp = GetValue(entries[i], map[j].people, 0);
-      var cc = GetValue(entries[i], map[j].cut, "&nbsp;");
+      var cc = FormatAsCurrency(GetValue(entries[i], map[j].cut, "&nbsp;"));
       var ll = map[j].label;
       people.push(pp);
       cuts.push(cc);
@@ -116,9 +129,9 @@ function DivDetails(map, entries)
       var pd = GetValue(entries[i], map[j].paid, 0);
       if (pd) {
         var val = entries[i][map[j].paid].$t;
-        var am = parseFloat(val.substring(1).replace(/,/g,''));
+        // var am = parseFloat(val.substring(1).replace(/,/g,''));
+        am = val;
         if (am > 0) {
-          cur = val[0];
           amount += am;
           doit = true;
           who = map[j].who;
@@ -141,7 +154,7 @@ function DivDetails(map, entries)
           details += `    <td data-label=${ labels[j] }>${ cuts[j] }</td>`;
         }
       }
-      details += `    <td data-label=Per-Person>${ perperson }</td>`;
+      // details += `    <td data-label=Per-Person>${ perperson }</td>`;
       details += "    </tr>";
     }
   }
@@ -158,5 +171,5 @@ function JsonCallback(jsonIn)
 
   document.getElementById("summary").innerHTML = DivSummary(map, entries);
   document.getElementById("details").innerHTML = DivDetails(map, entries);
-  document.getElementById("appsetup").innerHTML = entries[1].gsx$body.$t;
+  // document.getElementById("appsetup").innerHTML = entries[1].gsx$body.$t;
 }

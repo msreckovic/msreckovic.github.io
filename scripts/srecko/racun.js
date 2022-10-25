@@ -56,16 +56,13 @@ function RacunStandard(title, racun_index, details)
   <h2>Details</h2>
   <div id="details"></div>
   <hr>
-  <div class="itistiny">
-  <a target="_blank" href="https://srecko.ca/racun/download.html"><h5>app download</h5></a>
-  <div id="appsetup"></div>
   <br><br>`
     div.innerHTML = total;
 
-    var src = `https://spreadsheets.google.com/feeds/list/1oWmF6mKi126JJFoBIG2_XH7zV8I7LxzeP5MfyMhrT_4/${ racun_index }/public/values?alt=json-in-script&callback=JsonCallback`;
+    var src = `V4V3_GetOriginalData(JsonCallback,"1oWmF6mKi126JJFoBIG2_XH7zV8I7LxzeP5MfyMhrT_4",${ racun_index } - 1)`;
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = src;
+    script.innerHTML = src;
     div.insertBefore(script, null);
   }
 }
@@ -95,8 +92,8 @@ function ProcessRacun(racuni)
   var racun = GetQueryParameters("racun");
   console.log(`Racun ${ racun }`);
 
-  RacunEverything(racuni);
   if (racun == undefined) {
+    RacunEverything(racuni);
   } else {
     var found = racuni[racun];
     RacunStandard(found[0], found[2], found[1]);
