@@ -7,7 +7,7 @@ function MakeSureD(val)
 {
   var v = parseFloat(val);
   if (isNaN(v)) {
-    return val;
+    return "$0";
   }
   return "$" + Math.ceil(v);
 }
@@ -76,7 +76,7 @@ function GetOwingHelperAll(header, entries)
       amount = GetValue(entries[i], "gsx$total", "");
       paid = GetValue(entries[i], "gsx$paid", "");
       arrears = GetValue(entries[i], "gsx$arrears", "");
-      linked = "<a href=\"http://www.argonautrowingclub.com/member/?who=" + who + "\">" + who + "</a>";
+      linked = "<a href=\"?who=" + who + "\">" + who + "</a>";
       if (amount) {
         people.push([linked, participation, MakeSureD(amount), MakeSureD(paid),
                      ToStore(who, owing), MakeSureD(arrears)]);
