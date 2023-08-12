@@ -86,7 +86,7 @@ function GetOwingHelperAll(header, entries)
   
   // people = people.sort(); // Probably don't need to, but OK
   
-  var tickets = "<table class=\"arc-table\">\n";
+  var tickets = "<table id=\"regattas-table\>\n";
   tickets += "  <thead>\n";
   tickets += ForTickets(["Who", "Regattas", "Fees", "Paid", "Outstanding", ""], "<h5>", "</h5>");
   tickets += "  </thead>\n";
