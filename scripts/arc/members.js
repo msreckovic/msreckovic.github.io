@@ -69,9 +69,7 @@ function AsLink(first, last, note, memberlink)
   if (!memberlink) {
     return first + " " + last + note;
   }
-  return '<a href="http://argonautrowingclub.com/member/?who=' +
-    first + "_" + last + '" target="_blank">' + first + " " + last + note +
-    '</a>';
+  return return '<a href="?who=' + first + "_" + last + '" target="_blank">' + first + " " + last + note + '</a>';
 }
 
 function Categorized(entries, onlygood, category, header, getlinks, memberlink)
