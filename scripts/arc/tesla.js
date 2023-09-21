@@ -11,14 +11,14 @@ var map = [
   "gsx$trip",            // 0
   "gsx$city",            // 1
   "gsx$address",         // 2
-  "gsx$dist.",      // 3
-  "gsx$cumul.",          // 4
+  "gsx$distance",        // 3
+  "gsx$cumul",           // 4
   "gsx$rated",           // 5
   "gsx$whkm",            // 6
   "gsx$arrivaltime",     // 7
-  "gsx$arr.range",       // 8
+  "gsx$arrivalrange",    // 8
   "gsx$departuretime",   // 9
-  "gsx$dep.range",       // 10
+  "gsx$departurerange",  // 10
   "gsx$driveduration",   // 11
   "gsx$chargeduration",  // 12
   "gsx$added",           // 13
@@ -60,6 +60,11 @@ var ChargeToCurve =
       [420, 42*3],
     ];
 
+function consolelog(what)
+{
+  // console.log(what);
+}
+
 function ChargingTime(starting, ending)
 {
   var totalSeconds = 0;
@@ -96,42 +101,91 @@ function GetValue(where, what)
   return "";
 }
 
+function FormatAsTime(when)
+{
+  var sec = Math.round(when * 86400);
+  var minutes = Math.floor(sec / 60);
+  sec = sec - minutes * 60;
+  var hours = Math.floor(minutes / 60);
+  minutes = minutes - hours * 60;
+  if (minutes < 10) {
+    minutes = "0" + minutes;
+  }
+  consolelog("CONVERTING " + when + " to " + hours + ":" + minutes + ":" + sec);
+
+  return "" + hours + ":" + minutes;
+}
+
+function GetTime(where, what)
+{
+  var thet = "";  
+  if (what in where) {
+    thet = where[what].$t;
+  }
+  if (thet == "") return "";
+  
+  return FormatAsTime(thet);
+}
+
+function GetDuration(where, what)
+{
+  var thet = "";  
+  if (what in where) {
+    thet = where[what].$t;
+  }
+  if (thet == "") return "";
+  
+  return FormatAsTime(thet);
+}
+
+function GetPercentage(where, what)
+{
+  var thet = "";  
+  if (what in where) {
+    thet = where[what].$t;
+  }
+  if (thet == "") return "";
+  
+  return "" + Math.round(100*parseFloat(thet)) + "%";
+}
+
 function GetKm(where, what)
 {
   if (what in where) {
-    var fnd = where[what].$t.search("km");
+    var thet = where[what].$t;
+    if (thet == "") return "";
+
+    var fnd = String(thet).search("km");
     if (fnd >= 0) {
-      return where[what].$t.substring(0,fnd);
+      return "" + Math.round(parseFloat(String(thet).substring(0,fnd)));
     }
-    return where[what].$t;
+    return "" + Math.round(parseFloat(thet));
   }
   return "";
 }
 
-function Dump(entry)
+function GetKph(where, what)
 {
-  return   [GetValue(entry,map[0]),
-            GetValue(entry,map[1]),
-            GetValue(entry,map[2]),
-            GetValue(entry,map[3]),
-            GetValue(entry,map[4]),
-            GetValue(entry,map[5]),
-            GetValue(entry,map[6]),
-            GetValue(entry,map[7]),
-            GetValue(entry,map[8]),
-            GetValue(entry,map[9]),
-            GetValue(entry,map[10]),
-            GetValue(entry,map[11]),
-            GetValue(entry,map[12]),
-            GetValue(entry,map[13]),
-            GetValue(entry,map[14]),
-            GetValue(entry,map[15]),
-            GetValue(entry,map[16]),
-           ];
+  if (what in where) {
+    var thet = where[what].$t;
+    if (thet == "") return "";
+
+    var fnd = String(thet).search("km");
+    if (fnd >= 0) {
+      return "" + Math.round(parseFloat(String(thet).substring(0,fnd)));
+    }
+    return "" + Math.round(parseFloat(thet));
+  }
+  return "";
 }
 
 function TripStart(entry)
 {
+  consolelog("fTripRaw " + GetValue(entry,map[0]));
+  consolelog("fTripCities " + GetValue(entry,map[1]))
+  consolelog("fTripDate " + GetValue(entry,map[2]))
+  consolelog("fTripTemp " + GetValue(entry,map[3]))
+
   return  {"fTripRaw" : GetValue(entry,map[0]),
            "fTripCities" : GetValue(entry,map[1]),
            "fTripDate" : GetValue(entry,map[2]),
@@ -149,29 +203,52 @@ function TripLeg(entry)
           GetKm(entry,map[4]),
           GetKm(entry,map[5]),
           GetValue(entry,map[6]),
-          GetValue(entry,map[7]),
+          GetTime(entry,map[7]),
           GetKm(entry,map[8]),
-          GetValue(entry,map[9]),
+          GetTime(entry,map[9]),
           GetKm(entry,map[10]),
-          GetValue(entry,map[11]),
-          GetValue(entry,map[12]),
+          GetDuration(entry,map[11]),
+          GetDuration(entry,map[12]),
           GetKm(entry,map[13]),
-          GetValue(entry,map[14]),
-          GetKm(entry,map[15]),
-          GetKm(entry,map[16]),
+          GetPercentage(entry,map[14]),
+          GetKph(entry,map[15]),
+          GetKph(entry,map[16]),
          ];
 }
 
-function TeslaTrips(jsonIn)
+function TeslaTripsPlan(jsonIn)
+{
+  TeslaTripsCommon(jsonIn);
+  FillInTrips("trip", 0); 
+}
+
+function TeslaTripsMade(jsonIn)
+{
+  TeslaTripsCommon(jsonIn);
+  FillInTrips("trip", 1); 
+}
+
+function TeslaTripsCommon(jsonIn)
 {
   AllTheTrips = [];
   
+  consolelog("Calling TeslaTrips");
+
   var entries = jsonIn.feed.entry;
-  if (!entries) return;
+  if (!entries) {
+    consolelog("NO ENTRIES AT ALL");
+    return;
+  }
+  consolelog("01");
   var inTrip = false;
   var single = "";
+  consolelog("02");
+  consolelog("03 entries length " + entries.length);
   for (var i=0; i<entries.length; i++) {
+    consolelog("ENTRY " + i + " IS " + JSON.stringify(entries[i]));
+
     var first = GetValue(entries[i], map[0]);
+    consolelog("FIRST " + first);
     if (first == "START" || first == "STARTPLAN") {
       if (inTrip) {
         AllTheTrips.push(single);
@@ -182,19 +259,23 @@ function TeslaTrips(jsonIn)
         inTrip = true;
       }
     } else if (inTrip) {
-      single.fTripLegs.push(TripLeg(entries[i]));
+      var leg = TripLeg(entries[i]);
+      consolelog("LEG " + leg);
+      single.fTripLegs.push(leg);
       if (first == "END" || first == "ENDPLAN") {
         AllTheTrips.push(single);
         inTrip = false;
       }
     } else {
-      console.log("This is weird, and should not happen");
+      consolelog("This is weird, and should not happen");
     }
   }
   if (inTrip) {
+    consolelog("CLOSING " + single);
     AllTheTrips.push(single);
     inTrip = false;
   }
+  consolelog("AT THIS POINT " + AllTheTrips.length);
 }
 
 function FillInSingle(trip, choice)
@@ -268,7 +349,7 @@ function FillInSingle(trip, choice)
     total += " <tr class=\"summary\">\n";
     total += "  <th class=\"city\" width=\"115px\">" + leg[1] + "</th>\n";
     total += "  <th></th>\n";
-    total += "  <th class=\"fn\">Distance <div class=\"totals\">" + leg[4].trim() + " (" + leg[5].trim() + ")</div></th>\n";
+    total += "  <th class=\"fn\">Distance <div class=\"totals\">" + String(leg[4]).trim() + "</div></th>\n";
     total += "  <th class=\"fn\">Total Time <div class=\"totals\">" + leg[9] + "</div></th>\n";
     total += "  <th class=\"fn\">Drive Time <div class=\"totals\">" + leg[11] + "</div></th>\n";
     total += "  <th class=\"fn\">Charge Time <div class=\"totals\">" + leg[12] + "</div></th>\n";
@@ -288,6 +369,9 @@ function FillInTrips(where, choice)
   var total = "";
   // Do the menu to get to all of them.  Maybe iframe or scroll-to.
   
+  consolelog("CALLING FillInTrips " + AllTheTrips.length);
+  consolelog("WHERE IS " + where);
+
   for (var i=AllTheTrips.length-1; i>=0; i-=1) {
     total += FillInSingle(AllTheTrips[i], choice);
     total += "<br>\n";
