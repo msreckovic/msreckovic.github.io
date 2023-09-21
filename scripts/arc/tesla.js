@@ -103,6 +103,7 @@ function GetValue(where, what)
 
 function FormatAsTime(when)
 {
+  when = when - Math.floor(when);
   var sec = Math.round(when * 86400);
   var minutes = Math.floor(sec / 60);
   sec = sec - minutes * 60;
@@ -118,23 +119,12 @@ function FormatAsTime(when)
 
 function GetTime(where, what)
 {
-  var thet = "";  
+  var thet = "";
   if (what in where) {
     thet = where[what].$t;
   }
   if (thet == "") return "";
-  
-  return FormatAsTime(thet);
-}
 
-function GetDuration(where, what)
-{
-  var thet = "";  
-  if (what in where) {
-    thet = where[what].$t;
-  }
-  if (thet == "") return "";
-  
   return FormatAsTime(thet);
 }
 
@@ -202,13 +192,13 @@ function TripLeg(entry)
           GetKm(entry,map[3]),
           GetKm(entry,map[4]),
           GetKm(entry,map[5]),
-          GetValue(entry,map[6]),
+          GetKm(entry,map[6]),
           GetTime(entry,map[7]),
           GetKm(entry,map[8]),
           GetTime(entry,map[9]),
           GetKm(entry,map[10]),
-          GetDuration(entry,map[11]),
-          GetDuration(entry,map[12]),
+          GetTime(entry,map[11]),
+          GetTime(entry,map[12]),
           GetKm(entry,map[13]),
           GetPercentage(entry,map[14]),
           GetKph(entry,map[15]),
