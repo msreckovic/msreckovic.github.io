@@ -166,6 +166,12 @@ function CallbackForRegatta(entry)
   if (el) {
     el.innerHTML = GV(entry, "name") + " (" + GV(entry, "date") + ")";
   }
+
+  el = document.getElementById("regatta-title");
+  if (el) {
+    el.innerHTML = GV(entry, "name");
+  }
+
   el = document.getElementById("regatta");
   if (el) {
     el.innerHTML = InfoSingleRegatta(entry);
