@@ -42,23 +42,13 @@ function CallbackListRegattasHow(jsonIn, active)
   
   for (var i=0; i<entries.length; i++) {
     var entry = entries[i];
+    if (GV(entry, "name") == "") continue;
     var one = "<td>" + GV(entry,"date") + "</td><td>" + GV(entry,"name") + "</td><td>" + GV(entry,"location") + "</td>";
     var detail = "";
     
     var ed = GV(entry,"entrydue");
     if (active && ed) {
-      var due = new Date(ed);
-      var df = (due - now)/(24*60*60*1000);
-      if (df < 0) {
-        detail += ed;
-      } else if (df < 2) {
-        detail += "<span style=\"color: red; text-decoration: underline;\">" + ed + "</span>";
-      } else if (df < 7) {
-        detail += "<span style=\"color: orange; text-decoration: underline;\">" + ed + "</span>";
-      } else {
-        detail += ed;
-      }
-      detail += "<br>";
+      detail += "<small>Due: " + ed + "</small><br>";
     }
     var ln = GV(entry,"link");
     var ind = GV(entry,"index");
@@ -77,9 +67,11 @@ function CallbackListRegattasHow(jsonIn, active)
     one += "<td>" + detail + "</td>";
     total += "<tr>" + one + "</tr>";
   }
+
   var head = "<tr><th>Date</th><th>Regatta</th><th>Location</th><th>";
   if (active) {
-    head += "Entries Due";
+    // head += "Entries Due";
+    head += "Details";
   } else {
     head += "Details";
   }
