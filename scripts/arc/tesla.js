@@ -239,7 +239,7 @@ function TeslaTripsCommon(jsonIn)
 
     var first = GetValue(entries[i], map[0]);
     consolelog("FIRST " + first);
-    if (first == "START" || first == "STARTPLAN") {
+    if (first == "START" || first == "PLAN" || first == "STARTPLAN") {
       if (inTrip) {
         AllTheTrips.push(single);
         inTrip = false;
@@ -270,6 +270,13 @@ function TeslaTripsCommon(jsonIn)
 
 function FillInSingle(trip, choice)
 {
+  console.log("trip.fTripRaw is " + trip.fTripRaw);
+  if (trip.fTripRaw == "START" ) {
+    choice = 1;
+  } else if   (trip.fTripRaw == "PLAN" || trip.fTripRaw == "STARTPLAN") {
+    choice = 0;
+  }
+
   var total = "";
   total += "<table>";
   total += " <tr>";
@@ -353,7 +360,7 @@ function FillInSingle(trip, choice)
   return total;
 }
 
-// choice is 0 for plan, 1 for actual
+// choice is 0 for plan, 1 for actual, but auto set from fTripRaw anyway
 function FillInTrips(where, choice)
 {
   var total = "";
