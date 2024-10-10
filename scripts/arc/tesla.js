@@ -3,9 +3,9 @@ function ConsoleLog(str)
   if (false) console.log(str);
 }
 
-function GetDataURL(sheet_string, tab_string)
+function GetDataURL(sheet_string, tab_string, k)
 {
-  var url = "https://sheets.googleapis.com/v4/spreadsheets/" + sheet_string + "/values/" + tab_string + "?alt=json&key=AIzaSyAPlnkFHaiuXPA0AOoqzZD_GtEWR2j-qG8";
+  var url = "https://sheets.googleapis.com/v4/spreadsheets/" + sheet_string + "/values/" + tab_string + "?alt=json&key=" + k;
   ConsoleLog("URL " + url);
   return url;
 }
@@ -20,11 +20,11 @@ function FinalCallbackName(f, whole_thing_str)
   f(whole_thing["values"]);
 }
 
-function GetAllData(f, sheet_string, tab_string)
+function GetAllData(f, sheet_string, tab_string, k)
 {
   if (sheet_string == "") return;
 
-  var url = GetDataURL(sheet_string, tab_string);
+  var url = GetDataURL(sheet_string, tab_string, k);
 
   const Http = new XMLHttpRequest();
   Http.open("GET", url);
