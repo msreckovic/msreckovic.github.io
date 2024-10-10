@@ -24,6 +24,8 @@ function TeslaTripsYears(where)
   total += "<a href=\"?year=2020\">2020</a>,";
   total += "<a href=\"?year=2019\">2019</a>,";
   total += "<a href=\"?year=2018\">2018</a>";
+  total += "<a href=\"?year=plans\">Plans</a>";
+  total += "<a href=\"?year=live\">Live</a>";
   total += "</h3>";
   document.getElementById(where).innerHTML = total;
 }
@@ -35,19 +37,17 @@ function StandardTripYear()
     return;
   }
 
-  var sheetIndex = TripYear - 2012;
-  if (sheetIndex > 0) {
-    var googleSheet = GoogleSheetSquare;
+  var googleSheet = GoogleSheetSquare;
 
-    var script_tag = document.getElementById('tripseason')
-    if (script_tag) {
-      var argsheet = script_tag.getAttribute("data-sheet");
-      if (argsheet) {
-        console.log("Setting tripseason.js.GoogleSheetSquare from data-sheet to " + argsheet)
-        googleSheet = argsheet;
-      }
+  var script_tag = document.getElementById('tripseason')
+  if (script_tag) {
+    var argsheet = script_tag.getAttribute("data-sheet");
+    if (argsheet) {
+      console.log("Setting tripseason.js.GoogleSheetSquare from data-sheet to " + argsheet)
+      googleSheet = argsheet;
     }
-    V4V3_GetOriginalData(TeslaTripsMade, googleSheet, sheetIndex);
+    var ksheet = script_tag.getAttribute("k");
+    GetAllData(TeslaTripsMade, googleSheet, TripYear, ksheet);
   }
 }
 
