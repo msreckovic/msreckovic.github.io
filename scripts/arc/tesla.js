@@ -1,3 +1,40 @@
+function ConsoleLog(str)
+{
+  if (false) console.log(str);
+}
+
+function GetDataURL(sheet_string, tab_string)
+{
+  var url = "https://sheets.googleapis.com/v4/spreadsheets/" + sheet_string + "/values/" + tab_string + "?alt=json&key=AIzaSyAPlnkFHaiuXPA0AOoqzZD_GtEWR2j-qG8";
+  ConsoleLog("URL " + url);
+  return url;
+}
+
+function FinalCallbackName(f, whole_thing_str)
+{
+  if (whole_thing_str == "") {
+     return;
+  }
+  console.log(whole_thing_str);
+  var whole_thing = JSON.parse(whole_thing_str);
+  f(whole_thing["values"]);
+}
+
+function GetAllData(f, sheet_string, tab_string)
+{
+  if (sheet_string == "") return;
+
+  var url = GetDataURL(sheet_string, tab_string);
+
+  const Http = new XMLHttpRequest();
+  Http.open("GET", url);
+  Http.send();
+
+  Http.onreadystatechange = (e) => {
+    FinalCallbackName(f, Http.responseText);
+  }
+}
+
 AllTheTrips =
   [ {"fTripRaw" : "",
      "fTripCities" : "",
@@ -6,26 +43,6 @@ AllTheTrips =
      "fTripLegs" : []
     },
   ];
-
-var map = [
-  "gsx$trip",            // 0
-  "gsx$city",            // 1
-  "gsx$address",         // 2
-  "gsx$distance",        // 3
-  "gsx$cumul",           // 4
-  "gsx$rated",           // 5
-  "gsx$whkm",            // 6
-  "gsx$arrivaltime",     // 7
-  "gsx$arrivalrange",    // 8
-  "gsx$departuretime",   // 9
-  "gsx$departurerange",  // 10
-  "gsx$driveduration",   // 11
-  "gsx$chargeduration",  // 12
-  "gsx$added",           // 13
-  "gsx$usage",           // 14
-  "gsx$chargekmh",       // 15
-  "gsx$drivekmh",        // 16
-];
 
 var Headers =
     [
@@ -93,58 +110,21 @@ function ChargingTime(starting, ending)
   return [h,m,s];
 }
 
-function GetValue(where, what)
+function GetTime(thet)
 {
-  if (what in where) {
-    return where[what].$t;
-  }
+  if (thet) return thet;
   return "";
 }
 
-function FormatAsTime(when)
+function GetPercentage(thet)
 {
-  when = when - Math.floor(when);
-  var sec = Math.round(when * 86400);
-  var minutes = Math.floor(sec / 60);
-  sec = sec - minutes * 60;
-  var hours = Math.floor(minutes / 60);
-  minutes = minutes - hours * 60;
-  if (minutes < 10) {
-    minutes = "0" + minutes;
-  }
-  consolelog("CONVERTING " + when + " to " + hours + ":" + minutes + ":" + sec);
-
-  return "" + hours + ":" + minutes;
+  if (thet) return thet;
+  return "";
 }
 
-function GetTime(where, what)
+function GetKm(thet)
 {
-  var thet = "";
-  if (what in where) {
-    thet = where[what].$t;
-  }
-  if (thet == "") return "";
-
-  return FormatAsTime(thet);
-}
-
-function GetPercentage(where, what)
-{
-  var thet = "";  
-  if (what in where) {
-    thet = where[what].$t;
-  }
-  if (thet == "") return "";
-  
-  return "" + Math.round(100*parseFloat(thet)) + "%";
-}
-
-function GetKm(where, what)
-{
-  if (what in where) {
-    var thet = where[what].$t;
-    if (thet == "") return "";
-
+  if (thet) {
     var fnd = String(thet).search("km");
     if (fnd >= 0) {
       return "" + Math.round(parseFloat(String(thet).substring(0,fnd)));
@@ -154,12 +134,9 @@ function GetKm(where, what)
   return "";
 }
 
-function GetKph(where, what)
+function GetKph(thet)
 {
-  if (what in where) {
-    var thet = where[what].$t;
-    if (thet == "") return "";
-
+  if (thet) {
     var fnd = String(thet).search("km");
     if (fnd >= 0) {
       return "" + Math.round(parseFloat(String(thet).substring(0,fnd)));
@@ -171,88 +148,75 @@ function GetKph(where, what)
 
 function TripStart(entry)
 {
-  consolelog("fTripRaw " + GetValue(entry,map[0]));
-  consolelog("fTripCities " + GetValue(entry,map[1]))
-  consolelog("fTripDate " + GetValue(entry,map[2]))
-  consolelog("fTripTemp " + GetValue(entry,map[3]))
+  consolelog("fTripRaw " + entry[0]);
+  consolelog("fTripCities " + entry[1]);
+  consolelog("fTripDate " + entry[2]);
+  consolelog("fTripTemp " + entry[3]);
 
-  return  {"fTripRaw" : GetValue(entry,map[0]),
-           "fTripCities" : GetValue(entry,map[1]),
-           "fTripDate" : GetValue(entry,map[2]),
-           "fTripTemp" : GetValue(entry,map[3]),
+  return  {"fTripRaw" : entry[0],
+           "fTripCities" : entry[1],
+           "fTripDate" : entry[2],
+           "fTripTemp" : entry[3],
            "fTripLegs" : []
           };
 }
 
 function TripLeg(entry)
 {
-  return [GetValue(entry,map[0]),
-          GetValue(entry,map[1]),
-          GetValue(entry,map[2]),
-          GetKm(entry,map[3]),
-          GetKm(entry,map[4]),
-          GetKm(entry,map[5]),
-          GetKm(entry,map[6]),
-          GetTime(entry,map[7]),
-          GetKm(entry,map[8]),
-          GetTime(entry,map[9]),
-          GetKm(entry,map[10]),
-          GetTime(entry,map[11]),
-          GetTime(entry,map[12]),
-          GetKm(entry,map[13]),
-          GetPercentage(entry,map[14]),
-          GetKph(entry,map[15]),
-          GetKph(entry,map[16]),
-         ];
+    return [entry[0],
+	    entry[1],
+	    entry[2],
+	    GetKm(entry[3]),
+	    GetKm(entry[4]),
+	    GetKm(entry[5]),
+	    GetKm(entry[6]),
+	    GetTime(entry[7]),
+	    GetKm(entry[8]),
+	    GetTime(entry[9]),
+	    GetKm(entry[10]),
+	    GetTime(entry[11]),
+	    GetTime(entry[12]),
+	    GetKm(entry[13]),
+	    GetPercentage(entry[14]),
+	    GetKph(entry[15]),
+	    GetKph(entry[16])
+	   ];
 }
 
-function TeslaTripsPlan(jsonIn)
+function TeslaTripsMade(values)
 {
-  TeslaTripsCommon(jsonIn);
-  FillInTrips("trip", 0); 
+  TeslaTripsCommon(values);
+  FillInTrips("trip");
 }
 
-function TeslaTripsMade(jsonIn)
-{
-  TeslaTripsCommon(jsonIn);
-  FillInTrips("trip", 1); 
-}
-
-function TeslaTripsCommon(jsonIn)
+function TeslaTripsCommon(values)
 {
   AllTheTrips = [];
   
   consolelog("Calling TeslaTrips");
 
-  var entries = jsonIn.feed.entry;
-  if (!entries) {
-    consolelog("NO ENTRIES AT ALL");
-    return;
-  }
-  consolelog("01");
   var inTrip = false;
   var single = "";
-  consolelog("02");
-  consolelog("03 entries length " + entries.length);
-  for (var i=0; i<entries.length; i++) {
-    consolelog("ENTRY " + i + " IS " + JSON.stringify(entries[i]));
+  consolelog("values length " + values.length);
+  for (var i=1; i<values.length; i++) {
+    consolelog("ENTRY " + i + " IS " + values[i]);
 
-    var first = GetValue(entries[i], map[0]);
+    var first = values[i][0];
     consolelog("FIRST " + first);
-    if (first == "START" || first == "PLAN" || first == "STARTPLAN") {
+    if (first == "START" || first == "PLAN" || first == "PLAN-LATER" || first == "START-LATER") {
       if (inTrip) {
         AllTheTrips.push(single);
         inTrip = false;
       }
       if (!inTrip) {
-        single = TripStart(entries[i]);
+        single = TripStart(values[i]);
         inTrip = true;
       }
     } else if (inTrip) {
-      var leg = TripLeg(entries[i]);
+      var leg = TripLeg(values[i]);
       consolelog("LEG " + leg);
       single.fTripLegs.push(leg);
-      if (first == "END" || first == "ENDPLAN") {
+      if (first == "END") {
         AllTheTrips.push(single);
         inTrip = false;
       }
@@ -268,13 +232,16 @@ function TeslaTripsCommon(jsonIn)
   consolelog("AT THIS POINT " + AllTheTrips.length);
 }
 
-function FillInSingle(trip, choice)
+function FillInSingle(trip)
 {
+  var choice = -1;
   console.log("trip.fTripRaw is " + trip.fTripRaw);
   if (trip.fTripRaw == "START" ) {
     choice = 1;
-  } else if   (trip.fTripRaw == "PLAN" || trip.fTripRaw == "STARTPLAN") {
+  } else if (trip.fTripRaw == "PLAN") {
     choice = 0;
+  } else {
+    return "";
   }
 
   var total = "";
@@ -357,11 +324,11 @@ function FillInSingle(trip, choice)
   }
   
   total += "<tr><td colspan=\"9\"</td></tr></table>";
+  total += "<br>\n";
   return total;
 }
 
-// choice is 0 for plan, 1 for actual, but auto set from fTripRaw anyway
-function FillInTrips(where, choice)
+function FillInTrips(where)
 {
   var total = "";
   // Do the menu to get to all of them.  Maybe iframe or scroll-to.
@@ -369,9 +336,8 @@ function FillInTrips(where, choice)
   consolelog("CALLING FillInTrips " + AllTheTrips.length);
   consolelog("WHERE IS " + where);
 
-  for (var i=AllTheTrips.length-1; i>=0; i-=1) {
-    total += FillInSingle(AllTheTrips[i], choice);
-    total += "<br>\n";
+  for (var i=AllTheTrips.length - 1; i >= 0; i-=1) {
+    total += FillInSingle(AllTheTrips[i]);
   }
   total += "</pre>";
   document.getElementById(where).innerHTML = total;
