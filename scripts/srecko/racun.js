@@ -1,5 +1,28 @@
-function GetValue(e, t, a) {
-    return e && t in e ? e[t].$t : a
+// START OF STANDARD START OF STANDARD START OF STANDARD START OF STANDARD START OF STANDARD START OF STANDARD 
+
+var GoogleSheetSquare = "";
+
+var Loud = false;
+function ConsoleLog(str)
+{
+  if (Loud) console.log(str);
+}
+
+function GetNumber(a)
+{
+  return parseFloat(a.replace(/[^0-9.-]+/g,""));
+}
+
+function ParseJSON(value)
+{
+  try {
+    var parsed = JSON.parse(value);
+    if (parsed && typeof parsed === "object") {
+      return parsed;
+    }
+  }
+  catch (e) { }
+  return "";
 }
 
 function GetQueryParameters(what) {
@@ -9,93 +32,230 @@ function GetQueryParameters(what) {
     var t = e.split("=");
     queryParameters[t[0]] = decodeURIComponent(t[1])
   });
-  console.log("Parameters " + queryString);
   var res = queryParameters[what];
   if (res) return res.replace("_", " ").replace("%20", " ");
   return undefined;
 }
 
-function RacunEverything(racuni)
+function GetDataURL(sheet_string, tab_string, k)
 {
-  var el = document.getElementById("summary-racun");
-  if (el) {
-    var total = "<span>";
-    for (var racun in racuni) {
-      var found = racuni[racun];
-      if (found[2]) {
-        total += `    <a href="?racun=${ racun }">${ found[0] }</a>`;
+  var url = "https://sheets.googleapis.com/v4/spreadsheets/" + sheet_string + "/values/" + tab_string + "?alt=json&key=" + k;
+  return url;
+}
+
+function FinalCallbackName(f, whole_thing_str)
+{
+  if (whole_thing_str == "") {
+     return;
+  }
+  var whole_thing = JSON.parse(whole_thing_str);
+  f(whole_thing["values"]);
+}
+
+function GetAllData(f, sheet_string, tab_string, k)
+{
+  if (sheet_string == "") return;
+
+  var url = GetDataURL(sheet_string, tab_string, k);
+
+  const Http = new XMLHttpRequest();
+  Http.open("GET", url);
+  Http.send();
+
+  Http.onreadystatechange = (e) => {
+    FinalCallbackName(f, Http.responseText);
+  }
+}
+
+// END OF STANDARD END OF STANDARD END OF STANDARD END OF STANDARD END OF STANDARD END OF STANDARD 
+
+// Specific
+
+function ForAmount(amount)
+{
+  var summary = "    <td data-label=Verdict>";
+
+  var asInt = parseInt(amount, 10);
+  if (asInt < 0) {
+    summary += amount + " (due)</td>\n";
+  } else if (asInt > 0) {
+    summary += amount + " (owes)</td>\n";
+  } else {
+    summary += amount + "&nbsp;</td>\n";
+  }
+  return summary;
+}
+
+function ForPeople(who, spent, paid)
+{
+  var summary = `
+    <td data-label=Who>${ who }</td>
+    <td data-label=Spent>${ spent }</td>
+    <td data-label=Paid>${ paid }</td>
+  `;
+  return summary;
+}
+
+function DivSummary(map, entries)
+{
+  var when = entries[4][1];
+  var summary = `
+<h4>Last updated ${ when }</h4>
+<table>
+  <thead>
+    <tr>
+      <th>Who</th>
+      <th>Spent</th>
+      <th>Paid</th>
+      <th>Verdict</th>
+    </tr>
+  </thead>
+  `;
+
+  summary += "  <tbody>\n";
+  for (j in map) {
+    summary += "   <tr>";
+    summary += ForPeople(map[j].who,
+                         entries[2][map[j].cut],
+                         entries[2][map[j].paid]);
+    summary += ForAmount(entries[3][map[j].paid]);
+    summary += "   </tr>\n";
+  }
+
+  summary += "  </tbody>\n";
+  summary += "</table>\n";
+
+  return summary;
+}
+
+function DivDetails(map, entries)
+{
+  var details = `<table>
+  <thead>
+    <tr>
+      <th>When</th>
+      <th>What</th>
+      <th>Amount</th>
+      <th>Paid-By</th>
+  `;
+
+  for (var j in map) {
+    details += "      <th>" + map[j].label + "</th>\n";
+  }
+
+  // details += "      <th>Per-Person</th>\n";
+  details += "    </tr>\n";
+  details += "  </thead>\n";
+  details += "  <tbody>\n";
+
+  for (var i=entries.length-1; i>=4 ; i--) {
+    var doit = false;
+    var amount = 0;
+    var who = "";
+    var cur = "$";
+
+    var what = entries[i][2];
+    var when = entries[i][0];
+    var perperson = entries[i][18];
+
+    var people = [];
+    var cuts = [];
+    var labels = [];
+
+    for (j in map) {
+      var pp = entries[i][map[j].people];
+      var cc = entries[i][map[j].cut];
+      var ll = map[j].label;
+      people.push(pp);
+      cuts.push(cc);
+      labels.push(ll);
+
+      var pd = entries[i][map[j].paid];
+      if (pd) {
+        var val = GetNumber(entries[i][map[j].paid]);
+        am = val;
+        if (am > 0) {
+          amount += am;
+          doit = true;
+          who = map[j].who;
+        }
       }
     }
-    total += "  </span>";
-    el.innerHTML = total;
+
+    if (doit) {
+      details += "    <tr>";
+      details += `    <td data-label=When>${ when }</td>`;
+      details += `    <td data-label=What>${ what }</td>`;
+      details += `    <td data-label=Amount>${ cur + amount }</td>`;
+      details += `    <td data-label=Paid-By>${ who }</td>`;
+      for (j=0; j<people.length; j+=1) {
+        if (people[j] == 1) {
+          details += `    <td data-label=${ labels[j] }>${ cuts[j] }</td>`;
+        } else if (people[j] && people[j] != 0) {
+          details += `    <td data-label=${ labels[j] }>${ cuts[j] } (${ people[j] })</td>`;
+        } else {
+          details += `    <td data-label=${ labels[j] }>${ cuts[j] }</td>`;
+        }
+      }
+      // details += `    <td data-label=Per-Person>${ perperson }</td>`;
+      details += "    </tr>";
+    }
   }
+
+  details += "  </tbody>\n";
+  details += "</table>\n";
+  return details;
 }
 
-function RacunStandard(title, racun_index, details)
+function FoodMade(values)
 {
-  console.log(`Racun with ${ title }, ${ racun_index }, ${ details }`);
-
-  var showtitle = title;
-  if (details != "") {
-    showtitle = `${ showtitle } (${ details })`;
-  }
-
-  var el;
-  el = document.getElementById("title");
-  if (el) {
-    el.innerHTML = title;
-  }
-
-  var div = document.getElementById("standard-racun");
-  if (div) {
-    var total = `
-  <h1> ${ showtitle } </h1>
-  <h2>Summary</h2>
-  <div id="summary"></div>
-  <hr>
-  <h2>Details</h2>
-  <div id="details"></div>
-  <hr>
-  <br><br>`
-    div.innerHTML = total;
-
-    var src = `V4V3_GetOriginalData(JsonCallback,"1oWmF6mKi126JJFoBIG2_XH7zV8I7LxzeP5MfyMhrT_4",${ racun_index } - 1)`;
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.innerHTML = src;
-    div.insertBefore(script, null);
-  }
+  var map = ParseJSON(values[3][1]);
+  ConsoleLog("MAP IS " + JSON.stringify(map));
+  document.getElementById("summary").innerHTML = DivSummary(map, values);
+  document.getElementById("details").innerHTML = DivDetails(map, values);
 }
 
-function CollectDetails(jsonIn)
+function FoodTrips(where)
 {
-  var entries = jsonIn.feed.entry;
-  var racuni = {};
-  for (var i = 0; i < entries.length; i++) {
-    var tabName = GetValue(entries[i], "gsx$tabname", "");
-    if (tabName == "") continue;
-
-    var name = GetValue(entries[i], "gsx$name", "");
-    var details = GetValue(entries[i], "gsx$details", "");
-    var tabIndex = GetValue(entries[i], "gsx$tabindex", "");
-    var reminder = GetValue(entries[i], "gsx$reminder", "");
-
-    console.log(`${ tabName } = ${ name }, ${ details }, ${ tabIndex }, ${ reminder }`);
-    racuni[tabName] = [name, details, tabIndex, reminder];
-  }
-  
-  ProcessRacun(racuni);
+  var total = "";
+  total += "<h3>";
+  total += "<a href=\"?trip=Boston2024\">Boston 2024</a>,";
+  total += "<a href=\"?trip=Boston2022\">Boston 2022</a>,";
+  total += "<a href=\"?trip=Oahu2020\">Oahu 2020</a>,";
+  total += "</h3>";
+  document.getElementById(where).innerHTML = total;
 }
 
-function ProcessRacun(racuni)
+function StandardTrip()
 {
-  var racun = GetQueryParameters("racun");
-  console.log(`Racun ${ racun }`);
+  if (Trip == "All Trips") {
+    FoodTrips("summary");
+    return;
+  }
 
-  if (racun == undefined) {
-    RacunEverything(racuni);
-  } else {
-    var found = racuni[racun];
-    RacunStandard(found[0], found[2], found[1]);
+  var googleSheet = GoogleSheetSquare;
+
+  var script_tag = document.getElementById('racun')
+  if (script_tag) {
+    var argsheet = script_tag.getAttribute("data-sheet");
+    if (argsheet) {
+      googleSheet = argsheet;
+    }
+    var ksheet = script_tag.getAttribute("k");
+    GetAllData(FoodMade, googleSheet, Trip, ksheet);
   }
 }
+
+var Trip = GetQueryParameters("trip");
+if ("" == Trip || void 0 == Trip) {
+  Trip = "All Trips";
+}
+
+var GoLoud = GetQueryParameters("loud");
+if ("" == GoLoud || void 0 == GoLoud) {
+} else {
+  Loud = true;
+}
+
+document.getElementById("trip-title").innerHTML = Trip;
+StandardTrip(Trip);
