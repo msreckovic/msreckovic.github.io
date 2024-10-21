@@ -75,7 +75,7 @@ function TeslaMessage(values)
   if (values.length > 1) {
     var i;
     for (i = values.length - 1; i > 0; i--) {
-      total += "<h4><b>" + values[i][0] + "</b>: " + values[i][1] + "</h4>";
+      total += "<h6><b>" + values[i][0] + "</b>: " + values[i][1] + "</h6>";
     }
   }
 
