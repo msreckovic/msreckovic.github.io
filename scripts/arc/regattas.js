@@ -261,7 +261,12 @@ function AllDetails(entries, evented)
     
     var boat = BoatFromCaptain(captain);
     for (var j=0; j<boat.length; j+=1) {
-      boats.add(boat[j]);
+      var one = boat[j];
+      var crew = one.indexOf("(");
+      if (crew > 0) {
+        one = one.substring(0, crew);
+      }
+      boats.add(one);
     }
   }
   
